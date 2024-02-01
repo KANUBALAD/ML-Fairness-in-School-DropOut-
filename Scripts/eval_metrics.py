@@ -13,7 +13,7 @@ def test_error(y_pred, y_true):
     return np.mean(y_pred!=y_true)
 
 # demographic parity
-def statistical_parity(y_pred, mask):
+def demographic_parity(y_pred, mask):
     y_cond = y_pred * mask.astype(np.float32)
     return y_cond.sum() / mask.sum()
 
@@ -72,13 +72,13 @@ def model_metrics(model_name, Xtest_data, ytest_data, mask=None,  fair_metrics= 
     print(f'Model Recall {round(recall_score(y_preds, ytest_data), 2)} and precision {round(precision_score(y_preds, ytest_data), 2)}')
     print(f'Model Test error is {round(test_error(y_preds, ytest_data), 2)}')
     if fair_metrics:
-        demographic_parity = statistical_parity(y_preds, mask)
+        mydemographic_parity = demographic_parity(y_preds, mask)
         equality_opportunity = equal_opportunity(y_preds, ytest_data, mask)
         fpr = false_positive_rate(y_preds, ytest_data, mask)
         myaccuracy_rate= accuracy_rate(y_preds, ytest_data, mask)
         myrecall_rate= recall_rate(y_preds, ytest_data, mask)
         print(f'DP is {demographic_parity} EO is {equality_opportunity} fpr is {fpr} accuracy_rate is {myaccuracy_rate} recall rate is {myrecall_rate}')
-    return demographic_parity, equality_opportunity, fpr, myaccuracy_rate, myrecall_rate
+    return mydemographic_parity, equality_opportunity, fpr, myaccuracy_rate, myrecall_rate
 
         
         
