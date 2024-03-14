@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 
-def load_preprocessing_split(path_to_csv, split_data=True, awareness=True, 
+def load_preprocessing_split(path_to_csv, split_data=True, unawareness=True, 
                              test_size=None, random_state=None):
     """
     Load data from a CSV file, preprocess it, and split it into train and test sets.
@@ -38,10 +38,11 @@ def load_preprocessing_split(path_to_csv, split_data=True, awareness=True,
     
     # Separate the target variable and the features
     y = df_school['Target']
-    if awareness:
-        X = df_school.drop(columns=['Target', 'Gender'])
+    
+    if unawareness:
+        X = df_school.drop(columns=['Target', 'Gender']) #excludes gender from X features
     else:
-        X = df_school.drop(columns=['Target'])
+        X = df_school.drop(columns=['Target']) # includes gender in X
     
     # Extract the sensitive attributes
     sensitive_attribute = df_school[['Marital status', 'Nacionality', 'Gender']]
@@ -51,4 +52,4 @@ def load_preprocessing_split(path_to_csv, split_data=True, awareness=True,
         X_train, X_test, y_train, y_test, sens_train, sens_test = train_test_split(X, y, sensitive_attribute, test_size=test_size, random_state=random_state)
         return X_train, X_test, y_train, y_test, sens_train, sens_test
     else:
-        return X, y, sensitive_attribute
+        return df_school, X, y, sensitive_attribute
