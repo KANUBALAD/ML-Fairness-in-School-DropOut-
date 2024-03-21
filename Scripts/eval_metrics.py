@@ -145,4 +145,4 @@ def model_metrics(model_name, Xtest_data, ytest_data, mask=None, fair_metrics=Tr
         myaccuracy_rate = accuracy_rate(y_preds, ytest_data, mask)
         myrecall_rate = recall_rate(y_preds, ytest_data, mask)
         
-    return mydemographic_parity, equality_opportunity, fpr, myaccuracy_rate, myrecall_rate
+    return mydemographic_parity, equality_opportunity, fpr, myaccuracy_rate, myrecall_rate, y_preds
