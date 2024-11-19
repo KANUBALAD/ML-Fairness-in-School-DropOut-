@@ -28,14 +28,15 @@ def main(config_path):
     """
     try:
         print(f"Current working directory: {os.getcwd()}")
-        print(f"Loading configuration from: {config_path}")
         config = load_config(config_path)
+        print(f"Loading configuration from: {config_path} and fairness unawarness is {config['unawareness']}")
+
         testsize = config['test_size']
         randomstate = config['random_state']
         Xtransformed, ytarget = dataload.load_data(config)
-        splitted_data = utlis.split_data(Xtransformed, ytarget, testsize, randomstate)
-        print(f"splitted data keys: {splitted_data.keys()}")
-    
+        split_data = utlis.split_data(Xtransformed, ytarget, testsize, randomstate)
+        print(f"Xtrain has shape {split_data['X_train'].shape} and ytrain has shape {split_data['y_train'].shape}")
+        print(f"Xtest has shape {split_data['X_test'].shape} and ytest has shape {split_data['y_test'].shape}")    
     except Exception as e:
         print(f"An error occurred: {e}")
 

@@ -2,6 +2,10 @@
 
 This project aims to address the issue of fairness in machine learning models for predicting school dropout rates. The goal is to develop and evaluate models that are not biased towards any particular group, ensuring equal opportunities for all students.
 
+```
+python main.py ./yaml/brazil.yaml
+```
+
 ## Table of Contents
 - [Introduction](#introduction)
 - [Installation](#installation)
