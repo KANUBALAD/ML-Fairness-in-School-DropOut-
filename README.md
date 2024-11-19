@@ -19,7 +19,7 @@ The aim of this project is to utilize various machine learning models to predict
 To facilitate an easy setup, we have provided a .env file. You can use this file to install all the necessary packages required for this project by executing a single command.
 
 ## Data
-This dataset originates from Kaggle, titled "Predict students' dropout and academic success: Investigating the Impact of Social and Economic Factors." The dataset is comprehensively described, including its source, format in the Kaggle website. For public datasets, you can [downlaod it here ](https://www.kaggle.com/datasets/thedevastator/higher-education-predictors-of-student-retention/data).
+This dataset originates from Kaggle, titled "Predict students' dropout and academic success: Investigating the Impact of Social and Economic Factors." The dataset is comprehensively described, including its source, format in the Kaggle website. For public datasets, you can [downlaod it here](https://www.kaggle.com/datasets/thedevastator/higher-education-predictors-of-student-retention/data).
 
 ## Model Training
 We trained 3 different ML models:
@@ -30,11 +30,10 @@ We trained 3 different ML models:
 ## Evaluation
 Our evaluation metrics include:
 
-- **Accuracy:** The accuracy rate is a measure of how many instances were correctly classified by the model, where a higher accuracy rate generally indicates a better-performing model.
+- **Accuracy Parity:** The accuracy rate is a measure of how many instances were correctly classified by the model, where a higher accuracy rate generally indicates a better-performing model.
 
 - **False Positive Rate:**  Calculates the false positive rate (FPR) for a binary classification task. The FPR is a measure of how many negative instances (i.e., instances that should have been classified as 0) were incorrectly classified as positive (1).
 
-- **Recall Rate:** Calculates the recall rate (also known as sensitivity or true positive rate) for a binary classification task. The recall rate is a measure of how many positive instances (i.e., instances that should have been classified as 1) were correctly classified as positive by the model. It's a crucial metric in situations where the cost of missing a positive instance is high.
 
 - **Demographic Parity:** Demographic parity is a fairness metric that measures whether the positive prediction rates are equal across different groups. In other words, it checks if individuals from different groups have an equal chance of being predicted as positive, regardless of their true labels.
 

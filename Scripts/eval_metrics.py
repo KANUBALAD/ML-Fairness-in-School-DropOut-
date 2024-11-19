@@ -1,7 +1,9 @@
 import numpy as np
 import pandas as pd
 import torch
-from sklearn.metrics import precision_score, recall_score, f1_score, accuracy_score
+import matplotlib.pyplot as plt
+from sklearn.metrics import precision_score, recall_score, f1_score, accuracy_score, roc_curve, auc
+
 
 # Calculate test error
 def test_error(y_pred, y_true):
@@ -144,5 +146,48 @@ def model_metrics(model_name, Xtest_data, ytest_data, mask=None, fair_metrics=Tr
         fpr = false_positive_rate(y_preds, ytest_data, mask)
         myaccuracy_rate = accuracy_rate(y_preds, ytest_data, mask)
         myrecall_rate = recall_rate(y_preds, ytest_data, mask)
+        return mydemographic_parity, equality_opportunity, fpr, myaccuracy_rate, myrecall_rate, y_preds
+
         
-    return mydemographic_parity, equality_opportunity, fpr, myaccuracy_rate, myrecall_rate, y_preds
+    else:
+        general_accuracy = accuracy_score(ytest_data, y_preds)
+        general_f1_score = f1_score(ytest_data, y_preds, average='weighted')
+        recall_scores= recall_score(ytest_data, y_preds, average='weighted')
+        precision_scores= precision_score(ytest_data, y_preds, average='weighted')
+        return general_accuracy, general_f1_score, recall_scores, precision_scores
+    
+    
+    
+    
+def plot_roc_curve(ytest_data, y_pred_proba, model_name='Model'):
+    """
+    Plots the ROC curve for the given model's predictions.
+
+    Parameters:
+    ytest_data: True labels
+    y_pred_proba: Predicted probabilities for the positive class
+    model_name: Name of the model (default: 'Model')
+    """
+    # Generate ROC curve
+    fpr, tpr, _ = roc_curve(ytest_data, y_pred_proba)
+    roc_auc = auc(fpr, tpr)
+    
+    # Plot ROC curve
+    plt.figure(figsize=(8, 6))
+    plt.plot(fpr, tpr, color='darkorange', lw=2, label=f'ROC curve (area = {roc_auc:.2f})')
+    plt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
+    plt.xlim([0.0, 1.0])
+    plt.ylim([0.0, 1.05])
+    plt.xlabel('False Positive Rate')
+    plt.ylabel('True Positive Rate')
+    plt.title(f'Receiver Operating Characteristic (ROC) Curve for {model_name}')
+    plt.legend(loc="lower right")
+    plt.grid(True)
+    
+    # Save the plot
+    plt.savefig(f'roc_curve_{model_name}.png', dpi=300, bbox_inches='tight')
+    plt.show()
+
+        
+    
+        
