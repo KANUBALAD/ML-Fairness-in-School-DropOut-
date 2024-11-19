@@ -1,7 +1,10 @@
 import os
 import yaml
-from src import utlis,dataload
 import argparse
+
+from src import utlis, dataload 
+from src import model
+
 
 
 
@@ -37,6 +40,11 @@ def main(config_path):
         split_data = utlis.split_data(Xtransformed, ytarget, testsize, randomstate)
         print(f"Xtrain has shape {split_data['X_train'].shape} and ytrain has shape {split_data['y_train'].shape}")
         print(f"Xtest has shape {split_data['X_test'].shape} and ytest has shape {split_data['y_test'].shape}")    
+        # Select and run the model
+        model.run_model(config, split_data)
+       
+    
+    
     except Exception as e:
         print(f"An error occurred: {e}")
 

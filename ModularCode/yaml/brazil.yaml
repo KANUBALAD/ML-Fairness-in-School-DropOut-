@@ -3,3 +3,6 @@ datapath: "./data/brazil_data.csv"
 test_size: 0.2
 random_state: 42
 unawareness: True
+model : logistic_regression # decision_tree, random_forest, logistic_regression
+
+  
