@@ -1,6 +1,8 @@
 from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import StratifiedKFold
+import numpy as np
 
 def logistic_regression(X, y):
     lrmodel = LogisticRegression()
@@ -17,38 +19,62 @@ def random_forest(X, y):
     rfmodel.fit(X, y)
     return rfmodel
 
+def run_cross_validation(config, X, y):
+    """
+    Perform 5x2 cross-validation and compute mean and standard deviation for each model.
+    Parameters:
+    config (dict): Configuration dictionary specifying the model and parameters.
+    X (np.ndarray or pd.DataFrame): Feature matrix.
+    y (np.ndarray or pd.Series): Target array.
 
-def run_model(config, split_data):
-    X_train, X_test, y_train, y_test = split_data['X_train'], split_data['X_test'], split_data['y_train'], split_data['y_test']
+    Returns:
+    dict: A dictionary with models as keys and their mean/std accuracy as values.
+    """
+    skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
     
-    if config['model'] == 'logistic_regression':
-        model_lr = logistic_regression(X_train, y_train)
-        score = model_lr.score(X_test, y_test)
-        print(f"{config['model']} accuracy: {score}")
-        return {config['model']: score}
+    # Define models
+    model_functions = {
+        'logistic_regression': logistic_regression,
+        'decision_tree': decision_tree,
+        'random_forest': random_forest,
+    }
     
-    elif config['model'] == 'decision_tree':
-        model_dt = decision_tree(X_train, y_train)
-        score = model_dt.score(X_test, y_test)
-        print(f"{config['model']} accuracy: {score}")
-        return {config['model']: score}
+    results = {}
+    if config['model'] == 'compare':  # Evaluate all models
+        for model_name, model_function in model_functions.items():
+            mean, std = cross_validate(model_function, X, y, skf)
+            results[model_name] = {'mean': mean, 'std': std}
+    else:  # Evaluate a single model
+        model_function = model_functions[config['model']]
+        mean, std = cross_validate(model_function, X, y, skf)
+        results[config['model']] = {'mean': mean, 'std': std}
     
-    elif config['model'] == 'random_forest':
-        model_rf = random_forest(X_train, y_train)
-        score = model_rf.score(X_test, y_test)
-        print(f"{config['model']} accuracy: {score}")
-        return {config['model']: score}
+    return results
+
+def cross_validate(model_function, X, y, skf):
+    """
+    Performs 5x2 cross-validation.
+    Parameters:
+    model_function (function): Function to train and return the model.
+    X (np.ndarray): Feature matrix.
+    y (np.ndarray): Target array.
+    skf (StratifiedKFold): StratifiedKFold splitter instance.
+
+    Returns:
+    float, float: Mean and standard deviation of accuracy scores.
+    """
+    scores = []
+    for train_idx, test_idx in skf.split(X, y):
+        # Use numpy indexing for train-test split
+        X_train, X_test = X[train_idx], X[test_idx]
+        y_train, y_test = y[train_idx], y[test_idx]
+
+        # First fold
+        model_1 = model_function(X_train, y_train)
+        scores.append(model_1.score(X_test, y_test))
+
+        # Second fold (reverse roles)
+        model_2 = model_function(X_test, y_test)
+        scores.append(model_2.score(X_train, y_train))
     
-    elif config['model'] == 'compare':
-        models_all = {
-            'logistic_regression': logistic_regression(X_train, y_train),
-            'decision_tree': decision_tree(X_train, y_train),
-            'random_forest': random_forest(X_train, y_train)
-        }
-        scores = {}
-        for name, model_item in models_all.items():
-            score = model_item.score(X_test, y_test)
-            print(f"{name} accuracy: {score}")
-            scores[name] = score
-        return scores
-    
+    return np.mean(scores), np.std(scores)
