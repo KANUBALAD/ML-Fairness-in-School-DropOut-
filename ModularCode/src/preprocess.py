@@ -2,10 +2,12 @@ import pandas as pd
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.impute import SimpleImputer
 
 def preprocess_data(data):
     """
-    Preprocesses the covariates data by standardizing numerical columns and one-hot encoding categorical columns.
+    Preprocesses the covariates data by handling missing values, standardizing numerical columns,
+    and one-hot encoding categorical columns.
 
     Parameters:
     data (pd.DataFrame): The feature dataframe.
@@ -19,12 +21,14 @@ def preprocess_data(data):
     
     # Create the numerical pipeline
     numerical_pipeline = Pipeline(steps=[
+        ('imputer', SimpleImputer(strategy='mean')),  # Handle missing values
         ('scaler', StandardScaler())])
     
     # Check if there are categorical features
     if len(categorical_features) > 0:
         # Create the categorical pipeline only if there are categorical features
         categorical_pipeline = Pipeline(steps=[
+            ('imputer', SimpleImputer(strategy='most_frequent')),  # Handle missing values
             ('onehot', OneHotEncoder(handle_unknown='ignore', sparse_output=False))])
         
         # Define the column transformer with both pipelines

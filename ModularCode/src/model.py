@@ -5,7 +5,7 @@ from sklearn.model_selection import StratifiedKFold
 import numpy as np
 
 def logistic_regression(X, y):
-    lrmodel = LogisticRegression()
+    lrmodel = LogisticRegression(max_iter=1000)  # Ensure convergence
     lrmodel.fit(X, y)
     return lrmodel
 
@@ -30,7 +30,7 @@ def run_cross_validation(config, X, y):
     Returns:
     dict: A dictionary with models as keys and their mean/std accuracy as values.
     """
-    skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+    skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=config['random_state'])
     
     # Define models
     model_functions = {

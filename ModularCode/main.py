@@ -3,9 +3,8 @@ import yaml
 import argparse
 import numpy as np
 
-from src import utlis, dataload 
+from src import utils, dataload 
 from src import model
-
 
 def load_config(config_path):
     """
@@ -30,12 +29,12 @@ def main(config_path):
     try:
         print(f"Current working directory: {os.getcwd()}")
         config = load_config(config_path)
-        print(f"Loading configuration from: {config_path} and fairness unawarness is {config['unawareness']}")
+        print(f"Loading configuration from: {config_path} and fairness unawareness is {config['unawareness']}")
 
         testsize = config['test_size']
         randomstate = config['random_state']
         Xtransformed, ytarget = dataload.load_data(config)
-        split_data = utlis.split_data(Xtransformed, ytarget, testsize, randomstate)
+        split_data = utils.split_data(Xtransformed, ytarget, testsize, randomstate)
         print(f"Xtrain has shape {split_data['X_train'].shape} and ytrain has shape {split_data['y_train'].shape}")
         print(f"Xtest has shape {split_data['X_test'].shape} and ytest has shape {split_data['y_test'].shape}")    
 
@@ -49,7 +48,6 @@ def main(config_path):
     
     except Exception as e:
         print(f"An error occurred: {e}")
-
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run the training and evaluation pipeline.")
