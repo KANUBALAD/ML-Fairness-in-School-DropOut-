@@ -1,0 +1,151 @@
+Student No,Adress ,Family Monthly income ,Parents Educational Degree ,English Language Skill ,Ethnic ,Reason of Dropout 
+1,Halabja,"600,000",N,Good,Muslim,Postpone
+2,sulaymani,"830,000",N,Good,Muslim,Private
+3,Village ,"450,000",N,Good,Muslim,Postpone
+4,Duhok ,1000000,Bsc,Excellent ,Christian,OutsideIraq
+5,Village ,"3,000,000",N,Vgood,Muslim,Postpone
+6,Duhok,"1,420,000",PG,Vgood,Ezedi,OutsideIraq
+7,Erbil,2200000,PhD,Good,Muslim,Private
+8,Village ,2500000,N,Good,Muslim,Private
+9,Erbil,1300000,Bsc,Good,Muslim,Private
+10,sulaymani,2000000,Bsc,Excellent ,Christian,Private
+11,Village ,4000000,N,Good,Muslim,Private
+12,sulaymani,870000,Bsc,Good,Muslim,Private
+13,Village ,5000000,N,Good,Muslim,Private
+14,Village ,450000,Bsc,Good,Muslim,Postpone
+15,Erbil,300000,N,Vgood,Christian,OutsideIraq
+16,Village ,480000,Bsc,Good,Muslim,Private
+17,Village ,670000,Bsc,Good,Muslim,Postpone
+18,sulaymani,550000,N,Good,Muslim,Postpone
+19,sulaymani,450000,Bsc,Vgood,Muslim,Change
+20,Village ,300000,N,Good,Christian,OutsideIraq
+21,Erbil,1200000,Bsc,Good,Muslim,Private
+22,sulaymani,800000,Bsc,Good,Muslim,Change
+23,sulaymani,600000,N,Good,Muslim,Change
+24,Village ,500000,N,Good,Muslim,Private
+25,Erbil,350000,N,Good,Muslim,Change
+26,Erbil,1000000,Bsc,Excellent ,Christian,OutsideIraq
+27,Erbil,700000,Bsc,Good,Muslim,Private
+28,Duhok,550000,Bsc,Good,Muslim,Change
+29,Duhok,1700000,PG,Excellent ,Muslim,Private
+30,sulaymani,600000,N,Good,Muslim,Change
+31,Duhok,700000,N,Good,Muslim,Change
+32,Village ,1000000,Bsc,Vgood,Muslim,Private
+33,Erbil,2500000,PG,Excellent ,Christian,Private
+34,Village ,1400000,N,Good,Muslim,Private
+35,Halabja,5000000,Bsc,Good,Muslim,Change
+36,Village ,1400000,N,Good,Muslim,Postpone
+37,Village ,2000000,N,Good,Muslim,Private
+38,Duhok,1850000,Bsc,Good,Ezedi,OutsideIraq
+39,sulaymani,600000,N,Good,Muslim,Change
+40,sulaymani,500000,Bsc,Vgood,Muslim,Postpone
+41,Duhok,450000,N,Good,Muslim,Change
+42,sulaymani,1650000,Bsc,Good,Muslim,Private
+43,Village ,2000000,N,Good,Muslim,Private
+44,Village ,1000000,N,Good,Muslim,Postpone
+45,sulaymani,1750000,Bsc,Vgood,Muslim,Private
+46,Erbil,1500000,Bsc,Good,Muslim,Private
+47,Erbil,3000000,Bsc,Good,Muslim,Private
+48,Erbil,800000,Bsc,Good,Muslim,Private
+49,Village ,500000,Bsc,Vgood,Muslim,Postpone
+50,Halabja,670000,Bsc,Good,Muslim,Change
+51,Erbil,1100000,Bsc,Vgood,Muslim,Private
+52,Village ,750000,Bsc,Vgood,Muslim,Postpone
+53,sulaymani,3000000,Bsc,Good,Muslim,Private
+54,sulaymani,5000000,Bsc,Vgood,Muslim,Postpone
+55,sulaymani,1000000,Bsc,Vgood,Muslim,Private
+56,Erbil,950000,Bsc,Vgood,Muslim,Change
+57,Duhok,1500000,N,Good,Muslim,Change
+58,Village ,700000,Bsc,Excellent ,Muslim,Postpone
+59,sulaymani,1000000,Bsc,Good,Muslim,change
+60,Duhok,1500000,Bsc,Vgood,Muslim,Change
+61,Duhok,3000000,Bsc,Good,Muslim,Change
+62,sulaymani,3500000,PG,Vgood,Muslim,Private
+63,Erbil,500000,Bsc,Excellent ,Christian,Change
+64,Village ,900000,N,Good,Muslim,Postpone
+65,Village ,1000000,N,Good,Muslim,Postpone
+66,Village ,600000,N,Good,Muslim,Postpone
+67,sulaymani,1200000,Bsc,Good,Muslim,Private
+68,sulaymani,1450000,Bsc,Vgood,Muslim,Change
+69,Duhok,1000000,N,Good,Muslim,Change
+70,Village ,1300000,Bsc,Good,Muslim,Postpone
+71,sulaymani,1500000,Bsc,Good,Muslim,Private
+72,Erbil,1000000,Bsc,Vgood,Muslim,Private
+73,Village ,800000,N,Good,Muslim,Postpone
+74,Village ,650000,N,Good,Muslim,Postpone
+75,Erbil,1500000,Bsc,Vgood,Muslim,Private
+76,Erbil,4000000,PG,Vgood,Muslim,Private
+77,sulaymani,2500000,PG,Vgood,Christian,OutsideIraq
+78,Halabja,1300000,PG,Vgood,Muslim,Private
+79,Village ,500000,N,Good,Muslim,Postpone
+80,Halabja,800000,Bsc,Good,Muslim,Postpone
+81,Village ,1000000,N,Good,Muslim,Postpone
+82,sulaymani,700000,N,Good,Muslim,Postpone
+83,Village ,900000,N,Good,Muslim,Postpone
+84,Village ,1200000,N,Good,Muslim,Postpone
+85,Halabja,1000000,Bsc,Good,Muslim,Postpone
+86,Duhok,2000000,Bsc,Vgood,Muslim,Private
+87,Village ,1000000,N,Good,Muslim,Postpone
+88,sulaymani,1400000,Bsc,Good,Muslim,Private
+89,Duhok,1000000,Bsc,Good,Muslim,Change
+90,sulaymani,850000,N,Good,Muslim,Private
+91,Halabja,500000,Bsc,Good,Muslim,Change
+92,Erbil,800000,Bsc,Vgood,Muslim,Change
+93,Erbil,1000000,Bsc,Vgood,Muslim,Private
+94,sulaymani,1360000,Bsc,Good,Muslim,Private
+95,Halabja,500000,Bsc,Good,Muslim,Change
+96,Village ,3000000,N,Good,Muslim,Postpone
+97,sulaymani,2000000,Bsc,Vgood,Muslim,Private
+98,Duhok,1600000,Bsc,Excellent ,Christian,OutsideIraq
+99,sulaymani,750000,N,Good,Muslim,Change
+100,sulaymani,1000000,Bsc,Vgood,Muslim,Change
+101,sulaymani,800000,Bsc,Good,Muslim,Postpone
+102,sulaymani,1200000,Bsc,Good,Muslim,Private
+103,Duhok,1000000,Bsc,Good,Muslim,Change
+104,Halabja,1500000,PG,Vgood,Muslim,Private
+105,Village ,1000000,Bsc,Vgood,Muslim,Postpone
+106,sulaymani,2000000,Bsc,Vgood,Muslim,Private
+107,Duhok,1400000,Bsc,Vgood,Muslim,Private
+108,Village ,700000,Bsc,Vgood,Muslim,Postpone
+109,Village ,1000000,Bsc,Vgood,Muslim,Private
+110,Halabja,700000,Bsc,Good,Muslim,Postpone
+111,sulaymani,1450000,Bsc,Good,Muslim,Private
+112,Duhok,2000000,PG,Good,Muslim,Private
+113,Halabja,5000000,Bsc,Good,Muslim,Change
+114,Halabja,300000,N,Good,Muslim,Postpone
+115,sulaymani,600000,N,Good,Muslim,Private
+116,Erbil,1500000,PG,Excellent ,Christian,Private
+117,sulaymani,1000000,Bsc,Vgood,Muslim,Private
+118,Halabja,400000,N,Good,Muslim,Postpone
+119,sulaymani,1700000,Bsc,Good,Muslim,Private
+120,sulaymani,2700000,PG,Excellent ,Muslim,Private
+121,Duhok,1800000,N,Good,Muslim,Change
+122,Village ,3000000,N,Good,Muslim,Private
+123,Village ,1000000,N,Good,Muslim,Private
+124,Halabja,2100000,Bsc,Good,Muslim,Postpone
+125,sulaymani,1000000,Bsc,Vgood,Muslim,Private
+126,sulaymani,2500000,PG,Excellent ,Muslim,Private
+127,Duhok,2500000,N,Good,Muslim,Change
+128,Halabja,4000000,PG,Vgood,Muslim,Private
+129,Village ,3000000,N,Good,Muslim,Private
+130,Village ,2000000,N,Good,Muslim,Private
+131,sulaymani,1700000,Bsc,Good,Muslim,Private
+132,sulaymani,1300000,Bsc,Vgood,Muslim,Change
+133,sulaymani,1000000,Bsc,Vgood,Muslim,Private
+134,Duhok,1300000,Bsc,Vgood,Muslim,Change
+135,Halabja,1000000,Bsc,Good,Muslim,Postpone
+136,sulaymani,1200000,Bsc,Vgood,Muslim,Private
+137,Village ,1500000,N,Good,Christian,Private
+138,sulaymani,2000000,Bsc,Good,Muslim,Private
+139,Village ,850000,Bsc,Good,Muslim,Postpone
+140,sulaymani,1000000,Bsc,Good,Muslim,Change
+141,Erbil,900000,Bsc,Good,Muslim,Change
+142,Erbil,1000000,Bsc,Good,Muslim,Private
+143,Village ,650000,Bsc,Vgood,Muslim,Private
+144,Village ,700000,Bsc,Vgood,Muslim,Private
+145,sulaymani,900000,Bsc,Good,Muslim,Change
+146,Halabja,1000000,Bsc,Good,Muslim,change
+147,Erbil,7000000,Bsc,Good,Muslim,Private
+148,Duhok,1600000,Bsc,Good,Muslim,Change
+149,Village ,1000000,N,Good,Muslim,Private
+150,Erbil,1100000,PG,Excellent ,Christian,Postpone
