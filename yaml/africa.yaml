@@ -1,0 +1,14 @@
+dataname: africa
+datapath: "./data/Secondary_school_dropout_dataset.csv"
+test_size: 0.2
+random_state: 42
+
+# Drop the gender indicator from features (unawareness)
+unawareness: True
+
+# Model to use: "logistic_regression", "decision_tree", "random_forest", or "compare" for all
+model: compare
+
+# --- FAIRNESS EXTENSIONS ---
+fairness: true                # Set to true to enable fairness-aware training/evaluation (false for only regular ML)
+fair_technique: reweighting   # Options: reweighting, fair_representation, etc (must match src/fairness.py)

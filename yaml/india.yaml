@@ -1,0 +1,11 @@
+dataname: india
+datapath: "./data/asia_dropout.csv"
+test_size: 0.2
+random_state: 42
+
+unawareness: True
+model: compare
+
+# --- FAIRNESS EXTENSIONS ---
+fairness: true
+fair_technique: reweighting
