@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-23T16:33:37.754233",
+    "experiment_type": "balanced_augmentation_llm_async",
+    "config_name": "brazil",
+    "scenario_name": "moderate_balance_labels_with_fairness"
+  },
+  "results": {
+    "scenario_name": "moderate_balance_labels_with_fairness",
+    "generation_method": "llm_async",
+    "original_analysis": {
+      "total_samples": 4424,
+      "privileged_count": 2868,
+      "unprivileged_count": 1556,
+      "current_sensitive_ratio": 0.6482820976491862,
+      "positive_count": 1421,
+      "negative_count": 3003,
+      "current_label_ratio": 0.3212025316455696,
+      "cross_tab": {
+        "priv_pos": 720,
+        "priv_neg": 2148,
+        "unpriv_pos": 701,
+        "unpriv_neg": 855
+      },
+      "columns": {
+        "sensitive_col": "Gender",
+        "label_col": "Target",
+        "privileged_val": 0,
+        "positive_label": "Dropout"
+      }
+    },
+    "final_analysis": {
+      "total_samples": 4997,
+      "privileged_count": 2868,
+      "unprivileged_count": 2129,
+      "current_sensitive_ratio": 0.573944366619972,
+      "positive_count": 1994,
+      "negative_count": 3003,
+      "current_label_ratio": 0.39903942365419254,
+      "cross_tab": {
+        "priv_pos": 720,
+        "priv_neg": 2148,
+        "unpriv_pos": 1274,
+        "unpriv_neg": 855
+      },
+      "columns": {
+        "sensitive_col": "Gender",
+        "label_col": "Target",
+        "privileged_val": 0,
+        "positive_label": "Dropout"
+      }
+    },
+    "augmented_data_shape": [
+      4997,
+      35
+    ],
+    "target_ratios": {
+      "target_sensitive_ratio": 0.65,
+      "target_label_ratio": 0.45
+    },
+    "baseline_metrics": {
+      "model_name": "Baseline_Balanced_moderate_balance_labels_with_fairness_llm_async",
+      "overall_accuracy": 0.9,
+      "privileged_accuracy": 0.9086021505376344,
+      "unprivileged_accuracy": 0.8891402714932126,
+      "privileged_tpr": 0.7272727272727273,
+      "unprivileged_tpr": 0.8801498127340824,
+      "privileged_fpr": 0.035211267605633804,
+      "unprivileged_fpr": 0.09714285714285714,
+      "privileged_selection_rate": 0.1989247311827957,
+      "unprivileged_selection_rate": 0.5701357466063348,
+      "accuracy_difference": 0.01946187904442176,
+      "tpr_difference": -0.15287708546135514,
+      "fpr_difference": -0.06193158953722334,
+      "demographic_parity_difference": -0.3712110154235391
+    },
+    "fair_metrics": {
+      "model_name": "Fair_Balanced_moderate_balance_labels_with_fairness_llm_async",
+      "overall_accuracy": 0.892,
+      "privileged_accuracy": 0.899641577060932,
+      "unprivileged_accuracy": 0.8823529411764706,
+      "privileged_tpr": 0.7878787878787878,
+      "unprivileged_tpr": 0.8876404494382022,
+      "privileged_fpr": 0.06572769953051644,
+      "unprivileged_fpr": 0.12571428571428572,
+      "privileged_selection_rate": 0.23655913978494625,
+      "unprivileged_selection_rate": 0.5859728506787331,
+      "accuracy_difference": 0.01728863588446139,
+      "tpr_difference": -0.09976166155941435,
+      "fpr_difference": -0.059986586183769286,
+      "demographic_parity_difference": -0.3494137108937868
+    },
+    "balance_achieved": {
+      "sensitive_ratio_achieved": false,
+      "label_ratio_achieved": false
+    },
+    "improvement_metrics": {
+      "accuracy_difference": 0.008000000000000007,
+      "dp_improvement": 0.021797304529752315,
+      "tpr_improvement": 0.053115423901940795,
+      "fpr_improvement": 0.0019450033534540515
+    },
+    "augmentation_plan": {
+      "total_additional": 0,
+      "target_total": 4424,
+      "breakdown": {
+        "priv_pos": 573,
+        "priv_neg": 0,
+        "unpriv_pos": 0,
+        "unpriv_neg": 0
+      },
+      "target_distribution": {
+        "priv_pos": 1293,
+        "priv_neg": 1582,
+        "unpriv_pos": 697,
+        "unpriv_neg": 852
+      }
+    },
+    "augmented_dataset_path": "./data/augmented_brazil_moderate_balance_labels_with_fairness_llm_async_0.65_0.45.csv"
+  }
+}

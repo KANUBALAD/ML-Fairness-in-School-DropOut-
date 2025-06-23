@@ -1,0 +1,16 @@
+[2025-06-23 15:35:48] === EXPERIMENT 1: MODEL SELECTION ===
+[2025-06-23 15:35:48] Objective: Identify best performing model for each dataset
+[2025-06-23 15:35:48] Method: 5x2 cross-validation comparison across logistic_regression, decision_tree, random_forest
+[2025-06-23 15:35:48] Testing models on brazil dataset...
+[2025-06-23 15:35:56] Best model for brazil: logistic_regression
+[2025-06-23 15:35:58] Testing models on africa dataset...
+[2025-06-23 15:36:11] Best model for africa: random_forest
+[2025-06-23 15:36:13] Testing models on india dataset...
+[2025-06-23 15:36:32] Best model for india: logistic_regression
+[2025-06-23 15:36:34] === RESULTS SUMMARY ===
+[2025-06-23 15:36:34] brazil: logistic_regression
+[2025-06-23 15:36:34] africa: random_forest
+[2025-06-23 15:36:34] india: logistic_regression
+[2025-06-23 15:36:34] Results saved to: ./experiments/results/01_model_selection
+[2025-06-23 15:36:34] Summary: ./experiments/results/01_model_selection/model_selection_summary.txt
+[2025-06-23 15:36:34] Machine-readable: ./experiments/results/01_model_selection/best_models.json

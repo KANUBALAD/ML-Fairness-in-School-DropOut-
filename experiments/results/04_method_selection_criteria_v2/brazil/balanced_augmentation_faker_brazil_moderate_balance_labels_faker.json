@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-23T19:03:17.472572",
+    "experiment_type": "balanced_augmentation_faker",
+    "config_name": "brazil",
+    "scenario_name": "moderate_balance_labels_faker"
+  },
+  "results": {
+    "scenario_name": "moderate_balance_labels_faker",
+    "generation_method": "faker",
+    "original_analysis": {
+      "total_samples": 4424,
+      "privileged_count": 2868,
+      "unprivileged_count": 1556,
+      "current_sensitive_ratio": 0.6482820976491862,
+      "positive_count": 1421,
+      "negative_count": 3003,
+      "current_label_ratio": 0.3212025316455696,
+      "cross_tab": {
+        "priv_pos": 720,
+        "priv_neg": 2148,
+        "unpriv_pos": 701,
+        "unpriv_neg": 855
+      },
+      "columns": {
+        "sensitive_col": "Gender",
+        "label_col": "Target",
+        "privileged_val": 0,
+        "positive_label": "Dropout"
+      }
+    },
+    "final_analysis": {
+      "total_samples": 4997,
+      "privileged_count": 2868,
+      "unprivileged_count": 2129,
+      "current_sensitive_ratio": 0.573944366619972,
+      "positive_count": 1994,
+      "negative_count": 3003,
+      "current_label_ratio": 0.39903942365419254,
+      "cross_tab": {
+        "priv_pos": 720,
+        "priv_neg": 2148,
+        "unpriv_pos": 1274,
+        "unpriv_neg": 855
+      },
+      "columns": {
+        "sensitive_col": "Gender",
+        "label_col": "Target",
+        "privileged_val": 0,
+        "positive_label": "Dropout"
+      }
+    },
+    "augmented_data_shape": [
+      4997,
+      35
+    ],
+    "target_ratios": {
+      "target_sensitive_ratio": 0.65,
+      "target_label_ratio": 0.45
+    },
+    "baseline_metrics": {
+      "model_name": "Baseline_Balanced_moderate_balance_labels_faker_faker",
+      "overall_accuracy": 0.9,
+      "privileged_accuracy": 0.9068100358422939,
+      "unprivileged_accuracy": 0.8914027149321267,
+      "privileged_tpr": 0.7348484848484849,
+      "unprivileged_tpr": 0.8801498127340824,
+      "privileged_fpr": 0.03990610328638498,
+      "unprivileged_fpr": 0.09142857142857143,
+      "privileged_selection_rate": 0.20430107526881722,
+      "unprivileged_selection_rate": 0.5678733031674208,
+      "accuracy_difference": 0.015407320910167166,
+      "tpr_difference": -0.14530132788559758,
+      "fpr_difference": -0.05152246814218645,
+      "demographic_parity_difference": -0.36357222789860355
+    },
+    "fair_metrics": {
+      "model_name": "Fair_Balanced_moderate_balance_labels_faker_faker",
+      "overall_accuracy": 0.89,
+      "privileged_accuracy": 0.8960573476702509,
+      "unprivileged_accuracy": 0.8823529411764706,
+      "privileged_tpr": 0.7651515151515151,
+      "unprivileged_tpr": 0.8838951310861424,
+      "privileged_fpr": 0.06338028169014084,
+      "unprivileged_fpr": 0.12,
+      "privileged_selection_rate": 0.22939068100358423,
+      "unprivileged_selection_rate": 0.581447963800905,
+      "accuracy_difference": 0.013704406493780352,
+      "tpr_difference": -0.11874361593462723,
+      "fpr_difference": -0.05661971830985915,
+      "demographic_parity_difference": -0.3520572827973208
+    },
+    "balance_achieved": {
+      "sensitive_ratio_achieved": false,
+      "label_ratio_achieved": false
+    },
+    "improvement_metrics": {
+      "accuracy_difference": 0.010000000000000009,
+      "dp_improvement": 0.011514945101282759,
+      "tpr_improvement": 0.026557711950970342,
+      "fpr_improvement": -0.0050972501676727
+    },
+    "augmentation_plan": {
+      "total_additional": 0,
+      "target_total": 4424,
+      "breakdown": {
+        "priv_pos": 573,
+        "priv_neg": 0,
+        "unpriv_pos": 0,
+        "unpriv_neg": 0
+      },
+      "target_distribution": {
+        "priv_pos": 1293,
+        "priv_neg": 1582,
+        "unpriv_pos": 697,
+        "unpriv_neg": 852
+      }
+    },
+    "augmented_dataset_path": "./data/augmented_brazil_moderate_balance_labels_faker_faker_0.65_0.45.csv"
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-23T16:33:49.583103",
+    "experiment_type": "balanced_augmentation_llm_async",
+    "config_name": "brazil",
+    "scenario_name": "extreme_female_majority_with_fairness"
+  },
+  "results": {
+    "scenario_name": "extreme_female_majority_with_fairness",
+    "generation_method": "llm_async",
+    "original_analysis": {
+      "total_samples": 4424,
+      "privileged_count": 2868,
+      "unprivileged_count": 1556,
+      "current_sensitive_ratio": 0.6482820976491862,
+      "positive_count": 1421,
+      "negative_count": 3003,
+      "current_label_ratio": 0.3212025316455696,
+      "cross_tab": {
+        "priv_pos": 720,
+        "priv_neg": 2148,
+        "unpriv_pos": 701,
+        "unpriv_neg": 855
+      },
+      "columns": {
+        "sensitive_col": "Gender",
+        "label_col": "Target",
+        "privileged_val": 0,
+        "positive_label": "Dropout"
+      }
+    },
+    "final_analysis": {
+      "total_samples": 7673,
+      "privileged_count": 6117,
+      "unprivileged_count": 1556,
+      "current_sensitive_ratio": 0.7972109996090186,
+      "positive_count": 3123,
+      "negative_count": 4550,
+      "current_label_ratio": 0.4070115991137756,
+      "cross_tab": {
+        "priv_pos": 2422,
+        "priv_neg": 3695,
+        "unpriv_pos": 701,
+        "unpriv_neg": 855
+      },
+      "columns": {
+        "sensitive_col": "Gender",
+        "label_col": "Target",
+        "privileged_val": 0,
+        "positive_label": "Dropout"
+      }
+    },
+    "augmented_data_shape": [
+      7673,
+      35
+    ],
+    "target_ratios": {
+      "target_sensitive_ratio": 0.2,
+      "target_label_ratio": 0.5
+    },
+    "baseline_metrics": {
+      "model_name": "Baseline_Balanced_extreme_female_majority_with_fairness_llm_async",
+      "overall_accuracy": 0.8703583061889251,
+      "privileged_accuracy": 0.8940016433853739,
+      "unprivileged_accuracy": 0.779874213836478,
+      "privileged_tpr": 0.8294736842105264,
+      "unprivileged_tpr": 0.6933333333333334,
+      "privileged_fpr": 0.0646900269541779,
+      "unprivileged_fpr": 0.14285714285714285,
+      "privileged_selection_rate": 0.36318816762530814,
+      "unprivileged_selection_rate": 0.4025157232704403,
+      "accuracy_difference": 0.11412742954889588,
+      "tpr_difference": 0.136140350877193,
+      "fpr_difference": -0.07816711590296495,
+      "demographic_parity_difference": -0.03932755564513213
+    },
+    "fair_metrics": {
+      "model_name": "Fair_Balanced_extreme_female_majority_with_fairness_llm_async",
+      "overall_accuracy": 0.8618892508143322,
+      "privileged_accuracy": 0.8783894823336073,
+      "unprivileged_accuracy": 0.7987421383647799,
+      "privileged_tpr": 0.8694736842105263,
+      "unprivileged_tpr": 0.7533333333333333,
+      "privileged_fpr": 0.11590296495956873,
+      "unprivileged_fpr": 0.16071428571428573,
+      "privileged_selection_rate": 0.41002465078060807,
+      "unprivileged_selection_rate": 0.44025157232704404,
+      "accuracy_difference": 0.07964734396882733,
+      "tpr_difference": 0.11614035087719299,
+      "fpr_difference": -0.044811320754717,
+      "demographic_parity_difference": -0.03022692154643597
+    },
+    "balance_achieved": {
+      "sensitive_ratio_achieved": false,
+      "label_ratio_achieved": false
+    },
+    "improvement_metrics": {
+      "accuracy_difference": 0.00846905537459286,
+      "dp_improvement": 0.009100634098696159,
+      "tpr_improvement": 0.020000000000000018,
+      "fpr_improvement": 0.03335579514824795
+    },
+    "augmentation_plan": {
+      "total_additional": 1582,
+      "target_total": 6006,
+      "breakdown": {
+        "priv_pos": 0,
+        "priv_neg": 0,
+        "unpriv_pos": 1702,
+        "unpriv_neg": 1547
+      },
+      "target_distribution": {
+        "priv_pos": 600,
+        "priv_neg": 601,
+        "unpriv_pos": 2403,
+        "unpriv_neg": 2402
+      }
+    },
+    "augmented_dataset_path": "./data/augmented_brazil_extreme_female_majority_with_fairness_llm_async_0.2_0.5.csv"
+  }
+}

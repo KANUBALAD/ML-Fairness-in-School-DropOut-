@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-23T16:37:45.122853",
+    "experiment_type": "balanced_augmentation_faker",
+    "config_name": "africa",
+    "scenario_name": "reverse_gender_india_no_fairness"
+  },
+  "results": {
+    "scenario_name": "reverse_gender_india_no_fairness",
+    "generation_method": "faker",
+    "original_analysis": {
+      "total_samples": 62739,
+      "privileged_count": 27684,
+      "unprivileged_count": 35055,
+      "current_sensitive_ratio": 0.441256634629178,
+      "positive_count": 5707,
+      "negative_count": 57032,
+      "current_label_ratio": 0.09096415307862733,
+      "cross_tab": {
+        "priv_pos": 2147,
+        "priv_neg": 25537,
+        "unpriv_pos": 3560,
+        "unpriv_neg": 31495
+      },
+      "columns": {
+        "sensitive_col": "gender",
+        "label_col": "dropout",
+        "privileged_val": "Male",
+        "positive_label": "Yes"
+      }
+    },
+    "final_analysis": {
+      "total_samples": 68952,
+      "privileged_count": 28171,
+      "unprivileged_count": 40781,
+      "current_sensitive_ratio": 0.40855957767722473,
+      "positive_count": 7528,
+      "negative_count": 61424,
+      "current_label_ratio": 0.10917739877015895,
+      "cross_tab": {
+        "priv_pos": 2634,
+        "priv_neg": 25537,
+        "unpriv_pos": 4894,
+        "unpriv_neg": 35887
+      },
+      "columns": {
+        "sensitive_col": "gender",
+        "label_col": "dropout",
+        "privileged_val": "Male",
+        "positive_label": "Yes"
+      }
+    },
+    "augmented_data_shape": [
+      68952,
+      13
+    ],
+    "target_ratios": {
+      "target_sensitive_ratio": 0.35,
+      "target_label_ratio": 0.12
+    },
+    "baseline_metrics": {
+      "model_name": "Baseline_Balanced_reverse_gender_india_no_fairness_faker",
+      "overall_accuracy": 0.9091436444057719,
+      "privileged_accuracy": 0.9436469962785752,
+      "unprivileged_accuracy": 0.885247913598429,
+      "privileged_tpr": 0.47368421052631576,
+      "unprivileged_tpr": 0.2936344969199179,
+      "privileged_fpr": 0.007434944237918215,
+      "unprivileged_fpr": 0.03442988569835517,
+      "privileged_selection_rate": 0.051391104022682974,
+      "unprivileged_selection_rate": 0.06541482572410408,
+      "accuracy_difference": 0.05839908268014615,
+      "tpr_difference": 0.18004971360639788,
+      "fpr_difference": -0.026994941460436957,
+      "demographic_parity_difference": -0.014023721701421105
+    },
+    "fair_metrics": {
+      "model_name": "Fair_Balanced_reverse_gender_india_no_fairness_faker",
+      "overall_accuracy": 0.8708578058153869,
+      "privileged_accuracy": 0.9284068757752968,
+      "unprivileged_accuracy": 0.8310014727540501,
+      "privileged_tpr": 0.9718045112781954,
+      "unprivileged_tpr": 0.9589322381930184,
+      "privileged_fpr": 0.0761103502250049,
+      "unprivileged_fpr": 0.18636743797044883,
+      "privileged_selection_rate": 0.16055289739500267,
+      "unprivileged_selection_rate": 0.27871870397643594,
+      "accuracy_difference": 0.09740540302124667,
+      "tpr_difference": 0.012872273085177022,
+      "fpr_difference": -0.11025708774544393,
+      "demographic_parity_difference": -0.11816580658143327
+    },
+    "balance_achieved": {
+      "sensitive_ratio_achieved": false,
+      "label_ratio_achieved": true
+    },
+    "improvement_metrics": {
+      "accuracy_difference": 0.038285838590385035,
+      "dp_improvement": -0.10414208488001217,
+      "tpr_improvement": 0.16717744052122085,
+      "fpr_improvement": -0.08326214628500697
+    },
+    "augmentation_plan": {
+      "total_additional": 0,
+      "target_total": 62739,
+      "breakdown": {
+        "priv_pos": 487,
+        "priv_neg": 0,
+        "unpriv_pos": 1334,
+        "unpriv_neg": 4392
+      },
+      "target_distribution": {
+        "priv_pos": 2634,
+        "priv_neg": 19324,
+        "unpriv_pos": 4894,
+        "unpriv_neg": 35887
+      }
+    },
+    "augmented_dataset_path": "./data/augmented_africa_reverse_gender_india_no_fairness_faker_0.35_0.12.csv"
+  }
+}

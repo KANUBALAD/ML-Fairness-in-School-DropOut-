@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-23T19:07:00.818987",
+    "experiment_type": "balanced_augmentation_llm_async",
+    "config_name": "africa",
+    "scenario_name": "extreme_female_majority_llm_async"
+  },
+  "results": {
+    "scenario_name": "extreme_female_majority_llm_async",
+    "generation_method": "llm_async",
+    "original_analysis": {
+      "total_samples": 62739,
+      "privileged_count": 27684,
+      "unprivileged_count": 35055,
+      "current_sensitive_ratio": 0.441256634629178,
+      "positive_count": 5707,
+      "negative_count": 57032,
+      "current_label_ratio": 0.09096415307862733,
+      "cross_tab": {
+        "priv_pos": 2147,
+        "priv_neg": 25537,
+        "unpriv_pos": 3560,
+        "unpriv_neg": 31495
+      },
+      "columns": {
+        "sensitive_col": "gender",
+        "label_col": "dropout",
+        "privileged_val": "Male",
+        "positive_label": "Yes"
+      }
+    },
+    "final_analysis": {
+      "total_samples": 128195,
+      "privileged_count": 36943,
+      "unprivileged_count": 91252,
+      "current_sensitive_ratio": 0.2881781660751199,
+      "positive_count": 57032,
+      "negative_count": 71163,
+      "current_label_ratio": 0.4448847458949257,
+      "cross_tab": {
+        "priv_pos": 11406,
+        "priv_neg": 25537,
+        "unpriv_pos": 45626,
+        "unpriv_neg": 45626
+      },
+      "columns": {
+        "sensitive_col": "gender",
+        "label_col": "dropout",
+        "privileged_val": "Male",
+        "positive_label": "Yes"
+      }
+    },
+    "augmented_data_shape": [
+      128195,
+      13
+    ],
+    "target_ratios": {
+      "target_sensitive_ratio": 0.2,
+      "target_label_ratio": 0.5
+    },
+    "baseline_metrics": {
+      "model_name": "Baseline_Balanced_extreme_female_majority_llm_async_llm_async",
+      "overall_accuracy": 0.82850345177269,
+      "privileged_accuracy": 0.9338809587934285,
+      "unprivileged_accuracy": 0.7855378026684237,
+      "privileged_tpr": 0.7857142857142857,
+      "unprivileged_tpr": 0.852374699058875,
+      "privileged_fpr": 0.0009693679720822024,
+      "unprivileged_fpr": 0.28176308539944905,
+      "privileged_selection_rate": 0.2406409911123081,
+      "unprivileged_selection_rate": 0.5680557843298742,
+      "accuracy_difference": 0.14834315612500482,
+      "tpr_difference": -0.06666041334458928,
+      "fpr_difference": -0.28079371742736686,
+      "demographic_parity_difference": -0.32741479321756617
+    },
+    "fair_metrics": {
+      "model_name": "Fair_Balanced_extreme_female_majority_llm_async_llm_async",
+      "overall_accuracy": 0.8439096688638402,
+      "privileged_accuracy": 0.9606786964718557,
+      "unprivileged_accuracy": 0.7962993466205458,
+      "privileged_tpr": 0.9338624338624338,
+      "unprivileged_tpr": 0.8996498139636682,
+      "privileged_fpr": 0.02753005040713455,
+      "unprivileged_fpr": 0.3077685950413223,
+      "privileged_selection_rate": 0.3043361163479666,
+      "unprivileged_selection_rate": 0.6047328831054741,
+      "accuracy_difference": 0.16437934985130986,
+      "tpr_difference": 0.03421261989876567,
+      "fpr_difference": -0.28023854463418774,
+      "demographic_parity_difference": -0.30039676675750754
+    },
+    "balance_achieved": {
+      "sensitive_ratio_achieved": false,
+      "label_ratio_achieved": false
+    },
+    "improvement_metrics": {
+      "accuracy_difference": -0.015406217091150198,
+      "dp_improvement": 0.02701802646005863,
+      "tpr_improvement": 0.0324477934458236,
+      "fpr_improvement": 0.0005551727931791262
+    },
+    "augmentation_plan": {
+      "total_additional": 51325,
+      "target_total": 114064,
+      "breakdown": {
+        "priv_pos": 9259,
+        "priv_neg": 0,
+        "unpriv_pos": 42066,
+        "unpriv_neg": 14131
+      },
+      "target_distribution": {
+        "priv_pos": 11406,
+        "priv_neg": 11406,
+        "unpriv_pos": 45626,
+        "unpriv_neg": 45626
+      }
+    },
+    "augmented_dataset_path": "./data/augmented_africa_extreme_female_majority_llm_async_llm_async_0.2_0.5.csv"
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-23T16:39:24.756733",
+    "experiment_type": "balanced_augmentation_faker",
+    "config_name": "africa",
+    "scenario_name": "gender_balanced_low_dropout_with_fairness"
+  },
+  "results": {
+    "scenario_name": "gender_balanced_low_dropout_with_fairness",
+    "generation_method": "faker",
+    "original_analysis": {
+      "total_samples": 62739,
+      "privileged_count": 27684,
+      "unprivileged_count": 35055,
+      "current_sensitive_ratio": 0.441256634629178,
+      "positive_count": 5707,
+      "negative_count": 57032,
+      "current_label_ratio": 0.09096415307862733,
+      "cross_tab": {
+        "priv_pos": 2147,
+        "priv_neg": 25537,
+        "unpriv_pos": 3560,
+        "unpriv_neg": 31495
+      },
+      "columns": {
+        "sensitive_col": "gender",
+        "label_col": "dropout",
+        "privileged_val": "Male",
+        "positive_label": "Yes"
+      }
+    },
+    "final_analysis": {
+      "total_samples": 78065,
+      "privileged_count": 36053,
+      "unprivileged_count": 42012,
+      "current_sensitive_ratio": 0.46183308781143917,
+      "positive_count": 21033,
+      "negative_count": 57032,
+      "current_label_ratio": 0.26942932171908024,
+      "cross_tab": {
+        "priv_pos": 10516,
+        "priv_neg": 25537,
+        "unpriv_pos": 10517,
+        "unpriv_neg": 31495
+      },
+      "columns": {
+        "sensitive_col": "gender",
+        "label_col": "dropout",
+        "privileged_val": "Male",
+        "positive_label": "Yes"
+      }
+    },
+    "augmented_data_shape": [
+      78065,
+      13
+    ],
+    "target_ratios": {
+      "target_sensitive_ratio": 0.5,
+      "target_label_ratio": 0.3
+    },
+    "baseline_metrics": {
+      "model_name": "Baseline_Balanced_gender_balanced_low_dropout_with_fairness_faker",
+      "overall_accuracy": 0.9538205341702427,
+      "privileged_accuracy": 0.9642609779747887,
+      "unprivileged_accuracy": 0.9448415534905885,
+      "privileged_tpr": 0.9457917261055635,
+      "unprivileged_tpr": 0.8388783269961977,
+      "privileged_fpr": 0.028146989835809225,
+      "unprivileged_fpr": 0.01971383147853736,
+      "privileged_selection_rate": 0.29547028674331627,
+      "unprivileged_selection_rate": 0.22504169644984512,
+      "accuracy_difference": 0.0194194244842002,
+      "tpr_difference": 0.10691339910936581,
+      "fpr_difference": 0.008433158357271864,
+      "demographic_parity_difference": 0.07042859029347115
+    },
+    "fair_metrics": {
+      "model_name": "Fair_Balanced_gender_balanced_low_dropout_with_fairness_faker",
+      "overall_accuracy": 0.9380644334849164,
+      "privileged_accuracy": 0.9463914669621831,
+      "unprivileged_accuracy": 0.9309030259709317,
+      "privileged_tpr": 0.9971469329529244,
+      "unprivileged_tpr": 0.9976235741444867,
+      "privileged_fpr": 0.07447224394057858,
+      "unprivileged_fpr": 0.09141494435612083,
+      "privileged_selection_rate": 0.3432608394514476,
+      "unprivileged_selection_rate": 0.31856087681677386,
+      "accuracy_difference": 0.015488440991251462,
+      "tpr_difference": -0.0004766411915622104,
+      "fpr_difference": -0.016942700415542244,
+      "demographic_parity_difference": 0.024699962634673722
+    },
+    "balance_achieved": {
+      "sensitive_ratio_achieved": true,
+      "label_ratio_achieved": true
+    },
+    "improvement_metrics": {
+      "accuracy_difference": 0.01575610068532629,
+      "dp_improvement": 0.04572862765879743,
+      "tpr_improvement": 0.1064367579178036,
+      "fpr_improvement": -0.00850954205827038
+    },
+    "augmentation_plan": {
+      "total_additional": 7371,
+      "target_total": 70110,
+      "breakdown": {
+        "priv_pos": 8369,
+        "priv_neg": 0,
+        "unpriv_pos": 6957,
+        "unpriv_neg": 0
+      },
+      "target_distribution": {
+        "priv_pos": 10516,
+        "priv_neg": 24539,
+        "unpriv_pos": 10517,
+        "unpriv_neg": 24538
+      }
+    },
+    "augmented_dataset_path": "./data/augmented_africa_gender_balanced_low_dropout_with_fairness_faker_0.5_0.3.csv"
+  }
+}

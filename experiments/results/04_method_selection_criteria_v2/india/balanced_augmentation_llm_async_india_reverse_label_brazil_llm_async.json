@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-23T19:05:41.756953",
+    "experiment_type": "balanced_augmentation_llm_async",
+    "config_name": "india",
+    "scenario_name": "reverse_label_brazil_llm_async"
+  },
+  "results": {
+    "scenario_name": "reverse_label_brazil_llm_async",
+    "generation_method": "llm_async",
+    "original_analysis": {
+      "total_samples": 2137,
+      "privileged_count": 743,
+      "unprivileged_count": 1394,
+      "current_sensitive_ratio": 0.34768366869443146,
+      "positive_count": 256,
+      "negative_count": 1881,
+      "current_label_ratio": 0.11979410388394947,
+      "cross_tab": {
+        "priv_pos": 118,
+        "priv_neg": 625,
+        "unpriv_pos": 138,
+        "unpriv_neg": 1256
+      },
+      "columns": {
+        "sensitive_col": "STUDENTGENDER",
+        "label_col": "STUDENT_DROPOUT_STATUS",
+        "privileged_val": "M",
+        "positive_label": "DROPOUT"
+      }
+    },
+    "final_analysis": {
+      "total_samples": 3334,
+      "privileged_count": 1569,
+      "unprivileged_count": 1765,
+      "current_sensitive_ratio": 0.47060587882423516,
+      "positive_count": 1453,
+      "negative_count": 1881,
+      "current_label_ratio": 0.4358128374325135,
+      "cross_tab": {
+        "priv_pos": 944,
+        "priv_neg": 625,
+        "unpriv_pos": 509,
+        "unpriv_neg": 1256
+      },
+      "columns": {
+        "sensitive_col": "STUDENTGENDER",
+        "label_col": "STUDENT_DROPOUT_STATUS",
+        "privileged_val": "M",
+        "positive_label": "DROPOUT"
+      }
+    },
+    "augmented_data_shape": [
+      3334,
+      16
+    ],
+    "target_ratios": {
+      "target_sensitive_ratio": 0.65,
+      "target_label_ratio": 0.68
+    },
+    "baseline_metrics": {
+      "model_name": "Baseline_Balanced_reverse_label_brazil_llm_async_llm_async",
+      "overall_accuracy": 0.9445277361319341,
+      "privileged_accuracy": 0.9292929292929293,
+      "unprivileged_accuracy": 0.9567567567567568,
+      "privileged_tpr": 0.9312169312169312,
+      "unprivileged_tpr": 0.8823529411764706,
+      "privileged_fpr": 0.07407407407407407,
+      "unprivileged_fpr": 0.014925373134328358,
+      "privileged_selection_rate": 0.6195286195286195,
+      "unprivileged_selection_rate": 0.25405405405405407,
+      "accuracy_difference": -0.027463827463827473,
+      "tpr_difference": 0.0488639900404606,
+      "fpr_difference": 0.05914870093974571,
+      "demographic_parity_difference": 0.3654745654745654
+    },
+    "fair_metrics": {
+      "model_name": "Fair_Balanced_reverse_label_brazil_llm_async_llm_async",
+      "overall_accuracy": 0.9355322338830585,
+      "privileged_accuracy": 0.9191919191919192,
+      "unprivileged_accuracy": 0.9486486486486486,
+      "privileged_tpr": 0.9259259259259259,
+      "unprivileged_tpr": 0.8921568627450981,
+      "privileged_fpr": 0.09259259259259259,
+      "unprivileged_fpr": 0.029850746268656716,
+      "privileged_selection_rate": 0.622895622895623,
+      "unprivileged_selection_rate": 0.26756756756756755,
+      "accuracy_difference": -0.02945672945672939,
+      "tpr_difference": 0.03376906318082784,
+      "fpr_difference": 0.06274184632393587,
+      "demographic_parity_difference": 0.3553280553280554
+    },
+    "balance_achieved": {
+      "sensitive_ratio_achieved": false,
+      "label_ratio_achieved": false
+    },
+    "improvement_metrics": {
+      "accuracy_difference": 0.008995502248875575,
+      "dp_improvement": 0.010146510146510024,
+      "tpr_improvement": 0.015094926859632762,
+      "fpr_improvement": -0.003593145384190158
+    },
+    "augmentation_plan": {
+      "total_additional": 0,
+      "target_total": 2137,
+      "breakdown": {
+        "priv_pos": 826,
+        "priv_neg": 0,
+        "unpriv_pos": 371,
+        "unpriv_neg": 0
+      },
+      "target_distribution": {
+        "priv_pos": 944,
+        "priv_neg": 445,
+        "unpriv_pos": 509,
+        "unpriv_neg": 239
+      }
+    },
+    "augmented_dataset_path": "./data/augmented_india_reverse_label_brazil_llm_async_llm_async_0.65_0.68.csv"
+  }
+}

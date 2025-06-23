@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-23T16:36:14.774213",
+    "experiment_type": "balanced_augmentation_llm_async",
+    "config_name": "india",
+    "scenario_name": "extreme_high_dropout_with_fairness"
+  },
+  "results": {
+    "scenario_name": "extreme_high_dropout_with_fairness",
+    "generation_method": "llm_async",
+    "original_analysis": {
+      "total_samples": 2137,
+      "privileged_count": 743,
+      "unprivileged_count": 1394,
+      "current_sensitive_ratio": 0.34768366869443146,
+      "positive_count": 256,
+      "negative_count": 1881,
+      "current_label_ratio": 0.11979410388394947,
+      "cross_tab": {
+        "priv_pos": 118,
+        "priv_neg": 625,
+        "unpriv_pos": 138,
+        "unpriv_neg": 1256
+      },
+      "columns": {
+        "sensitive_col": "STUDENTGENDER",
+        "label_col": "STUDENT_DROPOUT_STATUS",
+        "privileged_val": "M",
+        "positive_label": "DROPOUT"
+      }
+    },
+    "final_analysis": {
+      "total_samples": 4111,
+      "privileged_count": 1740,
+      "unprivileged_count": 2371,
+      "current_sensitive_ratio": 0.42325468255898807,
+      "positive_count": 2230,
+      "negative_count": 1881,
+      "current_label_ratio": 0.5424470931646801,
+      "cross_tab": {
+        "priv_pos": 1115,
+        "priv_neg": 625,
+        "unpriv_pos": 1115,
+        "unpriv_neg": 1256
+      },
+      "columns": {
+        "sensitive_col": "STUDENTGENDER",
+        "label_col": "STUDENT_DROPOUT_STATUS",
+        "privileged_val": "M",
+        "positive_label": "DROPOUT"
+      }
+    },
+    "augmented_data_shape": [
+      4111,
+      16
+    ],
+    "target_ratios": {
+      "target_sensitive_ratio": 0.5,
+      "target_label_ratio": 0.8
+    },
+    "baseline_metrics": {
+      "model_name": "Baseline_Balanced_extreme_high_dropout_with_fairness_llm_async",
+      "overall_accuracy": 0.9562575941676792,
+      "privileged_accuracy": 0.9427710843373494,
+      "unprivileged_accuracy": 0.9653767820773931,
+      "privileged_tpr": 0.9508928571428571,
+      "unprivileged_tpr": 0.9414414414414415,
+      "privileged_fpr": 0.07407407407407407,
+      "unprivileged_fpr": 0.01486988847583643,
+      "privileged_selection_rate": 0.6656626506024096,
+      "unprivileged_selection_rate": 0.43380855397148677,
+      "accuracy_difference": -0.02260569774004373,
+      "tpr_difference": 0.00945141570141561,
+      "fpr_difference": 0.05920418559823764,
+      "demographic_parity_difference": 0.23185409663092282
+    },
+    "fair_metrics": {
+      "model_name": "Fair_Balanced_extreme_high_dropout_with_fairness_llm_async",
+      "overall_accuracy": 0.9538274605103281,
+      "privileged_accuracy": 0.9397590361445783,
+      "unprivileged_accuracy": 0.9633401221995926,
+      "privileged_tpr": 0.9508928571428571,
+      "unprivileged_tpr": 0.9369369369369369,
+      "privileged_fpr": 0.08333333333333333,
+      "unprivileged_fpr": 0.01486988847583643,
+      "privileged_selection_rate": 0.6686746987951807,
+      "unprivileged_selection_rate": 0.4317718940936864,
+      "accuracy_difference": -0.0235810860550143,
+      "tpr_difference": 0.01395592020592018,
+      "fpr_difference": 0.06846344485749689,
+      "demographic_parity_difference": 0.23690280470149433
+    },
+    "balance_achieved": {
+      "sensitive_ratio_achieved": false,
+      "label_ratio_achieved": false
+    },
+    "improvement_metrics": {
+      "accuracy_difference": 0.002430133657351119,
+      "dp_improvement": -0.005048708070571506,
+      "tpr_improvement": -0.0045045045045045695,
+      "fpr_improvement": -0.009259259259259252
+    },
+    "augmentation_plan": {
+      "total_additional": 651,
+      "target_total": 2788,
+      "breakdown": {
+        "priv_pos": 997,
+        "priv_neg": 0,
+        "unpriv_pos": 977,
+        "unpriv_neg": 0
+      },
+      "target_distribution": {
+        "priv_pos": 1115,
+        "priv_neg": 279,
+        "unpriv_pos": 1115,
+        "unpriv_neg": 279
+      }
+    },
+    "augmented_dataset_path": "./data/augmented_india_extreme_high_dropout_with_fairness_llm_async_0.5_0.8.csv"
+  }
+}

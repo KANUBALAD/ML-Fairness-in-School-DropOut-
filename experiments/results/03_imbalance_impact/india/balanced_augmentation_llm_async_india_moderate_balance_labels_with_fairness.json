@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-23T16:36:04.913242",
+    "experiment_type": "balanced_augmentation_llm_async",
+    "config_name": "india",
+    "scenario_name": "moderate_balance_labels_with_fairness"
+  },
+  "results": {
+    "scenario_name": "moderate_balance_labels_with_fairness",
+    "generation_method": "llm_async",
+    "original_analysis": {
+      "total_samples": 2137,
+      "privileged_count": 743,
+      "unprivileged_count": 1394,
+      "current_sensitive_ratio": 0.34768366869443146,
+      "positive_count": 256,
+      "negative_count": 1881,
+      "current_label_ratio": 0.11979410388394947,
+      "cross_tab": {
+        "priv_pos": 118,
+        "priv_neg": 625,
+        "unpriv_pos": 138,
+        "unpriv_neg": 1256
+      },
+      "columns": {
+        "sensitive_col": "STUDENTGENDER",
+        "label_col": "STUDENT_DROPOUT_STATUS",
+        "privileged_val": "M",
+        "positive_label": "DROPOUT"
+      }
+    },
+    "final_analysis": {
+      "total_samples": 2981,
+      "privileged_count": 1389,
+      "unprivileged_count": 1592,
+      "current_sensitive_ratio": 0.4659510231465951,
+      "positive_count": 961,
+      "negative_count": 2020,
+      "current_label_ratio": 0.3223750419322375,
+      "cross_tab": {
+        "priv_pos": 625,
+        "priv_neg": 764,
+        "unpriv_pos": 336,
+        "unpriv_neg": 1256
+      },
+      "columns": {
+        "sensitive_col": "STUDENTGENDER",
+        "label_col": "STUDENT_DROPOUT_STATUS",
+        "privileged_val": "M",
+        "positive_label": "DROPOUT"
+      }
+    },
+    "augmented_data_shape": [
+      2981,
+      16
+    ],
+    "target_ratios": {
+      "target_sensitive_ratio": 0.65,
+      "target_label_ratio": 0.45
+    },
+    "baseline_metrics": {
+      "model_name": "Baseline_Balanced_moderate_balance_labels_with_fairness_llm_async",
+      "overall_accuracy": 0.8877721943048577,
+      "privileged_accuracy": 0.8223938223938224,
+      "unprivileged_accuracy": 0.9378698224852071,
+      "privileged_tpr": 0.8709677419354839,
+      "unprivileged_tpr": 0.7205882352941176,
+      "privileged_fpr": 0.2222222222222222,
+      "unprivileged_fpr": 0.007407407407407408,
+      "privileged_selection_rate": 0.5328185328185329,
+      "unprivileged_selection_rate": 0.15088757396449703,
+      "accuracy_difference": -0.1154760000913847,
+      "tpr_difference": 0.15037950664136623,
+      "fpr_difference": 0.2148148148148148,
+      "demographic_parity_difference": 0.38193095885403583
+    },
+    "fair_metrics": {
+      "model_name": "Fair_Balanced_moderate_balance_labels_with_fairness_llm_async",
+      "overall_accuracy": 0.8726968174204355,
+      "privileged_accuracy": 0.803088803088803,
+      "unprivileged_accuracy": 0.9260355029585798,
+      "privileged_tpr": 0.8629032258064516,
+      "unprivileged_tpr": 0.7352941176470589,
+      "privileged_fpr": 0.2518518518518518,
+      "unprivileged_fpr": 0.025925925925925925,
+      "privileged_selection_rate": 0.5444015444015444,
+      "unprivileged_selection_rate": 0.16863905325443787,
+      "accuracy_difference": -0.1229466998697768,
+      "tpr_difference": 0.12760910815939275,
+      "fpr_difference": 0.2259259259259259,
+      "demographic_parity_difference": 0.3757624911471066
+    },
+    "balance_achieved": {
+      "sensitive_ratio_achieved": false,
+      "label_ratio_achieved": false
+    },
+    "improvement_metrics": {
+      "accuracy_difference": 0.015075376884422176,
+      "dp_improvement": 0.006168467706929248,
+      "tpr_improvement": 0.022770398481973486,
+      "fpr_improvement": -0.0111111111111111
+    },
+    "augmentation_plan": {
+      "total_additional": 0,
+      "target_total": 2137,
+      "breakdown": {
+        "priv_pos": 507,
+        "priv_neg": 139,
+        "unpriv_pos": 198,
+        "unpriv_neg": 0
+      },
+      "target_distribution": {
+        "priv_pos": 625,
+        "priv_neg": 764,
+        "unpriv_pos": 336,
+        "unpriv_neg": 412
+      }
+    },
+    "augmented_dataset_path": "./data/augmented_india_moderate_balance_labels_with_fairness_llm_async_0.65_0.45.csv"
+  }
+}

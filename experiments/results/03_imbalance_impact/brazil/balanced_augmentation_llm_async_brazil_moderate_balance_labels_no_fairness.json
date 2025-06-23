@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-23T16:33:35.342556",
+    "experiment_type": "balanced_augmentation_llm_async",
+    "config_name": "brazil",
+    "scenario_name": "moderate_balance_labels_no_fairness"
+  },
+  "results": {
+    "scenario_name": "moderate_balance_labels_no_fairness",
+    "generation_method": "llm_async",
+    "original_analysis": {
+      "total_samples": 4424,
+      "privileged_count": 2868,
+      "unprivileged_count": 1556,
+      "current_sensitive_ratio": 0.6482820976491862,
+      "positive_count": 1421,
+      "negative_count": 3003,
+      "current_label_ratio": 0.3212025316455696,
+      "cross_tab": {
+        "priv_pos": 720,
+        "priv_neg": 2148,
+        "unpriv_pos": 701,
+        "unpriv_neg": 855
+      },
+      "columns": {
+        "sensitive_col": "Gender",
+        "label_col": "Target",
+        "privileged_val": 0,
+        "positive_label": "Dropout"
+      }
+    },
+    "final_analysis": {
+      "total_samples": 4997,
+      "privileged_count": 2868,
+      "unprivileged_count": 2129,
+      "current_sensitive_ratio": 0.573944366619972,
+      "positive_count": 1994,
+      "negative_count": 3003,
+      "current_label_ratio": 0.39903942365419254,
+      "cross_tab": {
+        "priv_pos": 720,
+        "priv_neg": 2148,
+        "unpriv_pos": 1274,
+        "unpriv_neg": 855
+      },
+      "columns": {
+        "sensitive_col": "Gender",
+        "label_col": "Target",
+        "privileged_val": 0,
+        "positive_label": "Dropout"
+      }
+    },
+    "augmented_data_shape": [
+      4997,
+      35
+    ],
+    "target_ratios": {
+      "target_sensitive_ratio": 0.65,
+      "target_label_ratio": 0.45
+    },
+    "baseline_metrics": {
+      "model_name": "Baseline_Balanced_moderate_balance_labels_no_fairness_llm_async",
+      "overall_accuracy": 0.901,
+      "privileged_accuracy": 0.9068100358422939,
+      "unprivileged_accuracy": 0.8936651583710408,
+      "privileged_tpr": 0.7348484848484849,
+      "unprivileged_tpr": 0.8838951310861424,
+      "privileged_fpr": 0.03990610328638498,
+      "unprivileged_fpr": 0.09142857142857143,
+      "privileged_selection_rate": 0.20430107526881722,
+      "unprivileged_selection_rate": 0.5701357466063348,
+      "accuracy_difference": 0.013144877471253147,
+      "tpr_difference": -0.1490466462376575,
+      "fpr_difference": -0.05152246814218645,
+      "demographic_parity_difference": -0.36583467133751757
+    },
+    "fair_metrics": {
+      "model_name": "Fair_Balanced_moderate_balance_labels_no_fairness_llm_async",
+      "overall_accuracy": 0.894,
+      "privileged_accuracy": 0.8960573476702509,
+      "unprivileged_accuracy": 0.8914027149321267,
+      "privileged_tpr": 0.7878787878787878,
+      "unprivileged_tpr": 0.9026217228464419,
+      "privileged_fpr": 0.07042253521126761,
+      "unprivileged_fpr": 0.12571428571428572,
+      "privileged_selection_rate": 0.24014336917562723,
+      "unprivileged_selection_rate": 0.5950226244343891,
+      "accuracy_difference": 0.004654632738124165,
+      "tpr_difference": -0.11474293496765409,
+      "fpr_difference": -0.055291750503018114,
+      "demographic_parity_difference": -0.3548792552587619
+    },
+    "balance_achieved": {
+      "sensitive_ratio_achieved": false,
+      "label_ratio_achieved": false
+    },
+    "improvement_metrics": {
+      "accuracy_difference": 0.007000000000000006,
+      "dp_improvement": 0.010955416078755664,
+      "tpr_improvement": 0.03430371127000342,
+      "fpr_improvement": -0.003769282360831662
+    },
+    "augmentation_plan": {
+      "total_additional": 0,
+      "target_total": 4424,
+      "breakdown": {
+        "priv_pos": 573,
+        "priv_neg": 0,
+        "unpriv_pos": 0,
+        "unpriv_neg": 0
+      },
+      "target_distribution": {
+        "priv_pos": 1293,
+        "priv_neg": 1582,
+        "unpriv_pos": 697,
+        "unpriv_neg": 852
+      }
+    },
+    "augmented_dataset_path": "./data/augmented_brazil_moderate_balance_labels_no_fairness_llm_async_0.65_0.45.csv"
+  }
+}

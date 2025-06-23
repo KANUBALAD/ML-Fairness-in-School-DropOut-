@@ -1,0 +1,148 @@
+[2025-06-23 19:02:45] === EXPERIMENT 4: METHOD SELECTION CRITERIA STUDY (FIXED v2) ===
+[2025-06-23 19:02:45] RESEARCH QUESTION: When should you use Faker vs LLM for fairness-aware data augmentation?
+[2025-06-23 19:02:45] FIX v2: Removed timeout command, using identical execution pattern as successful Experiment 3
+[2025-06-23 19:02:45] Planning 42 experiments using proven execution pattern
+[2025-06-23 19:02:45] Starting method selection study for brazil...
+[2025-06-23 19:02:46] [1/42] brazil - extreme_male_majority - faker
+[2025-06-23 19:02:46] Running brazil extreme_male_majority (0.8 0.5) with faker
+[2025-06-23 19:02:50] 🎉 BREAKTHROUGH: brazil - extreme_male_majority - faker achieved breakthrough!
+[2025-06-23 19:02:51] SUCCESS: brazil - extreme_male_majority - faker: BREAKTHROUGH (+0.0958 DP)
+[2025-06-23 19:02:53] [2/42] brazil - extreme_male_majority - llm_async
+[2025-06-23 19:02:53] Running brazil extreme_male_majority (0.8 0.5) with llm_async
+[2025-06-23 19:02:57] 🎉 BREAKTHROUGH: brazil - extreme_male_majority - llm_async achieved breakthrough!
+[2025-06-23 19:02:57] SUCCESS: brazil - extreme_male_majority - llm_async: BREAKTHROUGH (+0.0542 DP)
+[2025-06-23 19:02:59] [3/42] brazil - original - faker
+[2025-06-23 19:02:59] Running original ratios test for brazil with faker
+[2025-06-23 19:03:05] SUCCESS: brazil - original - faker: FAILED (+0 DP)
+[2025-06-23 19:03:07] [4/42] brazil - original - llm_async
+[2025-06-23 19:03:07] Running original ratios test for brazil with llm_async
+[2025-06-23 19:03:12] SUCCESS: brazil - original - llm_async: FAILED (+0 DP)
+[2025-06-23 19:03:15] [5/42] brazil - moderate_balance_labels - faker
+[2025-06-23 19:03:15] Running brazil moderate_balance_labels (0.65 0.45) with faker
+[2025-06-23 19:03:17] SUCCESS: brazil - moderate_balance_labels - faker: MODERATE (+0.0115 DP)
+[2025-06-23 19:03:19] [6/42] brazil - moderate_balance_labels - llm_async
+[2025-06-23 19:03:19] Running brazil moderate_balance_labels (0.65 0.45) with llm_async
+[2025-06-23 19:03:22] 🎉 BREAKTHROUGH: brazil - moderate_balance_labels - llm_async achieved breakthrough!
+[2025-06-23 19:03:22] SUCCESS: brazil - moderate_balance_labels - llm_async: BREAKTHROUGH (+0.0331 DP)
+[2025-06-23 19:03:24] [7/42] brazil - extreme_female_majority - faker
+[2025-06-23 19:03:24] Running brazil extreme_female_majority (0.2 0.5) with faker
+[2025-06-23 19:03:26] SUCCESS: brazil - extreme_female_majority - faker: FAILED (+-0.0389 DP)
+[2025-06-23 19:03:28] [8/42] brazil - extreme_female_majority - llm_async
+[2025-06-23 19:03:28] Running brazil extreme_female_majority (0.2 0.5) with llm_async
+[2025-06-23 19:03:31] SUCCESS: brazil - extreme_female_majority - llm_async: UNCLEAR (+0.0077 DP)
+[2025-06-23 19:03:33] [9/42] brazil - moderate_balance_gender - faker
+[2025-06-23 19:03:33] Running brazil moderate_balance_gender (0.45 0.32) with faker
+[2025-06-23 19:03:35] SUCCESS: brazil - moderate_balance_gender - faker: MODERATE (+0.0286 DP)
+[2025-06-23 19:03:37] [10/42] brazil - moderate_balance_gender - llm_async
+[2025-06-23 19:03:37] Running brazil moderate_balance_gender (0.45 0.32) with llm_async
+[2025-06-23 19:03:39] SUCCESS: brazil - moderate_balance_gender - llm_async: MODERATE (+0.0213 DP)
+[2025-06-23 19:03:42] [11/42] brazil - reverse_label_brazil - faker
+[2025-06-23 19:03:42] Running brazil reverse_label_brazil (0.65 0.68) with faker
+[2025-06-23 19:03:44] SUCCESS: brazil - reverse_label_brazil - faker: MODERATE (+0.0134 DP)
+[2025-06-23 19:03:46] [12/42] brazil - reverse_label_brazil - llm_async
+[2025-06-23 19:03:46] Running brazil reverse_label_brazil (0.65 0.68) with llm_async
+[2025-06-23 19:03:48] SUCCESS: brazil - reverse_label_brazil - llm_async: MODERATE (+0.0167 DP)
+[2025-06-23 19:03:50] [13/42] brazil - perfect_balance - faker
+[2025-06-23 19:03:50] Running brazil perfect_balance (0.5 0.5) with faker
+[2025-06-23 19:03:53] SUCCESS: brazil - perfect_balance - faker: MODERATE (+0.0110 DP)
+[2025-06-23 19:03:55] [14/42] brazil - perfect_balance - llm_async
+[2025-06-23 19:03:55] Running brazil perfect_balance (0.5 0.5) with llm_async
+[2025-06-23 19:03:57] SUCCESS: brazil - perfect_balance - llm_async: MODERATE (+0.0190 DP)
+[2025-06-23 19:03:59] Completed all scenarios for brazil
+[2025-06-23 19:03:59] Starting method selection study for india...
+[2025-06-23 19:03:59] [15/42] india - extreme_male_majority - faker
+[2025-06-23 19:03:59] Running india extreme_male_majority (0.8 0.5) with faker
+[2025-06-23 19:04:07] SUCCESS: india - extreme_male_majority - faker: FAILED (+-0.0427 DP)
+[2025-06-23 19:04:09] [16/42] india - extreme_male_majority - llm_async
+[2025-06-23 19:04:09] Running india extreme_male_majority (0.8 0.5) with llm_async
+[2025-06-23 19:04:16] SUCCESS: india - extreme_male_majority - llm_async: FAILED (+-0.0289 DP)
+[2025-06-23 19:04:18] [17/42] india - original - faker
+[2025-06-23 19:04:18] Running original ratios test for india with faker
+[2025-06-23 19:04:34] SUCCESS: india - original - faker: FAILED (+0 DP)
+[2025-06-23 19:04:36] [18/42] india - original - llm_async
+[2025-06-23 19:04:36] Running original ratios test for india with llm_async
+[2025-06-23 19:04:52] SUCCESS: india - original - llm_async: FAILED (+0 DP)
+[2025-06-23 19:04:54] [19/42] india - moderate_balance_labels - faker
+[2025-06-23 19:04:54] Running india moderate_balance_labels (0.65 0.45) with faker
+[2025-06-23 19:04:58] SUCCESS: india - moderate_balance_labels - faker: FAILED (+-0.0013 DP)
+[2025-06-23 19:05:00] [20/42] india - moderate_balance_labels - llm_async
+[2025-06-23 19:05:00] Running india moderate_balance_labels (0.65 0.45) with llm_async
+[2025-06-23 19:05:04] 🎉 BREAKTHROUGH: india - moderate_balance_labels - llm_async achieved breakthrough!
+[2025-06-23 19:05:04] SUCCESS: india - moderate_balance_labels - llm_async: BREAKTHROUGH (+0.0341 DP)
+[2025-06-23 19:05:06] [21/42] india - extreme_female_majority - faker
+[2025-06-23 19:05:06] Running india extreme_female_majority (0.2 0.5) with faker
+[2025-06-23 19:05:12] SUCCESS: india - extreme_female_majority - faker: MODERATE (+0.0124 DP)
+[2025-06-23 19:05:14] [22/42] india - extreme_female_majority - llm_async
+[2025-06-23 19:05:14] Running india extreme_female_majority (0.2 0.5) with llm_async
+[2025-06-23 19:05:19] SUCCESS: india - extreme_female_majority - llm_async: MODERATE (+0.0124 DP)
+[2025-06-23 19:05:21] [23/42] india - moderate_balance_gender - faker
+[2025-06-23 19:05:21] Running india moderate_balance_gender (0.45 0.32) with faker
+[2025-06-23 19:05:24] SUCCESS: india - moderate_balance_gender - faker: FAILED (+-0.0223 DP)
+[2025-06-23 19:05:26] [24/42] india - moderate_balance_gender - llm_async
+[2025-06-23 19:05:26] Running india moderate_balance_gender (0.45 0.32) with llm_async
+[2025-06-23 19:05:30] SUCCESS: india - moderate_balance_gender - llm_async: MODERATE (+0.0187 DP)
+[2025-06-23 19:05:32] [25/42] india - reverse_label_brazil - faker
+[2025-06-23 19:05:32] Running india reverse_label_brazil (0.65 0.68) with faker
+[2025-06-23 19:05:36] SUCCESS: india - reverse_label_brazil - faker: MODERATE (+0.0135 DP)
+[2025-06-23 19:05:38] [26/42] india - reverse_label_brazil - llm_async
+[2025-06-23 19:05:38] Running india reverse_label_brazil (0.65 0.68) with llm_async
+[2025-06-23 19:05:42] SUCCESS: india - reverse_label_brazil - llm_async: MODERATE (+0.0101 DP)
+[2025-06-23 19:05:44] [27/42] india - perfect_balance - faker
+[2025-06-23 19:05:44] Running india perfect_balance (0.5 0.5) with faker
+[2025-06-23 19:05:49] SUCCESS: india - perfect_balance - faker: FAILED (+-0.0226 DP)
+[2025-06-23 19:05:51] [28/42] india - perfect_balance - llm_async
+[2025-06-23 19:05:51] Running india perfect_balance (0.5 0.5) with llm_async
+[2025-06-23 19:05:56] SUCCESS: india - perfect_balance - llm_async: MODERATE (+0.0105 DP)
+[2025-06-23 19:05:58] Completed all scenarios for india
+[2025-06-23 19:05:58] Starting method selection study for africa...
+[2025-06-23 19:05:58] [29/42] africa - extreme_male_majority - faker
+[2025-06-23 19:05:58] Running africa extreme_male_majority (0.8 0.5) with faker
+[2025-06-23 19:06:03] 🎉 BREAKTHROUGH: africa - extreme_male_majority - faker achieved breakthrough!
+[2025-06-23 19:06:03] SUCCESS: africa - extreme_male_majority - faker: BREAKTHROUGH (+0.0763 DP)
+[2025-06-23 19:06:05] [30/42] africa - extreme_male_majority - llm_async
+[2025-06-23 19:06:05] Running africa extreme_male_majority (0.8 0.5) with llm_async
+[2025-06-23 19:06:10] 🎉 BREAKTHROUGH: africa - extreme_male_majority - llm_async achieved breakthrough!
+[2025-06-23 19:06:10] SUCCESS: africa - extreme_male_majority - llm_async: BREAKTHROUGH (+0.1077 DP)
+[2025-06-23 19:06:12] [31/42] africa - original - faker
+[2025-06-23 19:06:12] Running original ratios test for africa with faker
+[2025-06-23 19:06:22] SUCCESS: africa - original - faker: FAILED (+0 DP)
+[2025-06-23 19:06:24] [32/42] africa - original - llm_async
+[2025-06-23 19:06:24] Running original ratios test for africa with llm_async
+[2025-06-23 19:06:35] SUCCESS: africa - original - llm_async: FAILED (+0 DP)
+[2025-06-23 19:06:37] [33/42] africa - moderate_balance_labels - faker
+[2025-06-23 19:06:37] Running africa moderate_balance_labels (0.65 0.45) with faker
+[2025-06-23 19:06:41] 🎉 BREAKTHROUGH: africa - moderate_balance_labels - faker achieved breakthrough!
+[2025-06-23 19:06:41] SUCCESS: africa - moderate_balance_labels - faker: BREAKTHROUGH (+0.0439 DP)
+[2025-06-23 19:06:43] [34/42] africa - moderate_balance_labels - llm_async
+[2025-06-23 19:06:43] Running africa moderate_balance_labels (0.65 0.45) with llm_async
+[2025-06-23 19:06:47] 🎉 BREAKTHROUGH: africa - moderate_balance_labels - llm_async achieved breakthrough!
+[2025-06-23 19:06:47] SUCCESS: africa - moderate_balance_labels - llm_async: BREAKTHROUGH (+0.0431 DP)
+[2025-06-23 19:06:49] [35/42] africa - extreme_female_majority - faker
+[2025-06-23 19:06:49] Running africa extreme_female_majority (0.2 0.5) with faker
+[2025-06-23 19:06:54] SUCCESS: africa - extreme_female_majority - faker: MODERATE (+0.0239 DP)
+[2025-06-23 19:06:56] [36/42] africa - extreme_female_majority - llm_async
+[2025-06-23 19:06:56] Running africa extreme_female_majority (0.2 0.5) with llm_async
+[2025-06-23 19:07:01] SUCCESS: africa - extreme_female_majority - llm_async: MODERATE (+0.0270 DP)
+[2025-06-23 19:07:03] [37/42] africa - moderate_balance_gender - faker
+[2025-06-23 19:07:03] Running africa moderate_balance_gender (0.45 0.32) with faker
+[2025-06-23 19:07:07] 🎉 BREAKTHROUGH: africa - moderate_balance_gender - faker achieved breakthrough!
+[2025-06-23 19:07:07] SUCCESS: africa - moderate_balance_gender - faker: BREAKTHROUGH (+0.0316 DP)
+[2025-06-23 19:07:09] [38/42] africa - moderate_balance_gender - llm_async
+[2025-06-23 19:07:09] Running africa moderate_balance_gender (0.45 0.32) with llm_async
+[2025-06-23 19:07:13] SUCCESS: africa - moderate_balance_gender - llm_async: MODERATE (+0.0196 DP)
+[2025-06-23 19:07:15] [39/42] africa - reverse_label_brazil - faker
+[2025-06-23 19:07:15] Running africa reverse_label_brazil (0.65 0.68) with faker
+[2025-06-23 19:07:19] 🎉 BREAKTHROUGH: africa - reverse_label_brazil - faker achieved breakthrough!
+[2025-06-23 19:07:19] SUCCESS: africa - reverse_label_brazil - faker: BREAKTHROUGH (+0.0484 DP)
+[2025-06-23 19:07:21] [40/42] africa - reverse_label_brazil - llm_async
+[2025-06-23 19:07:21] Running africa reverse_label_brazil (0.65 0.68) with llm_async
+[2025-06-23 19:07:26] 🎉 BREAKTHROUGH: africa - reverse_label_brazil - llm_async achieved breakthrough!
+[2025-06-23 19:07:26] SUCCESS: africa - reverse_label_brazil - llm_async: BREAKTHROUGH (+0.0452 DP)
+[2025-06-23 19:07:28] [41/42] africa - perfect_balance - faker
+[2025-06-23 19:07:28] Running africa perfect_balance (0.5 0.5) with faker
+[2025-06-23 19:07:32] SUCCESS: africa - perfect_balance - faker: UNCLEAR (+0.0038 DP)
+[2025-06-23 19:07:34] [42/42] africa - perfect_balance - llm_async
+[2025-06-23 19:07:34] Running africa perfect_balance (0.5 0.5) with llm_async
+[2025-06-23 19:07:38] SUCCESS: africa - perfect_balance - llm_async: FAILED (+-0.0014 DP)
+[2025-06-23 19:07:41] Completed all scenarios for africa
+[2025-06-23 19:07:41] Creating comprehensive method selection analysis...

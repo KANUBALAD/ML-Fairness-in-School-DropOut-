@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-23T16:34:00.999274",
+    "experiment_type": "balanced_augmentation_llm_async",
+    "config_name": "brazil",
+    "scenario_name": "reverse_label_brazil_with_fairness"
+  },
+  "results": {
+    "scenario_name": "reverse_label_brazil_with_fairness",
+    "generation_method": "llm_async",
+    "original_analysis": {
+      "total_samples": 4424,
+      "privileged_count": 2868,
+      "unprivileged_count": 1556,
+      "current_sensitive_ratio": 0.6482820976491862,
+      "positive_count": 1421,
+      "negative_count": 3003,
+      "current_label_ratio": 0.3212025316455696,
+      "cross_tab": {
+        "priv_pos": 720,
+        "priv_neg": 2148,
+        "unpriv_pos": 701,
+        "unpriv_neg": 855
+      },
+      "columns": {
+        "sensitive_col": "Gender",
+        "label_col": "Target",
+        "privileged_val": 0,
+        "positive_label": "Dropout"
+      }
+    },
+    "final_analysis": {
+      "total_samples": 6011,
+      "privileged_count": 3220,
+      "unprivileged_count": 2791,
+      "current_sensitive_ratio": 0.5356845782731658,
+      "positive_count": 3008,
+      "negative_count": 3003,
+      "current_label_ratio": 0.5004159041756779,
+      "cross_tab": {
+        "priv_pos": 1072,
+        "priv_neg": 2148,
+        "unpriv_pos": 1936,
+        "unpriv_neg": 855
+      },
+      "columns": {
+        "sensitive_col": "Gender",
+        "label_col": "Target",
+        "privileged_val": 0,
+        "positive_label": "Dropout"
+      }
+    },
+    "augmented_data_shape": [
+      6011,
+      35
+    ],
+    "target_ratios": {
+      "target_sensitive_ratio": 0.65,
+      "target_label_ratio": 0.68
+    },
+    "baseline_metrics": {
+      "model_name": "Baseline_Balanced_reverse_label_brazil_with_fairness_llm_async",
+      "overall_accuracy": 0.9185369908561929,
+      "privileged_accuracy": 0.9173419773095624,
+      "unprivileged_accuracy": 0.9197952218430034,
+      "privileged_tpr": 0.8219895287958116,
+      "unprivileged_tpr": 0.927007299270073,
+      "privileged_fpr": 0.03990610328638498,
+      "unprivileged_fpr": 0.09714285714285714,
+      "privileged_selection_rate": 0.2820097244732577,
+      "unprivileged_selection_rate": 0.6791808873720137,
+      "accuracy_difference": -0.00245324453344109,
+      "tpr_difference": -0.10501777047426142,
+      "fpr_difference": -0.057236753856472165,
+      "demographic_parity_difference": -0.397171162898756
+    },
+    "fair_metrics": {
+      "model_name": "Fair_Balanced_reverse_label_brazil_with_fairness_llm_async",
+      "overall_accuracy": 0.9118869492934331,
+      "privileged_accuracy": 0.9108589951377634,
+      "unprivileged_accuracy": 0.9129692832764505,
+      "privileged_tpr": 0.8219895287958116,
+      "unprivileged_tpr": 0.9124087591240876,
+      "privileged_fpr": 0.04929577464788732,
+      "unprivileged_fpr": 0.08571428571428572,
+      "privileged_selection_rate": 0.2884927066450567,
+      "unprivileged_selection_rate": 0.6655290102389079,
+      "accuracy_difference": -0.0021102881386871886,
+      "tpr_difference": -0.09041923032827603,
+      "fpr_difference": -0.036418511066398394,
+      "demographic_parity_difference": -0.37703630359385115
+    },
+    "balance_achieved": {
+      "sensitive_ratio_achieved": false,
+      "label_ratio_achieved": false
+    },
+    "improvement_metrics": {
+      "accuracy_difference": 0.006650041562759834,
+      "dp_improvement": 0.02013485930490483,
+      "tpr_improvement": 0.014598540145985384,
+      "fpr_improvement": 0.02081824279007377
+    },
+    "augmentation_plan": {
+      "total_additional": 0,
+      "target_total": 4424,
+      "breakdown": {
+        "priv_pos": 1235,
+        "priv_neg": 0,
+        "unpriv_pos": 352,
+        "unpriv_neg": 0
+      },
+      "target_distribution": {
+        "priv_pos": 1955,
+        "priv_neg": 920,
+        "unpriv_pos": 1053,
+        "unpriv_neg": 496
+      }
+    },
+    "augmented_dataset_path": "./data/augmented_brazil_reverse_label_brazil_with_fairness_llm_async_0.65_0.68.csv"
+  }
+}

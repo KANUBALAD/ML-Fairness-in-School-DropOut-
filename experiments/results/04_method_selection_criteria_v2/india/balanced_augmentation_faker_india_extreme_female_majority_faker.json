@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-23T19:05:11.986635",
+    "experiment_type": "balanced_augmentation_faker",
+    "config_name": "india",
+    "scenario_name": "extreme_female_majority_faker"
+  },
+  "results": {
+    "scenario_name": "extreme_female_majority_faker",
+    "generation_method": "faker",
+    "original_analysis": {
+      "total_samples": 2137,
+      "privileged_count": 743,
+      "unprivileged_count": 1394,
+      "current_sensitive_ratio": 0.34768366869443146,
+      "positive_count": 256,
+      "negative_count": 1881,
+      "current_label_ratio": 0.11979410388394947,
+      "cross_tab": {
+        "priv_pos": 118,
+        "priv_neg": 625,
+        "unpriv_pos": 138,
+        "unpriv_neg": 1256
+      },
+      "columns": {
+        "sensitive_col": "STUDENTGENDER",
+        "label_col": "STUDENT_DROPOUT_STATUS",
+        "privileged_val": "M",
+        "positive_label": "DROPOUT"
+      }
+    },
+    "final_analysis": {
+      "total_samples": 4011,
+      "privileged_count": 1001,
+      "unprivileged_count": 3010,
+      "current_sensitive_ratio": 0.24956369982547993,
+      "positive_count": 1881,
+      "negative_count": 2130,
+      "current_label_ratio": 0.46896035901271504,
+      "cross_tab": {
+        "priv_pos": 376,
+        "priv_neg": 625,
+        "unpriv_pos": 1505,
+        "unpriv_neg": 1505
+      },
+      "columns": {
+        "sensitive_col": "STUDENTGENDER",
+        "label_col": "STUDENT_DROPOUT_STATUS",
+        "privileged_val": "M",
+        "positive_label": "DROPOUT"
+      }
+    },
+    "augmented_data_shape": [
+      4011,
+      16
+    ],
+    "target_ratios": {
+      "target_sensitive_ratio": 0.2,
+      "target_label_ratio": 0.5
+    },
+    "baseline_metrics": {
+      "model_name": "Baseline_Balanced_extreme_female_majority_faker_faker",
+      "overall_accuracy": 0.8642590286425903,
+      "privileged_accuracy": 0.8795811518324608,
+      "unprivileged_accuracy": 0.8594771241830066,
+      "privileged_tpr": 0.7974683544303798,
+      "unprivileged_tpr": 0.9328859060402684,
+      "privileged_fpr": 0.0625,
+      "unprivileged_fpr": 0.21019108280254778,
+      "privileged_selection_rate": 0.36649214659685864,
+      "unprivileged_selection_rate": 0.5620915032679739,
+      "accuracy_difference": 0.02010402764945418,
+      "tpr_difference": -0.13541755160988866,
+      "fpr_difference": -0.14769108280254778,
+      "demographic_parity_difference": -0.19559935667111522
+    },
+    "fair_metrics": {
+      "model_name": "Fair_Balanced_extreme_female_majority_faker_faker",
+      "overall_accuracy": 0.8704856787048568,
+      "privileged_accuracy": 0.8952879581151832,
+      "unprivileged_accuracy": 0.8627450980392157,
+      "privileged_tpr": 0.8354430379746836,
+      "unprivileged_tpr": 0.9395973154362416,
+      "privileged_fpr": 0.0625,
+      "unprivileged_fpr": 0.21019108280254778,
+      "privileged_selection_rate": 0.38219895287958117,
+      "unprivileged_selection_rate": 0.565359477124183,
+      "accuracy_difference": 0.03254286007596752,
+      "tpr_difference": -0.10415427746155803,
+      "fpr_difference": -0.14769108280254778,
+      "demographic_parity_difference": -0.18316052424460183
+    },
+    "balance_achieved": {
+      "sensitive_ratio_achieved": true,
+      "label_ratio_achieved": true
+    },
+    "improvement_metrics": {
+      "accuracy_difference": -0.0062266500622665255,
+      "dp_improvement": 0.012438832426513391,
+      "tpr_improvement": 0.03126327414833063,
+      "fpr_improvement": 0.0
+    },
+    "augmentation_plan": {
+      "total_additional": 1625,
+      "target_total": 3762,
+      "breakdown": {
+        "priv_pos": 258,
+        "priv_neg": 0,
+        "unpriv_pos": 1367,
+        "unpriv_neg": 249
+      },
+      "target_distribution": {
+        "priv_pos": 376,
+        "priv_neg": 376,
+        "unpriv_pos": 1505,
+        "unpriv_neg": 1505
+      }
+    },
+    "augmented_dataset_path": "./data/augmented_india_extreme_female_majority_faker_faker_0.2_0.5.csv"
+  }
+}

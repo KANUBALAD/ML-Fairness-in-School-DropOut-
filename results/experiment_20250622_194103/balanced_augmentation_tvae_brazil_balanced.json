@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-22T19:41:03.629967",
+    "experiment_type": "balanced_augmentation_tvae",
+    "config_name": "brazil",
+    "scenario_name": "balanced"
+  },
+  "results": {
+    "scenario_name": "balanced",
+    "generation_method": "tvae",
+    "original_analysis": {
+      "total_samples": 4424,
+      "privileged_count": 2868,
+      "unprivileged_count": 1556,
+      "current_sensitive_ratio": 0.6482820976491862,
+      "positive_count": 1421,
+      "negative_count": 3003,
+      "current_label_ratio": 0.3212025316455696,
+      "cross_tab": {
+        "priv_pos": 720,
+        "priv_neg": 2148,
+        "unpriv_pos": 701,
+        "unpriv_neg": 855
+      },
+      "columns": {
+        "sensitive_col": "Gender",
+        "label_col": "Target",
+        "privileged_val": 0,
+        "positive_label": "Dropout"
+      }
+    },
+    "final_analysis": {
+      "total_samples": 6652,
+      "privileged_count": 4315,
+      "unprivileged_count": 2337,
+      "current_sensitive_ratio": 0.6486770895971137,
+      "positive_count": 3003,
+      "negative_count": 3649,
+      "current_label_ratio": 0.45144317498496694,
+      "cross_tab": {
+        "priv_pos": 1521,
+        "priv_neg": 2794,
+        "unpriv_pos": 1482,
+        "unpriv_neg": 855
+      },
+      "columns": {
+        "sensitive_col": "Gender",
+        "label_col": "Target",
+        "privileged_val": 0,
+        "positive_label": "Dropout"
+      }
+    },
+    "augmented_data_shape": [
+      6652,
+      35
+    ],
+    "target_ratios": {
+      "target_sensitive_ratio": 0.5,
+      "target_label_ratio": 0.5
+    },
+    "baseline_metrics": {
+      "model_name": "Baseline_Balanced_balanced_tvae",
+      "overall_accuracy": 0.7813673929376409,
+      "privileged_accuracy": 0.7517321016166282,
+      "unprivileged_accuracy": 0.8365591397849462,
+      "privileged_tpr": 0.7138157894736842,
+      "unprivileged_tpr": 0.7845117845117845,
+      "privileged_fpr": 0.2277580071174377,
+      "unprivileged_fpr": 0.07142857142857142,
+      "privileged_selection_rate": 0.39838337182448036,
+      "unprivileged_selection_rate": 0.5268817204301075,
+      "accuracy_difference": -0.08482703816831805,
+      "tpr_difference": -0.07069599503810031,
+      "fpr_difference": 0.1563294356888663,
+      "demographic_parity_difference": -0.12849834860562714
+    },
+    "fair_metrics": {
+      "model_name": "Fair_Balanced_balanced_tvae",
+      "overall_accuracy": 0.7926371149511645,
+      "privileged_accuracy": 0.7598152424942263,
+      "unprivileged_accuracy": 0.853763440860215,
+      "privileged_tpr": 0.7763157894736842,
+      "unprivileged_tpr": 0.8148148148148148,
+      "privileged_fpr": 0.2491103202846975,
+      "unprivileged_fpr": 0.07738095238095238,
+      "privileged_selection_rate": 0.4341801385681293,
+      "unprivileged_selection_rate": 0.5483870967741935,
+      "accuracy_difference": -0.09394819836598878,
+      "tpr_difference": -0.03849902534113059,
+      "fpr_difference": 0.17172936790374513,
+      "demographic_parity_difference": -0.11420695820606419
+    },
+    "balance_achieved": {
+      "sensitive_ratio_achieved": false,
+      "label_ratio_achieved": true
+    },
+    "improvement_metrics": {
+      "accuracy_difference": -0.011269722013523609,
+      "dp_improvement": 0.014291390399562953,
+      "tpr_improvement": 0.032196969696969724,
+      "fpr_improvement": -0.015399932214878842
+    },
+    "augmentation_plan": {
+      "total_additional": 1582,
+      "target_total": 6006,
+      "breakdown": {
+        "priv_pos": 781,
+        "priv_neg": 0,
+        "unpriv_pos": 801,
+        "unpriv_neg": 646
+      },
+      "target_distribution": {
+        "priv_pos": 1501,
+        "priv_neg": 1502,
+        "unpriv_pos": 1502,
+        "unpriv_neg": 1501
+      }
+    },
+    "augmented_dataset_path": "./data/augmented_brazil_balanced_tvae_0.5_0.5.csv"
+  }
+}

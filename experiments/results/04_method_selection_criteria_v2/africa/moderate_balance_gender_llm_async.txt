@@ -1,0 +1,144 @@
+✓ LLM generator loaded successfully
+✓ SDV library loaded successfully with conditional sampling support
+✓ CTGAN/TVAE generators loaded successfully
+Results will be saved to: ./experiments/results/04_method_selection_criteria_v2/africa
+Running balanced augmentation experiment with method: llm_async
+
+================================================================================
+BALANCED AUGMENTATION EXPERIMENT: moderate_balance_gender_llm_async
+Dataset: africa
+Generation Method: llm_async
+Target Sensitive Ratio: 0.45 (privileged:unprivileged)
+Target Label Ratio: 0.32 (positive:negative)
+================================================================================
+Original dataset shape: (62739, 13)
+
+Current Distribution Analysis:
+  Total samples: 62739
+  Privileged: 27684 (0.441)
+  Unprivileged: 35055 (0.559)
+  Positive labels: 5707 (0.091)
+  Negative labels: 57032 (0.909)
+
+Cross-tabulation:
+  Privileged + Positive: 2147
+  Privileged + Negative: 25537
+  Unprivileged + Positive: 3560
+  Unprivileged + Negative: 31495
+
+Augmentation Plan:
+  Total additional samples needed: 0
+  Target total size: 62739
+  Additional samples by category:
+    Privileged + Positive: +6887
+    Privileged + Negative: +0
+    Unprivileged + Positive: +7482
+    Unprivileged + Negative: +0
+
+Generating targeted synthetic samples using method: llm_async
+Total additional samples needed: 0
+Using LLM async generator...
+🤖 Starting LLM async generation...
+✓ Using generate_enhanced_synthetic_data function
+🚀 Starting Enhanced LLM Synthetic Data Generation...
+Target specifications: [('priv_pos', 6887), ('unpriv_pos', 7482)]
+🔬 Starting LLM generation for 2 categories...
+
+Generating 6887 samples for priv_pos...
+✓ Generated 6887 samples for priv_pos
+
+Generating 7482 samples for unpriv_pos...
+✓ Generated 7482 samples for unpriv_pos
+
+Total samples generated: 14369
+Converting 14369 samples to DataFrame...
+✓ Created augmented dataset with 77108 total samples
+
+Augmented dataset shape: (77108, 13)
+
+Verification - Final Distribution:
+  Privileged ratio: 0.448 (target: 0.450)
+  Positive label ratio: 0.260 (target: 0.320)
+✓ Saved augmented dataset to: ./data/augmented_africa_moderate_balance_gender_llm_async_llm_async_0.45_0.32.csv
+
+Testing fairness interventions on balanced dataset (method: llm_async)...
+Preprocessed balanced data shape: (77108, 57)
+Final sensitive distribution: [42537 34571]
+Final label distribution: [57032 20076]
+
+--- Baseline Model on Balanced Data (llm_async) ---
+
+=== Fairness Report for Baseline_Balanced_moderate_balance_gender_llm_async_llm_async ===
+Overall Accuracy: 0.9521
+
+Group-wise Performance:
+  Privileged Group Accuracy:   0.9617
+  Unprivileged Group Accuracy: 0.9442
+  Accuracy Difference:         0.0175
+
+True Positive Rate (Recall):
+  Privileged Group TPR:        0.9330
+  Unprivileged Group TPR:      0.8420
+  TPR Difference:              0.0910
+
+False Positive Rate:
+  Privileged Group FPR:        0.0281
+  Unprivileged Group FPR:      0.0199
+  FPR Difference:              0.0083
+
+Selection Rate (Demographic Parity):
+  Privileged Group Selection Rate:   0.2642
+  Unprivileged Group Selection Rate: 0.2335
+  Demographic Parity Difference:     0.0307
+
+Fairness Assessment:
+  ✓ Demographic Parity: FAIR (difference < 0.1)
+
+Applying fairness intervention on balanced data: reweighting
+
+--- Fair Model on Balanced Data (llm_async) ---
+
+=== Fairness Report for Fair_Balanced_moderate_balance_gender_llm_async_llm_async ===
+Overall Accuracy: 0.9368
+
+Group-wise Performance:
+  Privileged Group Accuracy:   0.9439
+  Unprivileged Group Accuracy: 0.9311
+  Accuracy Difference:         0.0129
+
+True Positive Rate (Recall):
+  Privileged Group TPR:        0.9961
+  Unprivileged Group TPR:      0.9946
+  TPR Difference:              0.0016
+
+False Positive Rate:
+  Privileged Group FPR:        0.0745
+  Unprivileged Group FPR:      0.0912
+  FPR Difference:              -0.0168
+
+Selection Rate (Demographic Parity):
+  Privileged Group Selection Rate:   0.3149
+  Unprivileged Group Selection Rate: 0.3260
+  Demographic Parity Difference:     -0.0111
+
+Fairness Assessment:
+  ✓ Demographic Parity: FAIR (difference < 0.1)
+✓ Saved results to: ./experiments/results/04_method_selection_criteria_v2/africa/balanced_augmentation_llm_async_africa_moderate_balance_gender_llm_async.json
+
+================================================================================
+BALANCED AUGMENTATION EXPERIMENT RESULTS
+================================================================================
+Generation Method: llm_async
+Original dataset: 62739 samples
+Augmented dataset: 77108 samples
+Samples added: 14369
+
+Balance Achievement:
+  Sensitive ratio: 0.441 → 0.448
+  Label ratio: 0.091 → 0.260
+
+Fairness Impact:
+  Accuracy cost: 0.0152
+  DP improvement: 0.0196
+
+✓ All results saved to: ./experiments/results/04_method_selection_criteria_v2/africa

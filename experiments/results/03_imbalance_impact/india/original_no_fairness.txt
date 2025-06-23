@@ -1,0 +1,196 @@
+✓ LLM generator loaded successfully
+✓ SDV library loaded successfully with conditional sampling support
+✓ CTGAN/TVAE generators loaded successfully
+Results will be saved to: ./experiments/results/03_imbalance_impact/india
+
+================================================================================
+STANDARD ML EXPERIMENT
+Dataset: india
+================================================================================
+Current working directory: /Users/abubakarialidu/Desktop/ML-Fairness-in-School-DropOut-/ModularCode
+Loading configuration from: yaml/india.yaml and fairness unawareness is True
+Sensitive attribute (privileged=1, unprivileged=0) counts: [1394  743]
+Xtrain shape: (1709, 3911), ytrain shape: (1709,)
+Xtest shape: (428, 3911), ytest shape: (428,)
+Performing 5x2 cross-validation...
+logistic_regression: Mean accuracy = 0.9003, Std deviation = 0.0055
+decision_tree: Mean accuracy = 0.8797, Std deviation = 0.0081
+random_forest: Mean accuracy = 0.8907, Std deviation = 0.0092
+
+Evaluating logistic_regression...
+
+=== Fairness Report for Baseline logistic_regression ===
+Overall Accuracy: 0.8925
+
+Group-wise Performance:
+  Privileged Group Accuracy:   0.8409
+  Unprivileged Group Accuracy: 0.9155
+  Accuracy Difference:         -0.0746
+
+True Positive Rate (Recall):
+  Privileged Group TPR:        0.4167
+  Unprivileged Group TPR:      0.2222
+  TPR Difference:              0.1944
+
+False Positive Rate:
+  Privileged Group FPR:        0.0648
+  Unprivileged Group FPR:      0.0149
+  FPR Difference:              0.0499
+
+Selection Rate (Demographic Parity):
+  Privileged Group Selection Rate:   0.1288
+  Unprivileged Group Selection Rate: 0.0338
+  Demographic Parity Difference:     0.0950
+
+Fairness Assessment:
+  ✓ Demographic Parity: FAIR (difference < 0.1)
+
+Running fairness mitigation (reweighting) using model: logistic_regression
+=== Fair Model results ===
+
+=== Fairness Report for Fair (reweighting) ===
+Overall Accuracy: 0.8201
+
+Group-wise Performance:
+  Privileged Group Accuracy:   0.7500
+  Unprivileged Group Accuracy: 0.8514
+  Accuracy Difference:         -0.1014
+
+True Positive Rate (Recall):
+  Privileged Group TPR:        0.5000
+  Unprivileged Group TPR:      0.4815
+  TPR Difference:              0.0185
+
+False Positive Rate:
+  Privileged Group FPR:        0.1944
+  Unprivileged Group FPR:      0.1115
+  FPR Difference:              0.0829
+
+Selection Rate (Demographic Parity):
+  Privileged Group Selection Rate:   0.2500
+  Unprivileged Group Selection Rate: 0.1453
+  Demographic Parity Difference:     0.1047
+
+Fairness Assessment:
+  ✗ Demographic Parity: Potential Bias (difference >= 0.1)
+
+Evaluating decision_tree...
+
+=== Fairness Report for Baseline decision_tree ===
+Overall Accuracy: 0.8855
+
+Group-wise Performance:
+  Privileged Group Accuracy:   0.8258
+  Unprivileged Group Accuracy: 0.9122
+  Accuracy Difference:         -0.0864
+
+True Positive Rate (Recall):
+  Privileged Group TPR:        0.3750
+  Unprivileged Group TPR:      0.2593
+  TPR Difference:              0.1157
+
+False Positive Rate:
+  Privileged Group FPR:        0.0741
+  Unprivileged Group FPR:      0.0223
+  FPR Difference:              0.0518
+
+Selection Rate (Demographic Parity):
+  Privileged Group Selection Rate:   0.1288
+  Unprivileged Group Selection Rate: 0.0439
+  Demographic Parity Difference:     0.0849
+
+Fairness Assessment:
+  ✓ Demographic Parity: FAIR (difference < 0.1)
+
+Running fairness mitigation (reweighting) using model: decision_tree
+=== Fair Model results ===
+
+=== Fairness Report for Fair (reweighting) ===
+Overall Accuracy: 0.7500
+
+Group-wise Performance:
+  Privileged Group Accuracy:   0.7424
+  Unprivileged Group Accuracy: 0.7534
+  Accuracy Difference:         -0.0110
+
+True Positive Rate (Recall):
+  Privileged Group TPR:        0.6250
+  Unprivileged Group TPR:      0.4815
+  TPR Difference:              0.1435
+
+False Positive Rate:
+  Privileged Group FPR:        0.2315
+  Unprivileged Group FPR:      0.2193
+  FPR Difference:              0.0122
+
+Selection Rate (Demographic Parity):
+  Privileged Group Selection Rate:   0.3030
+  Unprivileged Group Selection Rate: 0.2432
+  Demographic Parity Difference:     0.0598
+
+Fairness Assessment:
+  ✓ Demographic Parity: FAIR (difference < 0.1)
+
+Evaluating random_forest...
+
+=== Fairness Report for Baseline random_forest ===
+Overall Accuracy: 0.8925
+
+Group-wise Performance:
+  Privileged Group Accuracy:   0.8258
+  Unprivileged Group Accuracy: 0.9223
+  Accuracy Difference:         -0.0965
+
+True Positive Rate (Recall):
+  Privileged Group TPR:        0.2083
+  Unprivileged Group TPR:      0.1481
+  TPR Difference:              0.0602
+
+False Positive Rate:
+  Privileged Group FPR:        0.0370
+  Unprivileged Group FPR:      0.0000
+  FPR Difference:              0.0370
+
+Selection Rate (Demographic Parity):
+  Privileged Group Selection Rate:   0.0682
+  Unprivileged Group Selection Rate: 0.0135
+  Demographic Parity Difference:     0.0547
+
+Fairness Assessment:
+  ✓ Demographic Parity: FAIR (difference < 0.1)
+
+Running fairness mitigation (reweighting) using model: random_forest
+=== Fair Model results ===
+
+=== Fairness Report for Fair (reweighting) ===
+Overall Accuracy: 0.8808
+
+Group-wise Performance:
+  Privileged Group Accuracy:   0.7955
+  Unprivileged Group Accuracy: 0.9189
+  Accuracy Difference:         -0.1235
+
+True Positive Rate (Recall):
+  Privileged Group TPR:        0.4583
+  Unprivileged Group TPR:      0.3704
+  TPR Difference:              0.0880
+
+False Positive Rate:
+  Privileged Group FPR:        0.1296
+  Unprivileged Group FPR:      0.0260
+  FPR Difference:              0.1036
+
+Selection Rate (Demographic Parity):
+  Privileged Group Selection Rate:   0.1894
+  Unprivileged Group Selection Rate: 0.0574
+  Demographic Parity Difference:     0.1320
+
+Fairness Assessment:
+  ✗ Demographic Parity: Potential Bias (difference >= 0.1)
+✓ Saved results to: ./experiments/results/03_imbalance_impact/india/standard_ml_india.json
+
+================================================================================
+STANDARD ML EXPERIMENT COMPLETED
+================================================================================
+
+✓ All results saved to: ./experiments/results/03_imbalance_impact/india

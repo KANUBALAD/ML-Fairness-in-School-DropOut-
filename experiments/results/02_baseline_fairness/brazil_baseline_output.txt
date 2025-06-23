@@ -1,0 +1,80 @@
+✓ LLM generator loaded successfully
+✓ SDV library loaded successfully with conditional sampling support
+✓ CTGAN/TVAE generators loaded successfully
+Results will be saved to: ./experiments/results/02_baseline_fairness
+
+================================================================================
+STANDARD ML EXPERIMENT
+Dataset: brazil
+================================================================================
+Current working directory: /Users/abubakarialidu/Desktop/ML-Fairness-in-School-DropOut-/ModularCode
+Loading configuration from: ./experiments/results/02_baseline_fairness/temp_brazil.yaml and fairness unawareness is True
+Sensitive attribute (privileged=1, unprivileged=0) counts: [1556 2868]
+Xtrain shape: (3539, 33), ytrain shape: (3539,)
+Xtest shape: (885, 33), ytest shape: (885,)
+Performing 5x2 cross-validation...
+logistic_regression: Mean accuracy = 0.8735, Std deviation = 0.0070
+
+Evaluating logistic_regression...
+
+=== Fairness Report for Baseline logistic_regression ===
+Overall Accuracy: 0.8802
+
+Group-wise Performance:
+  Privileged Group Accuracy:   0.8989
+  Unprivileged Group Accuracy: 0.8474
+  Accuracy Difference:         0.0516
+
+True Positive Rate (Recall):
+  Privileged Group TPR:        0.7029
+  Unprivileged Group TPR:      0.7603
+  TPR Difference:              -0.0574
+
+False Positive Rate:
+  Privileged Group FPR:        0.0376
+  Unprivileged Group FPR:      0.0800
+  FPR Difference:              -0.0424
+
+Selection Rate (Demographic Parity):
+  Privileged Group Selection Rate:   0.2004
+  Unprivileged Group Selection Rate: 0.3894
+  Demographic Parity Difference:     -0.1891
+
+Fairness Assessment:
+  ✗ Demographic Parity: Potential Bias (difference >= 0.1)
+
+Running fairness mitigation (reweighting) using model: logistic_regression
+=== Fair Model results ===
+
+=== Fairness Report for Fair (reweighting) ===
+Overall Accuracy: 0.8723
+
+Group-wise Performance:
+  Privileged Group Accuracy:   0.8918
+  Unprivileged Group Accuracy: 0.8380
+  Accuracy Difference:         0.0538
+
+True Positive Rate (Recall):
+  Privileged Group TPR:        0.8116
+  Unprivileged Group TPR:      0.8493
+  TPR Difference:              -0.0377
+
+False Positive Rate:
+  Privileged Group FPR:        0.0822
+  Unprivileged Group FPR:      0.1714
+  FPR Difference:              -0.0893
+
+Selection Rate (Demographic Parity):
+  Privileged Group Selection Rate:   0.2606
+  Unprivileged Group Selection Rate: 0.4798
+  Demographic Parity Difference:     -0.2191
+
+Fairness Assessment:
+  ✗ Demographic Parity: Potential Bias (difference >= 0.1)
+✓ Saved results to: ./experiments/results/02_baseline_fairness/standard_ml_brazil.json
+
+================================================================================
+STANDARD ML EXPERIMENT COMPLETED
+================================================================================
+
+✓ All results saved to: ./experiments/results/02_baseline_fairness

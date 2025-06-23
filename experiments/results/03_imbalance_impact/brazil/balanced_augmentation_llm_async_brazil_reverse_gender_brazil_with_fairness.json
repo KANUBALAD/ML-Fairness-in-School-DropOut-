@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-23T16:32:56.042867",
+    "experiment_type": "balanced_augmentation_llm_async",
+    "config_name": "brazil",
+    "scenario_name": "reverse_gender_brazil_with_fairness"
+  },
+  "results": {
+    "scenario_name": "reverse_gender_brazil_with_fairness",
+    "generation_method": "llm_async",
+    "original_analysis": {
+      "total_samples": 4424,
+      "privileged_count": 2868,
+      "unprivileged_count": 1556,
+      "current_sensitive_ratio": 0.6482820976491862,
+      "positive_count": 1421,
+      "negative_count": 3003,
+      "current_label_ratio": 0.3212025316455696,
+      "cross_tab": {
+        "priv_pos": 720,
+        "priv_neg": 2148,
+        "unpriv_pos": 701,
+        "unpriv_neg": 855
+      },
+      "columns": {
+        "sensitive_col": "Gender",
+        "label_col": "Target",
+        "privileged_val": 0,
+        "positive_label": "Dropout"
+      }
+    },
+    "final_analysis": {
+      "total_samples": 5744,
+      "privileged_count": 4188,
+      "unprivileged_count": 1556,
+      "current_sensitive_ratio": 0.729108635097493,
+      "positive_count": 1640,
+      "negative_count": 4104,
+      "current_label_ratio": 0.28551532033426186,
+      "cross_tab": {
+        "priv_pos": 939,
+        "priv_neg": 3249,
+        "unpriv_pos": 701,
+        "unpriv_neg": 855
+      },
+      "columns": {
+        "sensitive_col": "Gender",
+        "label_col": "Target",
+        "privileged_val": 0,
+        "positive_label": "Dropout"
+      }
+    },
+    "augmented_data_shape": [
+      5744,
+      35
+    ],
+    "target_ratios": {
+      "target_sensitive_ratio": 0.35,
+      "target_label_ratio": 0.32
+    },
+    "baseline_metrics": {
+      "model_name": "Baseline_Balanced_reverse_gender_brazil_with_fairness_llm_async",
+      "overall_accuracy": 0.8746736292428199,
+      "privileged_accuracy": 0.8910411622276029,
+      "unprivileged_accuracy": 0.8328173374613003,
+      "privileged_tpr": 0.653179190751445,
+      "unprivileged_tpr": 0.7290322580645161,
+      "privileged_fpr": 0.045941807044410414,
+      "unprivileged_fpr": 0.07142857142857142,
+      "privileged_selection_rate": 0.17312348668280872,
+      "unprivileged_selection_rate": 0.38699690402476783,
+      "accuracy_difference": 0.05822382476630261,
+      "tpr_difference": -0.07585306731307107,
+      "fpr_difference": -0.02548676438416101,
+      "demographic_parity_difference": -0.2138734173419591
+    },
+    "fair_metrics": {
+      "model_name": "Fair_Balanced_reverse_gender_brazil_with_fairness_llm_async",
+      "overall_accuracy": 0.8503046127067014,
+      "privileged_accuracy": 0.851089588377724,
+      "unprivileged_accuracy": 0.848297213622291,
+      "privileged_tpr": 0.7398843930635838,
+      "unprivileged_tpr": 0.864516129032258,
+      "privileged_fpr": 0.11944869831546708,
+      "unprivileged_fpr": 0.16666666666666666,
+      "privileged_selection_rate": 0.24939467312348668,
+      "unprivileged_selection_rate": 0.5015479876160991,
+      "accuracy_difference": 0.002792374755432925,
+      "tpr_difference": -0.12463173596867427,
+      "fpr_difference": -0.04721796835119958,
+      "demographic_parity_difference": -0.2521533144926124
+    },
+    "balance_achieved": {
+      "sensitive_ratio_achieved": false,
+      "label_ratio_achieved": true
+    },
+    "improvement_metrics": {
+      "accuracy_difference": 0.02436901653611845,
+      "dp_improvement": -0.0382798971506533,
+      "tpr_improvement": -0.04877866865560321,
+      "fpr_improvement": -0.021731203967038572
+    },
+    "augmentation_plan": {
+      "total_additional": 0,
+      "target_total": 4424,
+      "breakdown": {
+        "priv_pos": 0,
+        "priv_neg": 0,
+        "unpriv_pos": 219,
+        "unpriv_neg": 1101
+      },
+      "target_distribution": {
+        "priv_pos": 495,
+        "priv_neg": 1053,
+        "unpriv_pos": 920,
+        "unpriv_neg": 1956
+      }
+    },
+    "augmented_dataset_path": "./data/augmented_brazil_reverse_gender_brazil_with_fairness_llm_async_0.35_0.32.csv"
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-23T16:37:26.970984",
+    "experiment_type": "balanced_augmentation_faker",
+    "config_name": "africa",
+    "scenario_name": "reverse_gender_brazil_no_fairness"
+  },
+  "results": {
+    "scenario_name": "reverse_gender_brazil_no_fairness",
+    "generation_method": "faker",
+    "original_analysis": {
+      "total_samples": 62739,
+      "privileged_count": 27684,
+      "unprivileged_count": 35055,
+      "current_sensitive_ratio": 0.441256634629178,
+      "positive_count": 5707,
+      "negative_count": 57032,
+      "current_label_ratio": 0.09096415307862733,
+      "cross_tab": {
+        "priv_pos": 2147,
+        "priv_neg": 25537,
+        "unpriv_pos": 3560,
+        "unpriv_neg": 31495
+      },
+      "columns": {
+        "sensitive_col": "gender",
+        "label_col": "dropout",
+        "privileged_val": "Male",
+        "positive_label": "Yes"
+      }
+    },
+    "final_analysis": {
+      "total_samples": 77108,
+      "privileged_count": 32563,
+      "unprivileged_count": 44545,
+      "current_sensitive_ratio": 0.4223037817087721,
+      "positive_count": 20076,
+      "negative_count": 57032,
+      "current_label_ratio": 0.26036208953675366,
+      "cross_tab": {
+        "priv_pos": 7026,
+        "priv_neg": 25537,
+        "unpriv_pos": 13050,
+        "unpriv_neg": 31495
+      },
+      "columns": {
+        "sensitive_col": "gender",
+        "label_col": "dropout",
+        "privileged_val": "Male",
+        "positive_label": "Yes"
+      }
+    },
+    "augmented_data_shape": [
+      77108,
+      13
+    ],
+    "target_ratios": {
+      "target_sensitive_ratio": 0.35,
+      "target_label_ratio": 0.32
+    },
+    "baseline_metrics": {
+      "model_name": "Baseline_Balanced_reverse_gender_brazil_no_fairness_faker",
+      "overall_accuracy": 0.9531189210219168,
+      "privileged_accuracy": 0.960496095544327,
+      "unprivileged_accuracy": 0.9476999212686987,
+      "privileged_tpr": 0.9194346289752651,
+      "unprivileged_tpr": 0.8680769230769231,
+      "privileged_fpr": 0.028146989835809225,
+      "unprivileged_fpr": 0.019392783341281195,
+      "privileged_selection_rate": 0.22125248813351708,
+      "unprivileged_selection_rate": 0.26757395118659316,
+      "accuracy_difference": 0.012796174275628291,
+      "tpr_difference": 0.05135770589834199,
+      "fpr_difference": 0.00875420649452803,
+      "demographic_parity_difference": -0.04632146305307608
+    },
+    "fair_metrics": {
+      "model_name": "Fair_Balanced_reverse_gender_brazil_no_fairness_faker",
+      "overall_accuracy": 0.9372973673972247,
+      "privileged_accuracy": 0.9407441433164906,
+      "unprivileged_accuracy": 0.9347654931953661,
+      "privileged_tpr": 0.9957597173144876,
+      "unprivileged_tpr": 0.9973076923076923,
+      "privileged_fpr": 0.07447224394057858,
+      "unprivileged_fpr": 0.0910824988078207,
+      "privileged_selection_rate": 0.2740774766498239,
+      "unprivileged_selection_rate": 0.35609042852322575,
+      "accuracy_difference": 0.005978650121124529,
+      "tpr_difference": -0.0015479749932046927,
+      "fpr_difference": -0.016610254867242116,
+      "demographic_parity_difference": -0.08201295187340185
+    },
+    "balance_achieved": {
+      "sensitive_ratio_achieved": false,
+      "label_ratio_achieved": false
+    },
+    "improvement_metrics": {
+      "accuracy_difference": 0.015821553624692064,
+      "dp_improvement": -0.03569148882032577,
+      "tpr_improvement": 0.049809730905137295,
+      "fpr_improvement": -0.007856048372714086
+    },
+    "augmentation_plan": {
+      "total_additional": 0,
+      "target_total": 62739,
+      "breakdown": {
+        "priv_pos": 4879,
+        "priv_neg": 0,
+        "unpriv_pos": 9490,
+        "unpriv_neg": 0
+      },
+      "target_distribution": {
+        "priv_pos": 7026,
+        "priv_neg": 14932,
+        "unpriv_pos": 13050,
+        "unpriv_neg": 27731
+      }
+    },
+    "augmented_dataset_path": "./data/augmented_africa_reverse_gender_brazil_no_fairness_faker_0.35_0.32.csv"
+  }
+}
