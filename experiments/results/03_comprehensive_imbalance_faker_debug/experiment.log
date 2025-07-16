@@ -1,0 +1,67 @@
+[2025-06-26 17:35:01] === DEBUG VERSION - FIXING CSV AND CATEGORIZATION ===
+[2025-06-26 17:35:01] Starting debug analysis for brazil...
+[2025-06-26 17:35:01] [1/30] DEBUG: brazil - extreme_sensitive_balanced - faker
+[2025-06-26 17:35:03] ✅ DEBUG SUCCESS: brazil-extreme_sensitive_balanced: DP=-0.0175, AC=0.0360, Cat=FAILED
+[2025-06-26 17:35:04] [2/30] DEBUG: brazil - balanced_extreme_labels - faker
+[2025-06-26 17:35:05] ✅ DEBUG SUCCESS: brazil-balanced_extreme_labels: DP=0.0116, AC=0.0019, Cat=MODERATE
+[2025-06-26 17:35:06] [3/30] DEBUG: brazil - moderate_sensitive_balanced - faker
+[2025-06-26 17:35:07] ✅ DEBUG SUCCESS: brazil-moderate_sensitive_balanced: DP=-0.0192, AC=-0.0038, Cat=FAILED
+[2025-06-26 17:35:08] [4/30] DEBUG: brazil - balanced_balanced - faker
+[2025-06-26 17:35:10] ✅ DEBUG SUCCESS: brazil-balanced_balanced: DP=0.0006, AC=0.0105, Cat=UNCLEAR
+[2025-06-26 17:35:11] [5/30] DEBUG: brazil - moderate_compound - faker
+[2025-06-26 17:35:12] ✅ DEBUG SUCCESS: brazil-moderate_compound: DP=0.0158, AC=0.0166, Cat=MODERATE
+[2025-06-26 17:35:13] [6/30] DEBUG: brazil - reverse_sensitive - faker
+[2025-06-26 17:35:14] ✅ DEBUG SUCCESS: brazil-reverse_sensitive: DP=-0.0200, AC=0.0107, Cat=FAILED
+[2025-06-26 17:35:15] [7/30] DEBUG: brazil - balanced_moderate_labels - faker
+[2025-06-26 17:35:16] ✅ DEBUG SUCCESS: brazil-balanced_moderate_labels: DP=0.0036, AC=-0.0007, Cat=UNCLEAR
+[2025-06-26 17:35:17] [8/30] DEBUG: brazil - extreme_compound - faker
+[2025-06-26 17:35:19] ✅ DEBUG SUCCESS: brazil-extreme_compound: DP=0.0176, AC=-0.0006, Cat=MODERATE
+[2025-06-26 17:35:20] [9/30] DEBUG: brazil - reverse_extreme_sensitive - faker
+[2025-06-26 17:35:21] ✅ DEBUG SUCCESS: brazil-reverse_extreme_sensitive: DP=0.0158, AC=0.0074, Cat=MODERATE
+[2025-06-26 17:35:22] [10/30] DEBUG: brazil - original_ratios - faker
+[2025-06-26 17:35:23] ✅ DEBUG SUCCESS: brazil-original_ratios: DP=-0.0175, AC=0.0068, Cat=FAILED
+[2025-06-26 17:35:24] Starting debug analysis for india...
+[2025-06-26 17:35:24] [11/30] DEBUG: india - extreme_sensitive_balanced - faker
+[2025-06-26 17:35:33] ✅ DEBUG SUCCESS: india-extreme_sensitive_balanced: DP=-0.0690, AC=0.0523, Cat=FAILED
+[2025-06-26 17:35:34] [12/30] DEBUG: india - balanced_extreme_labels - faker
+[2025-06-26 17:35:38] ✅ DEBUG SUCCESS: india-balanced_extreme_labels: DP=0.0036, AC=0.0041, Cat=UNCLEAR
+[2025-06-26 17:35:39] [13/30] DEBUG: india - moderate_sensitive_balanced - faker
+[2025-06-26 17:35:45] ✅ DEBUG SUCCESS: india-moderate_sensitive_balanced: DP=-0.0182, AC=-0.0102, Cat=FAILED
+[2025-06-26 17:35:46] [14/30] DEBUG: india - balanced_balanced - faker
+[2025-06-26 17:35:50] ✅ DEBUG SUCCESS: india-balanced_balanced: DP=-0.0049, AC=0.0025, Cat=FAILED
+[2025-06-26 17:35:52] [15/30] DEBUG: india - moderate_compound - faker
+[2025-06-26 17:35:57] ✅ DEBUG SUCCESS: india-moderate_compound: DP=0.0079, AC=0.0078, Cat=UNCLEAR
+[2025-06-26 17:35:58] [16/30] DEBUG: india - reverse_sensitive - faker
+[2025-06-26 17:36:00] ✅ DEBUG SUCCESS: india-reverse_sensitive: DP=-0.0019, AC=-0.0066, Cat=FAILED
+[2025-06-26 17:36:01] [17/30] DEBUG: india - balanced_moderate_labels - faker
+[2025-06-26 17:36:05] ✅ DEBUG SUCCESS: india-balanced_moderate_labels: DP=0.0010, AC=-0.0011, Cat=UNCLEAR
+[2025-06-26 17:36:06] [18/30] DEBUG: india - extreme_compound - faker
+[2025-06-26 17:36:13] ✅ DEBUG SUCCESS: india-extreme_compound: DP=0.0077, AC=0.0152, Cat=UNCLEAR
+[2025-06-26 17:36:14] [19/30] DEBUG: india - reverse_extreme_sensitive - faker
+[2025-06-26 17:36:17] ✅ DEBUG SUCCESS: india-reverse_extreme_sensitive: DP=0.0084, AC=-0.0013, Cat=UNCLEAR
+[2025-06-26 17:36:18] [20/30] DEBUG: india - original_ratios - faker
+[2025-06-26 17:36:20] ✅ DEBUG SUCCESS: india-original_ratios: DP=-0.0308, AC=0.0561, Cat=FAILED
+[2025-06-26 17:36:21] Starting debug analysis for africa...
+[2025-06-26 17:36:21] [21/30] DEBUG: africa - extreme_sensitive_balanced - faker
+[2025-06-26 17:36:25] ✅ DEBUG SUCCESS: africa-extreme_sensitive_balanced: DP=-0.0257, AC=0.0518, Cat=FAILED
+[2025-06-26 17:36:26] [22/30] DEBUG: africa - balanced_extreme_labels - faker
+[2025-06-26 17:36:29] ✅ DEBUG SUCCESS: africa-balanced_extreme_labels: DP=0.0022, AC=0.0025, Cat=UNCLEAR
+[2025-06-26 17:36:30] [23/30] DEBUG: africa - moderate_sensitive_balanced - faker
+[2025-06-26 17:36:33] ✅ DEBUG SUCCESS: africa-moderate_sensitive_balanced: DP=-0.0051, AC=-0.0264, Cat=FAILED
+[2025-06-26 17:36:35] [24/30] DEBUG: africa - balanced_balanced - faker
+[2025-06-26 17:36:37] ✅ DEBUG SUCCESS: africa-balanced_balanced: DP=0.0051, AC=0.0022, Cat=UNCLEAR
+[2025-06-26 17:36:38] [25/30] DEBUG: africa - moderate_compound - faker
+[2025-06-26 17:36:42] ✅ DEBUG SUCCESS: africa-moderate_compound: DP=-0.0026, AC=-0.0039, Cat=FAILED
+[2025-06-26 17:36:43] [26/30] DEBUG: africa - reverse_sensitive - faker
+[2025-06-26 17:36:45] ✅ DEBUG SUCCESS: africa-reverse_sensitive: DP=0.0010, AC=-0.0006, Cat=UNCLEAR
+[2025-06-26 17:36:46] [27/30] DEBUG: africa - balanced_moderate_labels - faker
+[2025-06-26 17:36:49] ✅ DEBUG SUCCESS: africa-balanced_moderate_labels: DP=0.0025, AC=0.0026, Cat=UNCLEAR
+[2025-06-26 17:36:50] [28/30] DEBUG: africa - extreme_compound - faker
+[2025-06-26 17:36:54] ✅ DEBUG SUCCESS: africa-extreme_compound: DP=0.0039, AC=-0.0102, Cat=UNCLEAR
+[2025-06-26 17:36:55] [29/30] DEBUG: africa - reverse_extreme_sensitive - faker
+[2025-06-26 17:36:58] ✅ DEBUG SUCCESS: africa-reverse_extreme_sensitive: DP=0.0068, AC=-0.0024, Cat=UNCLEAR
+[2025-06-26 17:36:59] [30/30] DEBUG: africa - original_ratios - faker
+[2025-06-26 17:37:01] ✅ DEBUG SUCCESS: africa-original_ratios: DP=-0.0141, AC=0.0141, Cat=FAILED
+[2025-06-26 17:37:02] === DEBUG EXPERIMENT COMPLETED ===
+[2025-06-26 17:37:02] Debug results: ./experiments/results/03_comprehensive_imbalance_faker_debug/faker_results_matrix_debug.csv
+[2025-06-26 17:37:02] Debug analysis: ./experiments/results/03_comprehensive_imbalance_faker_debug/debug_analysis.txt

@@ -1,0 +1,26 @@
+✓ Fast, multithreaded LLM generator loaded successfully.
+Results will be saved to: ./experiments/results/03_comprehensive_imbalance_faker_debug/africa_faker
+
+================================================================================
+BALANCED AUGMENTATION EXPERIMENT: balanced_balanced_faker_debug (FAKER)
+================================================================================
+
+Generating targeted synthetic samples using method: FAKER
+  Generating 26369 samples for privileged group with positive outcome
+    Using 100% Faker generation for reliability and speed
+    ✓ Generated 26369 samples
+  Generating 2979 samples for privileged group with negative outcome
+    Using 100% Faker generation for reliability and speed
+    ✓ Generated 2979 samples
+  Generating 24956 samples for unprivileged group with positive outcome
+    Using 100% Faker generation for reliability and speed
+    ✓ Generated 24956 samples
+
+Final Distribution: Sensitive Ratio=0.487, Label Ratio=0.487
+
+DP improvement: 0.0051, Accuracy cost: 0.0022
+✓ Saved results to: ./experiments/results/03_comprehensive_imbalance_faker_debug/africa_faker/balanced_augmentation_africa_balanced_balanced_faker_debug.json
+
+================================================================================
+EXPERIMENT 'balanced_balanced_faker_debug' COMPLETED.
+================================================================================

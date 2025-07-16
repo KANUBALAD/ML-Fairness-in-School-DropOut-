@@ -1,32 +1,31 @@
+# main.py (v8 - Multi-Provider LLM Integration)
+
 import os
 import yaml
 import argparse
 import numpy as np
 import pandas as pd
 import json
-import asyncio
 from datetime import datetime
 
+# --- Local Imports ---
 from src import utils, dataload, model
 import src.fairness as fairness
 from src.synthetic_generator import SyntheticDataGenerator
+from src.data_quality_analyzer import DataQualityAnalyzer
 
-# Import new generators
+# Import the new multi-provider LLM generator
 try:
-    import src.llm_synthetic_generator as llm_gen
+    import requests
+    from tqdm import tqdm
+    from src.llm_synthetic_generator import ThreadedLLMSyntheticGenerator
     LLM_AVAILABLE = True
-    print("✓ LLM generator loaded successfully")
-except ImportError as e:
+    print("✓ Multi-provider LLM generator loaded successfully.")
+except ImportError:
     LLM_AVAILABLE = False
-    print(f"LLM generator not available: {e}")
+    print("Warning: LLM generator not available. `requests` or `tqdm` module might be missing.")
 
-try:
-    from src.CTGAN_TVAE_synthetic_generator import run_ctgan_experiment, run_tvae_experiment
-    CTGAN_AVAILABLE = True
-    print("✓ CTGAN/TVAE generators loaded successfully")
-except ImportError as e:
-    CTGAN_AVAILABLE = False
-    print(f"CTGAN/TVAE generators not available: {e}")
+# --- Utility Functions ---
 
 def create_results_folder():
     """Create a dedicated results folder with timestamp."""
@@ -35,33 +34,142 @@ def create_results_folder():
     os.makedirs(results_folder, exist_ok=True)
     return results_folder
 
+def save_augmented_dataset_csv(augmented_data, results_folder, config_name, scenario_name, method):
+    """Save the augmented dataset as CSV file with enhanced error handling."""
+    if results_folder is None:
+        print("Warning: No results folder specified. Skipping CSV save.")
+        return None
+    
+    # Create CSV filename with descriptive naming
+    csv_filename = f"augmented_{config_name}_{scenario_name}_{method}.csv"
+    csv_filepath = os.path.join(results_folder, csv_filename)
+    
+    try:
+        # Ensure augmented_data is a DataFrame
+        if not isinstance(augmented_data, pd.DataFrame):
+            print(f"❌ Error: augmented_data is not a DataFrame, it's a {type(augmented_data)}")
+            return None
+        
+        # Save the augmented dataset
+        augmented_data.to_csv(csv_filepath, index=False)
+        print(f"✓ Saved augmented dataset to: {csv_filepath}")
+        
+        # Also save dataset summary
+        summary_filename = f"dataset_summary_{config_name}_{scenario_name}_{method}.txt"
+        summary_filepath = os.path.join(results_folder, summary_filename)
+        
+        with open(summary_filepath, 'w') as f:
+            f.write(f"Augmented Dataset Summary\n")
+            f.write(f"========================\n")
+            f.write(f"Dataset: {config_name}\n")
+            f.write(f"Scenario: {scenario_name}\n")
+            f.write(f"Method: {method}\n")
+            f.write(f"Timestamp: {datetime.now().isoformat()}\n\n")
+            f.write(f"Dataset Shape: {augmented_data.shape}\n")
+            f.write(f"Total Samples: {len(augmented_data)}\n\n")
+            f.write("Column Summary:\n")
+            f.write(f"{augmented_data.dtypes}\n\n")
+            f.write("First 5 rows:\n")
+            f.write(f"{augmented_data.head().to_string()}\n\n")
+            f.write("Dataset Info:\n")
+            
+            # Capture info() output safely
+            import io
+            buffer = io.StringIO()
+            augmented_data.info(buf=buffer)
+            f.write(buffer.getvalue())
+        
+        print(f"✓ Saved dataset summary to: {summary_filepath}")
+        return csv_filepath
+        
+    except Exception as e:
+        print(f"❌ Error saving augmented dataset: {e}")
+        print(f"   Dataset type: {type(augmented_data)}")
+        print(f"   Dataset shape: {getattr(augmented_data, 'shape', 'No shape attribute')}")
+        return None
+    
+def save_generation_log(original_analysis, final_analysis, augmentation_plan, results_folder, config_name, scenario_name, method):
+    """Save detailed generation log showing what was augmented."""
+    if results_folder is None:
+        return
+    
+    log_filename = f"generation_log_{config_name}_{scenario_name}_{method}.txt"
+    log_filepath = os.path.join(results_folder, log_filename)
+    
+    try:
+        with open(log_filepath, 'w') as f:
+            f.write(f"Synthetic Data Generation Log\n")
+            f.write(f"============================\n")
+            f.write(f"Dataset: {config_name}\n")
+            f.write(f"Scenario: {scenario_name}\n")
+            f.write(f"Method: {method}\n")
+            f.write(f"Timestamp: {datetime.now().isoformat()}\n\n")
+            
+            f.write("ORIGINAL DATASET ANALYSIS:\n")
+            f.write(f"Total samples: {original_analysis['total_samples']}\n")
+            f.write(f"Privileged samples: {original_analysis['privileged_count']}\n")
+            f.write(f"Unprivileged samples: {original_analysis['unprivileged_count']}\n")
+            f.write(f"Positive samples: {original_analysis['positive_count']}\n")
+            f.write(f"Negative samples: {original_analysis['negative_count']}\n")
+            f.write(f"Sensitive ratio: {original_analysis['current_sensitive_ratio']:.4f}\n")
+            f.write(f"Label ratio: {original_analysis['current_label_ratio']:.4f}\n\n")
+            
+            f.write("CROSS-TABULATION (ORIGINAL):\n")
+            f.write(f"Privileged + Positive: {original_analysis['cross_tab']['priv_pos']}\n")
+            f.write(f"Privileged + Negative: {original_analysis['cross_tab']['priv_neg']}\n")
+            f.write(f"Unprivileged + Positive: {original_analysis['cross_tab']['unpriv_pos']}\n")
+            f.write(f"Unprivileged + Negative: {original_analysis['cross_tab']['unpriv_neg']}\n\n")
+            
+            f.write("AUGMENTATION PLAN:\n")
+            f.write(f"Total additional samples needed: {augmentation_plan['total_additional']}\n")
+            f.write("Breakdown by category:\n")
+            for category, count in augmentation_plan['breakdown'].items():
+                f.write(f"  {category}: {count} samples\n")
+            f.write("\n")
+            
+            f.write("FINAL DATASET ANALYSIS:\n")
+            f.write(f"Total samples: {final_analysis['total_samples']}\n")
+            f.write(f"Privileged samples: {final_analysis['privileged_count']}\n")
+            f.write(f"Unprivileged samples: {final_analysis['unprivileged_count']}\n")
+            f.write(f"Positive samples: {final_analysis['positive_count']}\n")
+            f.write(f"Negative samples: {final_analysis['negative_count']}\n")
+            f.write(f"Sensitive ratio: {final_analysis['current_sensitive_ratio']:.4f}\n")
+            f.write(f"Label ratio: {final_analysis['current_label_ratio']:.4f}\n\n")
+            
+            f.write("CROSS-TABULATION (FINAL):\n")
+            f.write(f"Privileged + Positive: {final_analysis['cross_tab']['priv_pos']}\n")
+            f.write(f"Privileged + Negative: {final_analysis['cross_tab']['priv_neg']}\n")
+            f.write(f"Unprivileged + Positive: {final_analysis['cross_tab']['unpriv_pos']}\n")
+            f.write(f"Unprivileged + Negative: {final_analysis['cross_tab']['unpriv_neg']}\n\n")
+            
+            samples_added = final_analysis['total_samples'] - original_analysis['total_samples']
+            f.write(f"SUMMARY:\n")
+            f.write(f"Samples added: {samples_added}\n")
+            f.write(f"Original size: {original_analysis['total_samples']}\n")
+            f.write(f"Final size: {final_analysis['total_samples']}\n")
+            f.write(f"Growth factor: {final_analysis['total_samples'] / original_analysis['total_samples']:.2f}x\n")
+        
+        print(f"✓ Saved generation log to: {log_filepath}")
+        
+    except Exception as e:
+        print(f"❌ Error saving generation log: {e}")
+
 def save_results_to_json(results, results_folder, experiment_type, config_name, scenario_name=None):
-    """Save experiment results to JSON file."""
+    """Save experiment results to a JSON file."""
+    if results_folder is None:
+        return
     
-    # Create filename
-    if scenario_name:
-        filename = f"{experiment_type}_{config_name}_{scenario_name}.json"
-    else:
-        filename = f"{experiment_type}_{config_name}.json"
-    
+    filename = f"{experiment_type}_{config_name}_{scenario_name}.json" if scenario_name else f"{experiment_type}_{config_name}.json"
     filepath = os.path.join(results_folder, filename)
     
-    # Convert numpy arrays to lists for JSON serialization
     def convert_numpy_types(obj):
-        if isinstance(obj, np.ndarray):
-            return obj.tolist()
-        elif isinstance(obj, np.integer):
-            return int(obj)
-        elif isinstance(obj, np.floating):
-            return float(obj)
-        elif isinstance(obj, dict):
-            return {key: convert_numpy_types(value) for key, value in obj.items()}
-        elif isinstance(obj, list):
-            return [convert_numpy_types(item) for item in obj]
-        else:
-            return obj
-    
-    # Add metadata
+        if isinstance(obj, np.ndarray): return obj.tolist()
+        if isinstance(obj, np.integer): return int(obj)
+        if isinstance(obj, np.floating): return float(obj)
+        if isinstance(obj, dict): return {k: convert_numpy_types(v) for k, v in obj.items()}
+        if isinstance(obj, list): return [convert_numpy_types(i) for i in obj]
+        return obj
+
     results_with_metadata = {
         'metadata': {
             'timestamp': datetime.now().isoformat(),
@@ -72,796 +180,721 @@ def save_results_to_json(results, results_folder, experiment_type, config_name, 
         'results': convert_numpy_types(results)
     }
     
-    # Save to JSON
-    with open(filepath, 'w') as f:
-        json.dump(results_with_metadata, f, indent=2, default=str)
-    
-    print(f"✓ Saved results to: {filepath}")
-    return filepath
+    try:
+        with open(filepath, 'w') as f:
+            json.dump(results_with_metadata, f, indent=2, default=str)
+        print(f"✓ Saved results to: {filepath}")
+    except Exception as e:
+        print(f"❌ Error saving results: {e}")
 
 def load_config(config_path):
     with open(config_path, 'r') as file:
-        config = yaml.safe_load(file)
-    return config
+        return yaml.safe_load(file)
 
-def analyze_dataset_imbalance(data, config):
-    """Analyze current imbalance in the dataset."""
+def analyze_dataset_imbalance_universal(data, sensitive_col, label_col, privileged_val, positive_label):
+    """Universal dataset imbalance analysis that works with any column names and values."""
     
-    # Get sensitive attribute and label columns
-    if config['dataname'] == 'africa':
-        sensitive_col = 'gender'
-        label_col = 'dropout'
-        privileged_val = 'Male'
-        positive_label = 'Yes'
-    elif config['dataname'] == 'brazil':
-        sensitive_col = 'Gender'
-        label_col = 'Target'
-        privileged_val = 0  # Male
-        positive_label = 'Dropout'
-    elif config['dataname'] == 'india':
-        sensitive_col = 'STUDENTGENDER'
-        label_col = 'STUDENT_DROPOUT_STATUS'
-        privileged_val = 'M'
-        positive_label = 'DROPOUT'
-    
-    # Count current distributions
     total_samples = len(data)
-    
-    # Sensitive attribute distribution
     privileged_count = sum(data[sensitive_col] == privileged_val)
-    unprivileged_count = total_samples - privileged_count
-    current_sensitive_ratio = privileged_count / total_samples
-    
-    # Label distribution
-    positive_count = sum(data[label_col] == positive_label)
-    negative_count = total_samples - positive_count
-    current_label_ratio = positive_count / total_samples
-    
-    # Cross-tabulation
-    priv_pos = sum((data[sensitive_col] == privileged_val) & (data[label_col] == positive_label))
-    priv_neg = privileged_count - priv_pos
-    unpriv_pos = positive_count - priv_pos
-    unpriv_neg = unprivileged_count - unpriv_pos
+    positive_count = sum(data[label_col].astype(str) == str(positive_label))
     
     analysis = {
         'total_samples': total_samples,
         'privileged_count': privileged_count,
-        'unprivileged_count': unprivileged_count,
-        'current_sensitive_ratio': current_sensitive_ratio,
+        'unprivileged_count': total_samples - privileged_count,
+        'current_sensitive_ratio': privileged_count / total_samples if total_samples > 0 else 0,
         'positive_count': positive_count,
-        'negative_count': negative_count,
-        'current_label_ratio': current_label_ratio,
+        'negative_count': total_samples - positive_count,
+        'current_label_ratio': positive_count / total_samples if total_samples > 0 else 0,
         'cross_tab': {
-            'priv_pos': priv_pos,
-            'priv_neg': priv_neg,
-            'unpriv_pos': unpriv_pos,
-            'unpriv_neg': unpriv_neg
-        },
+            'priv_pos': sum((data[sensitive_col] == privileged_val) & (data[label_col].astype(str) == str(positive_label))),
+            'priv_neg': sum((data[sensitive_col] == privileged_val) & (data[label_col].astype(str) != str(positive_label))),
+            'unpriv_pos': sum((data[sensitive_col] != privileged_val) & (data[label_col].astype(str) == str(positive_label))),
+            'unpriv_neg': sum((data[sensitive_col] != privileged_val) & (data[label_col].astype(str) != str(positive_label))),
+        }
+    }
+    return analysis
+
+def auto_detect_key_columns(data, config_name):
+    """Automatically detect sensitive and label columns using heuristics."""
+    
+    print(f"🔍 Auto-detecting key columns for dataset: {config_name}")
+    
+    # Simple heuristics for common column patterns
+    sensitive_candidates = []
+    label_candidates = []
+    
+    for col in data.columns:
+        col_lower = col.lower()
+        
+        # Look for sensitive attribute patterns
+        if any(keyword in col_lower for keyword in ['gender', 'sex', 'race', 'ethnicity']):
+            unique_vals = data[col].nunique()
+            if 2 <= unique_vals <= 5:  # Reasonable number of categories
+                sensitive_candidates.append(col)
+        
+        # Look for label patterns
+        if any(keyword in col_lower for keyword in ['target', 'label', 'dropout', 'outcome', 'class', 'result']):
+            unique_vals = data[col].nunique()
+            if 2 <= unique_vals <= 10:  # Reasonable number of outcome categories
+                label_candidates.append(col)
+    
+    # Score candidates based on additional criteria
+    def score_sensitive_candidate(col):
+        score = 0
+        unique_vals = data[col].unique()
+        
+        # Prefer binary columns
+        if len(unique_vals) == 2:
+            score += 10
+        
+        # Check for gender-like values
+        str_vals = [str(v).lower() for v in unique_vals]
+        gender_indicators = ['male', 'female', 'm', 'f', '0', '1']
+        if any(indicator in str_vals for indicator in gender_indicators):
+            score += 15
+        
+        # Prefer balanced distributions
+        value_counts = data[col].value_counts()
+        if len(value_counts) >= 2:
+            balance_ratio = min(value_counts.values) / max(value_counts.values)
+            score += balance_ratio * 5
+        
+        return score
+    
+    def score_label_candidate(col):
+        score = 0
+        unique_vals = data[col].unique()
+        
+        # Prefer binary outcomes
+        if len(unique_vals) == 2:
+            score += 10
+        
+        # Check for outcome-like values
+        str_vals = [str(v).lower() for v in unique_vals]
+        outcome_indicators = ['dropout', 'graduate', 'yes', 'no', 'success', 'fail', '0', '1']
+        if any(indicator in str_vals for indicator in outcome_indicators):
+            score += 15
+        
+        # Prefer somewhat imbalanced distributions (typical for outcomes)
+        value_counts = data[col].value_counts()
+        if len(value_counts) >= 2:
+            imbalance_ratio = min(value_counts.values) / max(value_counts.values)
+            if 0.1 <= imbalance_ratio <= 0.8:  # Some imbalance is good for outcome variables
+                score += 10
+        
+        return score
+    
+    # Select best candidates
+    best_sensitive = None
+    best_label = None
+    
+    if sensitive_candidates:
+        scored_sensitive = [(col, score_sensitive_candidate(col)) for col in sensitive_candidates]
+        best_sensitive = max(scored_sensitive, key=lambda x: x[1])[0]
+    
+    if label_candidates:
+        scored_label = [(col, score_label_candidate(col)) for col in label_candidates]
+        best_label = max(scored_label, key=lambda x: x[1])[0]
+    
+    if not best_sensitive or not best_label:
+        available_cols = list(data.columns)
+        raise ValueError(f"Could not auto-detect key columns. Available columns: {available_cols}")
+    
+    print(f"✓ Auto-detected: sensitive='{best_sensitive}', label='{best_label}'")
+    return best_sensitive, best_label
+
+def determine_privileged_and_positive_values(data, sensitive_col, label_col):
+    """Automatically determine privileged and positive values using heuristics."""
+    
+    # Get unique values
+    sensitive_vals = data[sensitive_col].unique().tolist()
+    label_vals = data[label_col].unique().tolist()
+    
+    # Determine privileged value for sensitive attribute
+    privileged_val = sensitive_vals[0]  # Default
+    if len(sensitive_vals) == 2:
+        val1_str, val2_str = str(sensitive_vals[0]).lower(), str(sensitive_vals[1]).lower()
+        
+        # Gender heuristics
+        if 'gender' in sensitive_col.lower() or 'sex' in sensitive_col.lower():
+            male_indicators = ['male', 'm', '1', 'man']
+            if any(indicator in val1_str for indicator in male_indicators):
+                privileged_val = sensitive_vals[0]
+            elif any(indicator in val2_str for indicator in male_indicators):
+                privileged_val = sensitive_vals[1]
+        
+        # Numeric heuristics (higher value is privileged)
+        try:
+            num_vals = [float(v) for v in sensitive_vals]
+            privileged_val = max(num_vals)
+        except:
+            pass
+    
+    # Determine positive value for label
+    positive_val = label_vals[0]  # Default
+    if len(label_vals) == 2:
+        val1_str, val2_str = str(label_vals[0]).lower(), str(label_vals[1]).lower()
+        
+        # Outcome heuristics (negative outcomes are typically what we predict)
+        negative_indicators = ['dropout', 'fail', 'negative', 'bad', '1']
+        if any(indicator in val1_str for indicator in negative_indicators):
+            positive_val = label_vals[0]
+        elif any(indicator in val2_str for indicator in negative_indicators):
+            positive_val = label_vals[1]
+    
+    print(f"✓ Determined values: privileged='{privileged_val}', positive='{positive_val}'")
+    return privileged_val, positive_val
+
+def calculate_augmentation_needs(analysis, target_sensitive_ratio, target_label_ratio):
+    """Calculate how many additional samples of each type are needed."""
+    current_total = analysis['total_samples']
+    
+    min_total_sens = 2 * max(analysis['privileged_count'], analysis['unprivileged_count'])
+    min_total_label = 2 * max(analysis['positive_count'], analysis['negative_count'])
+    target_total = int(np.ceil(max(current_total, min_total_sens, min_total_label)))
+    
+    target_priv = int(target_total * target_sensitive_ratio)
+    target_pos = int(target_total * target_label_ratio)
+    
+    target_priv_pos = int(target_priv * target_label_ratio)
+    target_priv_neg = target_priv - target_priv_pos
+    target_unpriv_pos = target_pos - target_priv_pos
+    target_unpriv_neg = target_total - target_priv - target_unpriv_pos
+    
+    current = analysis['cross_tab']
+    additional_needed = {
+        'total_additional': target_total - current_total,
+        'breakdown': {
+            'priv_pos': max(0, target_priv_pos - current['priv_pos']),
+            'priv_neg': max(0, target_priv_neg - current['priv_neg']),
+            'unpriv_pos': max(0, target_unpriv_pos - current['unpriv_pos']),
+            'unpriv_neg': max(0, target_unpriv_neg - current['unpriv_neg']),
+        }
+    }
+    return additional_needed
+
+def align_data_types_universal(synthetic_df: pd.DataFrame, original_data: pd.DataFrame) -> pd.DataFrame:
+    """Align synthetic data types with original data types using universal approach."""
+    
+    print("🔧 Aligning data types universally...")
+    aligned_df = synthetic_df.copy()
+    
+    for col in original_data.columns:
+        if col not in aligned_df.columns:
+            continue
+            
+        original_dtype = original_data[col].dtype
+        
+        try:
+            if pd.api.types.is_integer_dtype(original_dtype):
+                # Convert to numeric first, then to int
+                aligned_df[col] = pd.to_numeric(aligned_df[col], errors='coerce')
+                aligned_df[col] = aligned_df[col].fillna(original_data[col].median()).round().astype(original_dtype)
+                
+            elif pd.api.types.is_float_dtype(original_dtype):
+                aligned_df[col] = pd.to_numeric(aligned_df[col], errors='coerce')
+                aligned_df[col] = aligned_df[col].fillna(original_data[col].median()).astype(original_dtype)
+                
+            elif pd.api.types.is_object_dtype(original_dtype):
+                aligned_df[col] = aligned_df[col].astype(str)
+                # Replace 'nan' strings with actual NaN, then fill
+                aligned_df[col] = aligned_df[col].replace('nan', np.nan)
+                most_common = original_data[col].mode().iloc[0] if len(original_data[col].mode()) > 0 else 'Unknown'
+                aligned_df[col] = aligned_df[col].fillna(most_common)
+                
+        except Exception as e:
+            print(f"   ⚠️  Could not align dtype for column '{col}': {e}")
+            continue
+    
+    return aligned_df
+
+def apply_universal_post_processing(original_data: pd.DataFrame, synthetic_df: pd.DataFrame) -> pd.DataFrame:
+    """Apply universal post-processing enhancements."""
+    
+    print("✨ Applying universal post-processing...")
+    enhanced_df = synthetic_df.copy()
+    
+    # Apply bounds based on original data for numeric columns
+    for col in enhanced_df.columns:
+        if col not in original_data.columns:
+            continue
+            
+        if pd.api.types.is_numeric_dtype(enhanced_df[col]) and pd.api.types.is_numeric_dtype(original_data[col]):
+            orig_min = original_data[col].min()
+            orig_max = original_data[col].max()
+            
+            # Clip to bounds with small tolerance
+            tolerance = (orig_max - orig_min) * 0.05 if orig_max != orig_min else 1
+            enhanced_df[col] = enhanced_df[col].clip(orig_min - tolerance, orig_max + tolerance)
+            
+            # Round integers
+            if pd.api.types.is_integer_dtype(original_data[col]):
+                enhanced_df[col] = enhanced_df[col].round()
+    
+    return enhanced_df
+
+def generate_targeted_synthetic_samples(original_data, config_name, api_key, augmentation_plan, method, sensitive_col, label_col, provider=None, model_name=None, base_url=None):
+    """Universal synthetic sample generation with multi-provider support."""
+    print(f"\nGenerating targeted synthetic samples using method: {method.upper()}")
+
+    # Determine provider and model based on method
+    if method == 'llm_deepseek':
+        provider = "deepseek"
+        model_name = model_name or "deepseek-chat"
+        
+    elif method == 'llm_huggingface':
+        provider = "huggingface" 
+        model_name = model_name or "microsoft/DialoGPT-medium"
+        
+    elif method == 'llm_huggingface_local':
+        provider = "huggingface_transformers"
+        model_name = model_name or "microsoft/DialoGPT-medium"
+        
+    elif method == 'llm_openai':
+        provider = "openai"
+        model_name = model_name or "gpt-3.5-turbo"
+        
+    elif method == 'llm_custom':
+        provider = "custom_openai"
+        if not base_url:
+            raise ValueError("--base_url is required for llm_custom method")
+        model_name = model_name or "default"
+        
+    elif method == 'llm_async':
+        # Legacy support - default to deepseek
+        provider = "deepseek"
+        model_name = model_name or "deepseek-chat"
+        
+    elif method == 'faker':
+        # Existing Faker implementation
+        print("🎲 Using enhanced Faker generation")
+        try:
+            generator = SyntheticDataGenerator()
+            all_synthetic_samples = []
+            
+            for category_key, needed_count in augmentation_plan['breakdown'].items():
+                if needed_count > 0:
+                    print(f"  Generating {needed_count} samples for category: {category_key}")
+                    category_samples = generator.generate_category_specific_samples(
+                        dataset_name=config_name, n_samples=needed_count,
+                        category=category_key, reference_data=original_data)
+                    all_synthetic_samples.extend(category_samples)
+                    print(f"  ✓ Generated {len(category_samples)} samples for {category_key}")
+            
+            if all_synthetic_samples:
+                print(f"🎯 Total synthetic samples generated: {len(all_synthetic_samples)}")
+                synthetic_df = pd.DataFrame(all_synthetic_samples)
+                
+                # Ensure all columns are present and in correct order
+                for col in original_data.columns:
+                    if col not in synthetic_df.columns:
+                        if pd.api.types.is_numeric_dtype(original_data[col]):
+                            default_val = original_data[col].median()
+                        else:
+                            default_val = original_data[col].mode().iloc[0] if len(original_data[col].mode()) > 0 else 'Unknown'
+                        synthetic_df[col] = default_val
+                
+                synthetic_df = synthetic_df[original_data.columns]
+                synthetic_df = align_data_types_universal(synthetic_df, original_data)
+                
+                augmented_data = pd.concat([original_data, synthetic_df], ignore_index=True)
+                print(f"📊 Final augmented dataset: {len(original_data)} original + {len(synthetic_df)} synthetic = {len(augmented_data)} total")
+                return augmented_data
+            else:
+                print("❌ Faker generation produced no valid samples. Returning original data.")
+                return original_data.copy()
+                
+        except Exception as e:
+            print(f"💥 Error in Faker generation: {e}")
+            print("🔄 Returning original data without augmentation.")
+            return original_data.copy()
+    else:
+        raise ValueError(f"Unknown generation method: {method}")
+
+    # LLM generation (any provider)
+    if not LLM_AVAILABLE:
+        print("Error: LLM generator not available. Falling back to Faker.")
+        return generate_targeted_synthetic_samples(original_data, config_name, api_key, augmentation_plan, 'faker', sensitive_col, label_col)
+    
+    try:
+        print(f"🚀 Using {provider.upper()} LLM generation")
+        print(f"   Model: {model_name}")
+        
+        # Determine optimal worker count based on provider
+        if provider == "huggingface_transformers":
+            max_workers = 1  # Local models should use fewer workers
+        else:
+            max_workers = 6  # API-based providers can handle more workers
+        
+        generator = ThreadedLLMSyntheticGenerator(
+            api_key=api_key,
+            provider=provider,
+            model_name=model_name,
+            base_url=base_url,
+            max_workers=max_workers
+        )
+        
+        breakdown = augmentation_plan['breakdown']
+        target_specs = []
+        
+        for category, count in breakdown.items():
+            if count > 0:
+                target_specs.append({
+                    'category': category, 
+                    'count': count
+                })
+        
+        print(f"📋 Generation plan: {[(spec['category'], spec['count']) for spec in target_specs]}")
+        
+        synthetic_samples = generator.generate_samples(config_name, target_specs, original_data)
+        
+        if synthetic_samples:
+            print(f"✅ Generated {len(synthetic_samples)} synthetic samples")
+            
+            synthetic_df = pd.DataFrame(synthetic_samples)
+            
+            # Ensure all columns are present
+            for col in original_data.columns:
+                if col not in synthetic_df.columns:
+                    if pd.api.types.is_numeric_dtype(original_data[col]):
+                        default_val = original_data[col].median()
+                    else:
+                        default_val = original_data[col].mode().iloc[0] if len(original_data[col].mode()) > 0 else 'Unknown'
+                    synthetic_df[col] = default_val
+            
+            synthetic_df = synthetic_df[original_data.columns]
+            synthetic_df = align_data_types_universal(synthetic_df, original_data)
+            synthetic_df = apply_universal_post_processing(original_data, synthetic_df)
+            
+            augmented_data = pd.concat([original_data, synthetic_df], ignore_index=True)
+            
+            print(f"📊 Final augmented dataset: {len(original_data)} original + {len(synthetic_df)} synthetic = {len(augmented_data)} total")
+            return augmented_data
+        else:
+            print("❌ LLM generation produced no valid samples. Returning original data.")
+            return original_data.copy()
+            
+    except Exception as e:
+        print(f"💥 Critical error occurred during {provider.upper()} generation: {e}")
+        print("🔄 Falling back to Faker method...")
+        return generate_targeted_synthetic_samples(original_data, config_name, api_key, augmentation_plan, 'faker', sensitive_col, label_col)
+
+def run_balanced_experiment(config, api_key, target_sensitive_ratio, target_label_ratio, scenario_name, results_folder, method, provider=None, model_name=None, base_url=None):
+    """Universal balanced augmentation experiment with enhanced error handling."""
+    print(f"\n{'='*80}\nUNIVERSAL BALANCED AUGMENTATION EXPERIMENT: {scenario_name} ({method.upper()})\n{'='*80}")
+    
+    try:
+        # Load original data
+        original_data = pd.read_csv(config['datapath'])
+        config_name = config['dataname']
+        
+        # Auto-detect key columns if not specified
+        if 'columns' not in config:
+            print("🔍 No column mapping found in config. Auto-detecting key columns...")
+            sensitive_col, label_col = auto_detect_key_columns(original_data, config_name)
+            privileged_val, positive_val = determine_privileged_and_positive_values(original_data, sensitive_col, label_col)
+            
+            universal_config = create_universal_config(original_data, config_name, sensitive_col, label_col, privileged_val, positive_val)
+            config.update(universal_config)
+        else:
+            sensitive_col = config['columns']['sensitive_col']
+            label_col = config['columns']['label_col']
+            privileged_val = config['columns']['privileged_val']
+            positive_val = config['columns']['positive_label']
+        
+        print(f"📊 Using columns: sensitive='{sensitive_col}', label='{label_col}'")
+        print(f"🎯 Using values: privileged='{privileged_val}', positive='{positive_val}'")
+        
+        # Analyze current dataset
+        analysis = analyze_dataset_imbalance_universal(original_data, sensitive_col, label_col, privileged_val, positive_val)
+        
+        if target_sensitive_ratio == "original": 
+            target_sensitive_ratio = analysis['current_sensitive_ratio']
+        if target_label_ratio == "original": 
+            target_label_ratio = analysis['current_label_ratio']
+
+        augmentation_plan = calculate_augmentation_needs(analysis, float(target_sensitive_ratio), float(target_label_ratio))
+        
+        if augmentation_plan['total_additional'] <= 0:
+            print("No augmentation needed or target ratios already met.")
+            augmented_data = original_data.copy()
+        else:
+            augmented_data = generate_targeted_synthetic_samples(
+                original_data, config_name, api_key, augmentation_plan, method, 
+                sensitive_col, label_col, provider, model_name, base_url
+            )
+
+        # CRITICAL: Check if augmented_data is None
+        if augmented_data is None:
+            print("❌ Critical error: Augmented data is None. Using original data.")
+            augmented_data = original_data.copy()
+
+        final_analysis = analyze_dataset_imbalance_universal(augmented_data, sensitive_col, label_col, privileged_val, positive_val)
+        print(f"\n📊 Final Distribution: Sensitive Ratio={final_analysis['current_sensitive_ratio']:.3f}, Label Ratio={final_analysis['current_label_ratio']:.3f}")
+        
+        # Save results with error handling
+        csv_path = None
+        quality_analysis_path = None
+        
+        if results_folder:
+            csv_path = save_augmented_dataset_csv(augmented_data, results_folder, config_name, scenario_name, method)
+            save_generation_log(analysis, final_analysis, augmentation_plan, results_folder, config_name, scenario_name, method)
+            
+            # Data Quality Analysis with error handling
+            try:
+                print(f"\n{'='*60}\nDATA QUALITY ANALYSIS\n{'='*60}")
+                analyzer = DataQualityAnalyzer()
+                
+                quality_analysis = analyzer.comprehensive_comparison(
+                    original_data=original_data,
+                    augmented_data=augmented_data,
+                    sensitive_col=sensitive_col,
+                    label_col=label_col,
+                    dataset_name=config_name,
+                    scenario_name=scenario_name,
+                    generation_method=method
+                )
+                
+                quality_analysis_path = os.path.join(results_folder, f"data_quality_analysis_{config_name}_{scenario_name}_{method}.json")
+                analyzer.save_analysis(quality_analysis, quality_analysis_path)
+                
+                # Print key insights
+                gen_scores = quality_analysis.get('generation_quality_scores', {})
+                print(f"\n📊 Data Quality Scores:")
+                print(f"   Overall Generation Score: {gen_scores.get('overall_generation_score', 0):.3f}")
+                print(f"   Fidelity Score: {gen_scores.get('fidelity_score', 0):.3f}")
+                print(f"   Diversity Score: {gen_scores.get('diversity_score', 0):.3f}")
+                print(f"   Privacy Score: {gen_scores.get('privacy_score', 0):.3f}")
+                print(f"   Utility Score: {gen_scores.get('utility_score', 0):.3f}")
+                
+                recommendations = quality_analysis.get('recommendations', [])
+                if recommendations:
+                    print(f"\n💡 Recommendations:")
+                    for i, rec in enumerate(recommendations[:3], 1):
+                        print(f"   {i}. {rec}")
+                        
+            except Exception as e:
+                print(f"❌ Error in data quality analysis: {e}")
+                quality_analysis_path = None
+        
+        # Test fairness
+        baseline_metrics, fair_metrics = test_fairness_on_dataset_universal(
+            augmented_data, config, sensitive_col, label_col, f"Balanced_{scenario_name}", 
+            fairness_on=config.get('fairness', False)
+        )
+        
+        results = {
+            'scenario_name': scenario_name, 
+            'generation_method': method, 
+            'original_analysis': analysis, 
+            'final_analysis': final_analysis, 
+            'augmentation_plan': augmentation_plan,
+            'baseline_metrics': baseline_metrics, 
+            'fair_metrics': fair_metrics,
+            'csv_path': csv_path,
+            'quality_analysis_path': quality_analysis_path,
+            'detected_columns': {
+                'sensitive_col': sensitive_col,
+                'label_col': label_col,
+                'privileged_val': privileged_val,
+                'positive_val': positive_val
+            }
+        }
+        
+        if fair_metrics:
+            results['improvement_metrics'] = {
+                'accuracy_cost': baseline_metrics['overall_accuracy'] - fair_metrics['overall_accuracy'],
+                'dp_improvement': abs(baseline_metrics.get('demographic_parity_difference', 0)) - abs(fair_metrics.get('demographic_parity_difference', 0))
+            }
+            print(f"\nDP improvement: {results['improvement_metrics']['dp_improvement']:.4f}, Accuracy cost: {results['improvement_metrics']['accuracy_cost']:.4f}")
+        
+        if results_folder:
+            save_results_to_json(results, results_folder, 'balanced_augmentation', config_name, scenario_name)
+        
+        return results
+        
+    except Exception as e:
+        print(f"💥 Critical error in run_balanced_experiment: {e}")
+        import traceback
+        traceback.print_exc()
+        return None
+    
+def create_universal_config(data, config_name, sensitive_col, label_col, privileged_val, positive_val):
+    """Create a universal config structure for compatibility with existing functions."""
+    return {
         'columns': {
             'sensitive_col': sensitive_col,
             'label_col': label_col,
             'privileged_val': privileged_val,
-            'positive_label': positive_label
+            'positive_label': positive_val
         }
     }
-    
-    return analysis
 
-def calculate_augmentation_needs(analysis, target_sensitive_ratio, target_label_ratio):
-    """Calculate how many additional samples of each type are needed."""
+def test_fairness_on_dataset_universal(data, config_template, sensitive_col, label_col, model_prefix, fairness_on=True):
+    """Universal fairness testing that works with any dataset."""
+    temp_path = f"./data/temp_{model_prefix}.csv"
+    data.to_csv(temp_path, index=False)
     
-    current_total = analysis['total_samples']
-    current_priv = analysis['privileged_count']
-    current_unpriv = analysis['unprivileged_count']
-    current_pos = analysis['positive_count']
-    current_neg = analysis['negative_count']
-    
-    # Calculate minimum total size needed for sensitive attribute balance
-    if target_sensitive_ratio == 0.5:
-        min_total_for_sensitive = 2 * max(current_priv, current_unpriv)
-    else:
-        if current_priv / current_total < target_sensitive_ratio:
-            min_total_for_sensitive = current_priv / target_sensitive_ratio
-        else:
-            min_total_for_sensitive = current_unpriv / (1 - target_sensitive_ratio)
-    
-    # Calculate minimum total size needed for label balance
-    if target_label_ratio == 0.5:
-        min_total_for_labels = 2 * max(current_pos, current_neg)
-    else:
-        if current_pos / current_total < target_label_ratio:
-            min_total_for_labels = current_pos / target_label_ratio
-        else:
-            min_total_for_labels = current_neg / (1 - target_label_ratio)
-    
-    # Use the larger of the two minimum totals
-    target_total = max(min_total_for_sensitive, min_total_for_labels, current_total)
-    target_total = int(np.ceil(target_total))
-    
-    # Calculate target counts
-    target_priv = int(target_total * target_sensitive_ratio)
-    target_unpriv = target_total - target_priv
-    target_pos = int(target_total * target_label_ratio)
-    target_neg = target_total - target_pos
-    
-    # Calculate cross-combinations needed
-    target_priv_pos = int(target_priv * target_label_ratio)
-    target_priv_neg = target_priv - target_priv_pos
-    target_unpriv_pos = target_pos - target_priv_pos
-    target_unpriv_neg = target_unpriv - target_unpriv_pos
-    
-    # Calculate additional samples needed
-    current_cross = analysis['cross_tab']
-    
-    additional_needed = {
-        'total_additional': target_total - current_total,
-        'target_total': target_total,
-        'breakdown': {
-            'priv_pos': max(0, target_priv_pos - current_cross['priv_pos']),
-            'priv_neg': max(0, target_priv_neg - current_cross['priv_neg']),
-            'unpriv_pos': max(0, target_unpriv_pos - current_cross['unpriv_pos']),
-            'unpriv_neg': max(0, target_unpriv_neg - current_cross['unpriv_neg'])
-        },
-        'target_distribution': {
-            'priv_pos': target_priv_pos,
-            'priv_neg': target_priv_neg,
-            'unpriv_pos': target_unpriv_pos,
-            'unpriv_neg': target_unpriv_neg
-        }
-    }
-    
-    return additional_needed
-
-async def run_llm_async_generation(original_data, config, api_key, augmentation_plan):
-    """
-    Run LLM async generation using the available functions in llm_synthetic_generator.
-    """
-    
-    print("🤖 Starting LLM async generation...")
-    
-    try:
-        # Check if generate_enhanced_synthetic_data function exists
-        if hasattr(llm_gen, 'generate_enhanced_synthetic_data'):
-            print("✓ Using generate_enhanced_synthetic_data function")
-            augmented_data = await llm_gen.generate_enhanced_synthetic_data(
-                original_data, config, api_key, augmentation_plan
-            )
-            return augmented_data
-        
-        # Check if AsyncLLMSyntheticGenerator class exists
-        elif hasattr(llm_gen, 'AsyncLLMSyntheticGenerator'):
-            print("✓ Using AsyncLLMSyntheticGenerator class")
-            generator = llm_gen.AsyncLLMSyntheticGenerator(api_key, max_concurrent=2)
-            
-            # Prepare target specs from augmentation plan
-            breakdown = augmentation_plan['breakdown']
-            target_specs = []
-            
-            # Map categories to actual column values
-            if config['dataname'] == 'brazil':
-                mapping = {'priv_pos': (1, 'Dropout'), 'priv_neg': (1, 'Graduate'), 
-                          'unpriv_pos': (0, 'Dropout'), 'unpriv_neg': (0, 'Graduate')}
-            elif config['dataname'] == 'africa':
-                mapping = {'priv_pos': ('Male', 'Yes'), 'priv_neg': ('Male', 'No'), 
-                          'unpriv_pos': ('Female', 'Yes'), 'unpriv_neg': ('Female', 'No')}
-            elif config['dataname'] == 'india':
-                mapping = {'priv_pos': ('M', 'DROPOUT'), 'priv_neg': ('M', 'NOT DROPOUT'), 
-                          'unpriv_pos': ('F', 'DROPOUT'), 'unpriv_neg': ('F', 'NOT DROPOUT')}
-            
-            for category, count in breakdown.items():
-                if count > 0:
-                    sensitive_val, label_val = mapping[category]
-                    target_specs.append({
-                        'category': category,
-                        'count': count,
-                        'sensitive_val': sensitive_val,
-                        'label_val': label_val
-                    })
-            
-            # Generate samples
-            synthetic_samples = await generator.generate_conditional_samples_batch(
-                config['dataname'], target_specs, original_data
-            )
-            
-            if synthetic_samples:
-                synthetic_df = pd.DataFrame(synthetic_samples)
-                
-                # Ensure column compatibility
-                for col in original_data.columns:
-                    if col not in synthetic_df.columns:
-                        synthetic_df[col] = 'Unknown'
-                
-                # Combine with original
-                augmented_data = pd.concat([original_data, synthetic_df], ignore_index=True)
-                return augmented_data
-            else:
-                return original_data
-        
-        else:
-            print("⚠ No compatible LLM generation functions found")
-            return original_data
-            
-    except Exception as e:
-        print(f"✗ LLM generation failed: {e}")
-        return original_data
-
-def generate_targeted_synthetic_samples(original_data, config, api_key, augmentation_plan, method='faker'):
-    """
-    Generate specific synthetic samples to achieve target balance using specified method.
-    """
-    
-    print(f"\nGenerating targeted synthetic samples using method: {method}")
-    print(f"Total additional samples needed: {augmentation_plan['total_additional']}")
-    
-    breakdown = augmentation_plan['breakdown']
-    
-    # CTGAN Method
-    if method == 'ctgan':
-        if not CTGAN_AVAILABLE:
-            print("Error: CTGAN not available. Install with: pip install sdv")
-            print("Falling back to Faker method...")
-            method = 'faker'
-        else:
-            print("Using CTGAN generator...")
-            try:
-                augmented_data = run_ctgan_experiment(original_data, config, augmentation_plan)
-                return augmented_data
-            except Exception as e:
-                print(f"CTGAN generation failed: {e}")
-                print("Falling back to Faker method...")
-                method = 'faker'
-    
-    # TVAE Method
-    elif method == 'tvae':
-        if not CTGAN_AVAILABLE:
-            print("Error: TVAE not available. Install with: pip install sdv")
-            print("Falling back to Faker method...")
-            method = 'faker'
-        else:
-            print("Using TVAE generator...")
-            try:
-                augmented_data = run_tvae_experiment(original_data, config, augmentation_plan)
-                return augmented_data
-            except Exception as e:
-                print(f"TVAE generation failed: {e}")
-                print("Falling back to Faker method...")
-                method = 'faker'
-    
-    # LLM Async Method
-    elif method == 'llm_async':
-        if not LLM_AVAILABLE:
-            print("Error: LLM generator not available")
-            print("Falling back to Faker method...")
-            method = 'faker'
-        elif not api_key or api_key == 'dummy':
-            print("Warning: No valid API key provided for LLM method")
-            print("Falling back to Faker method...")
-            method = 'faker'
-        else:
-            print("Using LLM async generator...")
-            try:
-                # Run the async LLM generation
-                augmented_data = asyncio.run(run_llm_async_generation(
-                    original_data, config, api_key, augmentation_plan
-                ))
-                return augmented_data
-            except Exception as e:
-                print(f"LLM generation failed: {e}")
-                print("Falling back to Faker method...")
-                method = 'faker'
-    
-    # Faker Method (default fallback)
-    if method == 'faker':
-        print("Using Faker generator...")
-        generator = SyntheticDataGenerator()
-        
-        # Generate samples for each category
-        all_synthetic_samples = []
-        
-        categories = [
-            ('priv_pos', 'Privileged + Positive'),
-            ('priv_neg', 'Privileged + Negative'), 
-            ('unpriv_pos', 'Unprivileged + Positive'),
-            ('unpriv_neg', 'Unprivileged + Negative')
-        ]
-        
-        for category_key, category_name in categories:
-            needed_count = breakdown[category_key]
-            
-            if needed_count > 0:
-                print(f"Generating {needed_count} samples for {category_name}")
-                
-                # Generate samples for this specific category
-                category_samples = generator.generate_category_specific_samples(
-                    dataset_name=config['dataname'],
-                    n_samples=needed_count,
-                    category=category_key,
-                    reference_data=original_data
-                )
-                
-                all_synthetic_samples.extend(category_samples)
-        
-        # Convert to DataFrame
-        if all_synthetic_samples:
-            synthetic_df = pd.DataFrame(all_synthetic_samples)
-            
-            # Ensure column compatibility with original data
-            for col in original_data.columns:
-                if col not in synthetic_df.columns:
-                    # Generate appropriate default values
-                    synthetic_df[col] = generator._generate_default_column(col, config['dataname'], len(synthetic_df))
-            
-            # Reorder columns to match original
-            synthetic_df = synthetic_df.reindex(columns=original_data.columns, fill_value='Unknown')
-            
-            # Combine with original data
-            augmented_data = pd.concat([original_data, synthetic_df], ignore_index=True)
-        else:
-            print("No additional samples needed!")
-            augmented_data = original_data.copy()
-        
-        return augmented_data
-
-def test_fairness_on_balanced_data(augmented_data, config, scenario_name, original_analysis, final_analysis, target_sensitive_ratio, target_label_ratio, method='faker'):
-    """Test fairness interventions on the balanced augmented dataset."""
-    
-    print(f"\nTesting fairness interventions on balanced dataset (method: {method})...")
-    
-    # Create temporary config for augmented data
-    temp_path = f"./data/temp_augmented_{config['dataname']}_{scenario_name}_{method}.csv"
-    augmented_data.to_csv(temp_path, index=False)
-    temp_config = config.copy()
+    # Create temporary config for this specific dataset
+    temp_config = config_template.copy()
     temp_config['datapath'] = temp_path
     
     try:
-        # Load and preprocess augmented data
         X_transformed, y_target = dataload.load_data(temp_config)
-        sensitive_attr = utils.extract_sensitive_attribute(augmented_data, temp_config)
+        sensitive_attr = utils.extract_sensitive_attribute(data, temp_config)
+        split = utils.split_data(np.array(X_transformed), np.array(y_target), sens=sensitive_attr, 
+                                test_size=temp_config.get('test_size', 0.2), 
+                                random_state=temp_config.get('random_state', 42))
+        X_train, X_test, y_train, y_test, sens_train, sens_test = split['X_train'], split['X_test'], split['y_train'], split['y_test'], split['sens_train'], split['sens_test']
         
-        print(f"Preprocessed balanced data shape: {X_transformed.shape}")
-        print(f"Final sensitive distribution: {np.bincount(sensitive_attr)}")
-        print(f"Final label distribution: {np.bincount(y_target)}")
-        
-        # Split the data
-        split = utils.split_data(np.array(X_transformed), np.array(y_target), 
-                               sens=sensitive_attr, test_size=config['test_size'], 
-                               random_state=config['random_state'])
-        
-        X_train, X_test = split['X_train'], split['X_test']
-        y_train, y_test = split['y_train'], split['y_test']
-        sens_train, sens_test = split['sens_train'], split['sens_test']
-        
-        # Test baseline model on balanced data
         from sklearn.linear_model import LogisticRegression
-        baseline_model = LogisticRegression(max_iter=1000, random_state=config['random_state'])
+        baseline_model = LogisticRegression(max_iter=1000, random_state=temp_config.get('random_state', 42))
         baseline_model.fit(X_train, y_train)
         y_pred_baseline = baseline_model.predict(X_test)
+        baseline_metrics = utils.fairness_summary(y_pred_baseline, y_test, sens_test, model_name=f"{model_prefix}_Baseline")
         
-        baseline_metrics = utils.fairness_summary(y_pred_baseline, y_test, sens_test, 
-                                                model_name=f"Baseline_Balanced_{scenario_name}_{method}")
-        
-        print(f"\n--- Baseline Model on Balanced Data ({method}) ---")
-        utils.print_fairness_report(baseline_metrics)
-        
-        # Test fairness intervention if enabled
         fair_metrics = None
-        if config.get('fairness', False):
-            print(f"\nApplying fairness intervention on balanced data: {config.get('fair_technique', 'reweighting')}")
-            
+        if fairness_on:
             fair_results = fairness.run_fairness_aware_training(
-                np.array(X_transformed), np.array(y_target), sensitive_attr,
-                model_type='logistic_regression',
-                technique=config.get('fair_technique', 'reweighting'),
-                test_size=config['test_size'],
-                random_state=config['random_state']
-            )
-            
-            fair_metrics = utils.fairness_summary(
-                fair_results['y_pred_fair'], fair_results['y_test'], 
-                fair_results['sens_test'], model_name=f"Fair_Balanced_{scenario_name}_{method}"
-            )
-            
-            print(f"\n--- Fair Model on Balanced Data ({method}) ---")
-            utils.print_fairness_report(fair_metrics)
-        
-        # Compile results
-        results = {
-            'scenario_name': scenario_name,
-            'generation_method': method,
-            'original_analysis': original_analysis,
-            'final_analysis': final_analysis,
-            'augmented_data_shape': list(augmented_data.shape),
-            'target_ratios': {
-                'target_sensitive_ratio': target_sensitive_ratio,
-                'target_label_ratio': target_label_ratio
-            },
-            'baseline_metrics': baseline_metrics,
-            'fair_metrics': fair_metrics,
-            'balance_achieved': {
-                'sensitive_ratio_achieved': abs(final_analysis['current_sensitive_ratio'] - target_sensitive_ratio) < 0.05,
-                'label_ratio_achieved': abs(final_analysis['current_label_ratio'] - target_label_ratio) < 0.05
-            }
-        }
-        
-        # Calculate improvement metrics
-        if fair_metrics:
-            results['improvement_metrics'] = {
-                'accuracy_difference': baseline_metrics['overall_accuracy'] - fair_metrics['overall_accuracy'],
-                'dp_improvement': (abs(baseline_metrics.get('demographic_parity_difference', 0)) - 
-                                 abs(fair_metrics.get('demographic_parity_difference', 0))),
-                'tpr_improvement': (abs(baseline_metrics.get('tpr_difference', 0)) - 
-                                  abs(fair_metrics.get('tpr_difference', 0))),
-                'fpr_improvement': (abs(baseline_metrics.get('fpr_difference', 0)) - 
-                                  abs(fair_metrics.get('fpr_difference', 0)))
-            }
-        
-        return results
-        
-    except Exception as e:
-        print(f"Error testing fairness on balanced data: {e}")
-        return {'error': str(e), 'scenario_name': scenario_name, 'generation_method': method}
-    
+                np.array(X_transformed), np.array(y_target), sensitive_attr, 
+                model_type='logistic_regression', 
+                technique=temp_config.get('fair_technique', 'reweighting'), 
+                test_size=temp_config.get('test_size', 0.2), 
+                random_state=temp_config.get('random_state', 42))
+            fair_metrics = utils.fairness_summary(fair_results['y_pred_fair'], fair_results['y_test'], fair_results['sens_test'], model_name=f"{model_prefix}_Fair")
+
+        return baseline_metrics, fair_metrics
     finally:
-        # Clean up
         if os.path.exists(temp_path):
             os.remove(temp_path)
 
-def run_balanced_experiment(config_path, api_key, target_sensitive_ratio, target_label_ratio, scenario_name="balanced_experiment", results_folder=None, method='faker'):
-    """Main function to run balanced augmentation experiment."""
+def run_standard_ml_experiment(config, results_folder, scenario_name):
+    """Universal standard ML experiment."""
+    print(f"\n{'='*80}\nUNIVERSAL STANDARD ML EXPERIMENT: {scenario_name}\n{'='*80}")
     
-    # Load configuration
-    config = load_config(config_path)
-    
-    print(f"\n{'='*80}")
-    print(f"BALANCED AUGMENTATION EXPERIMENT: {scenario_name}")
-    print(f"Dataset: {config['dataname']}")
-    print(f"Generation Method: {method}")
-    print(f"Target Sensitive Ratio: {target_sensitive_ratio:.2f} (privileged:unprivileged)")
-    print(f"Target Label Ratio: {target_label_ratio:.2f} (positive:negative)")
-    print(f"{'='*80}")
-    
-    # Load original data
     original_data = pd.read_csv(config['datapath'])
-    print(f"Original dataset shape: {original_data.shape}")
+    config_name = config['dataname']
     
-    # Analyze current imbalance
-    analysis = analyze_dataset_imbalance(original_data, config)
-    
-    print(f"\nCurrent Distribution Analysis:")
-    print(f"  Total samples: {analysis['total_samples']}")
-    print(f"  Privileged: {analysis['privileged_count']} ({analysis['current_sensitive_ratio']:.3f})")
-    print(f"  Unprivileged: {analysis['unprivileged_count']} ({1-analysis['current_sensitive_ratio']:.3f})")
-    print(f"  Positive labels: {analysis['positive_count']} ({analysis['current_label_ratio']:.3f})")
-    print(f"  Negative labels: {analysis['negative_count']} ({1-analysis['current_label_ratio']:.3f})")
-    
-    print(f"\nCross-tabulation:")
-    cross_tab = analysis['cross_tab']
-    print(f"  Privileged + Positive: {cross_tab['priv_pos']}")
-    print(f"  Privileged + Negative: {cross_tab['priv_neg']}")
-    print(f"  Unprivileged + Positive: {cross_tab['unpriv_pos']}")
-    print(f"  Unprivileged + Negative: {cross_tab['unpriv_neg']}")
-    
-    # Calculate augmentation needs
-    augmentation_plan = calculate_augmentation_needs(analysis, target_sensitive_ratio, target_label_ratio)
-    
-    print(f"\nAugmentation Plan:")
-    print(f"  Total additional samples needed: {augmentation_plan['total_additional']}")
-    print(f"  Target total size: {augmentation_plan['target_total']}")
-    
-    breakdown = augmentation_plan['breakdown']
-    if any(breakdown.values()):
-        print(f"  Additional samples by category:")
-        print(f"    Privileged + Positive: +{breakdown['priv_pos']}")
-        print(f"    Privileged + Negative: +{breakdown['priv_neg']}")
-        print(f"    Unprivileged + Positive: +{breakdown['unpriv_pos']}")
-        print(f"    Unprivileged + Negative: +{breakdown['unpriv_neg']}")
+    # Auto-detect columns if needed
+    if 'columns' not in config:
+        sensitive_col, label_col = auto_detect_key_columns(original_data, config_name)
+        privileged_val, positive_val = determine_privileged_and_positive_values(original_data, sensitive_col, label_col)
+        universal_config = create_universal_config(original_data, config_name, sensitive_col, label_col, privileged_val, positive_val)
+        config.update(universal_config)
     else:
-        print(f"  No additional samples needed - dataset already meets target ratios!")
-        results = {
-            'scenario_name': scenario_name,
-            'generation_method': method,
-            'original_analysis': analysis,
-            'final_analysis': analysis,
-            'augmented_data_shape': list(original_data.shape),
-            'balance_achieved': True,
-            'message': 'No augmentation needed',
-            'target_ratios': {
-                'target_sensitive_ratio': target_sensitive_ratio,
-                'target_label_ratio': target_label_ratio
-            }
-        }
-        
-        if results_folder:
-            save_results_to_json(results, results_folder, f'balanced_augmentation_{method}', 
-                                config['dataname'], scenario_name)
-        
-        return results
+        sensitive_col = config['columns']['sensitive_col']
+        label_col = config['columns']['label_col']
+        privileged_val = config['columns']['privileged_val']
+        positive_val = config['columns']['positive_label']
     
-    # Generate augmented dataset
-    config['columns'] = analysis['columns']  # Pass column info to config
-    augmented_data = generate_targeted_synthetic_samples(original_data, config, api_key, augmentation_plan, method)
+    analysis = analyze_dataset_imbalance_universal(original_data, sensitive_col, label_col, privileged_val, positive_val)
+    baseline_metrics, fair_metrics = test_fairness_on_dataset_universal(
+        original_data, config, sensitive_col, label_col, "Standard", 
+        fairness_on=config.get('fairness', False)
+    )
     
-    print(f"\nAugmented dataset shape: {augmented_data.shape}")
-    
-    # Verify the balance
-    verify_analysis = analyze_dataset_imbalance(augmented_data, config)
-    print(f"\nVerification - Final Distribution:")
-    print(f"  Privileged ratio: {verify_analysis['current_sensitive_ratio']:.3f} (target: {target_sensitive_ratio:.3f})")
-    print(f"  Positive label ratio: {verify_analysis['current_label_ratio']:.3f} (target: {target_label_ratio:.3f})")
-    
-    # Save augmented dataset
-    output_path = f"./data/augmented_{config['dataname']}_{scenario_name}_{method}_{target_sensitive_ratio}_{target_label_ratio}.csv"
-    augmented_data.to_csv(output_path, index=False)
-    print(f"✓ Saved augmented dataset to: {output_path}")
-    
-    # Test fairness on augmented data
-    results = test_fairness_on_balanced_data(augmented_data, config, scenario_name, analysis, verify_analysis, target_sensitive_ratio, target_label_ratio, method)
-    
-    # Add augmentation plan to results
-    results['augmentation_plan'] = augmentation_plan
-    results['augmented_dataset_path'] = output_path
-    
-    # Save results if folder provided
+    # Save results
+    original_csv_path = None
     if results_folder:
-        save_results_to_json(results, results_folder, f'balanced_augmentation_{method}', 
-                            config['dataname'], scenario_name)
+        original_csv_path = save_augmented_dataset_csv(original_data, results_folder, config_name, f"{scenario_name}_original", "none")
+    
+    results = {
+        'scenario_name': scenario_name, 
+        'original_analysis': analysis, 
+        'baseline_metrics': baseline_metrics, 
+        'fair_metrics': fair_metrics,
+        'csv_path': original_csv_path,
+        'detected_columns': {
+            'sensitive_col': sensitive_col,
+            'label_col': label_col,
+            'privileged_val': privileged_val,
+            'positive_val': positive_val
+        }
+    }
+    
+    if fair_metrics:
+        results['improvement_metrics'] = {
+            'accuracy_cost': baseline_metrics['overall_accuracy'] - fair_metrics['overall_accuracy'],
+            'dp_improvement': abs(baseline_metrics.get('demographic_parity_difference', 0)) - abs(fair_metrics.get('demographic_parity_difference', 0))
+        }
+        print(f"\nDP improvement: {results['improvement_metrics']['dp_improvement']:.4f}, Accuracy cost: {results['improvement_metrics']['accuracy_cost']:.4f}")
+    
+    if results_folder:
+        save_results_to_json(results, results_folder, 'standard_ml', config_name, scenario_name)
     
     return results
 
-def run_standard_ml_experiment(config_path, results_folder=None):
-    """Run standard ML pipeline and save results."""
-    
-    config = load_config(config_path)
-    
-    print(f"\n{'='*80}")
-    print(f"STANDARD ML EXPERIMENT")
-    print(f"Dataset: {config['dataname']}")
-    print(f"{'='*80}")
-    
-    # Initialize results dictionary
-    experiment_results = {
-        'config': config,
-        'cross_validation_results': {},
-        'model_results': {}
-    }
-    
-    try:
-        print(f"Current working directory: {os.getcwd()}")
-        print(f"Loading configuration from: {config_path} and fairness unawareness is {config['unawareness']}")
-
-        # Hyperparameters and switches
-        fairness_on = config.get('fairness', False)
-        fair_technique = config.get('fair_technique', 'reweighting')
-        which_model = config.get('model', 'logistic_regression')
-        testsize = config['test_size']
-        randomstate = config['random_state']
-
-        # Load preprocessed features and labels
-        Xtransformed, ytarget = dataload.load_data(config)
-
-        # Read the original data for sensitive attribute extraction
-        raw_data = pd.read_csv(config['datapath'])
-        sensitive_attr = utils.extract_sensitive_attribute(raw_data, config)
-        print(f"Sensitive attribute (privileged=1, unprivileged=0) counts: {np.bincount(sensitive_attr)}")
-
-        # Add data analysis to results
-        experiment_results['data_analysis'] = {
-            'total_samples': len(Xtransformed),
-            'features_shape': Xtransformed.shape,
-            'sensitive_distribution': np.bincount(sensitive_attr).tolist(),
-            'label_distribution': np.bincount(ytarget).tolist()
-        }
-
-        # Split the data, including the sensitive variable
-        split = utils.split_data(np.array(Xtransformed), np.array(ytarget), sens=sensitive_attr,
-                                 test_size=testsize, random_state=randomstate)
-        X_train, X_test = split['X_train'], split['X_test']
-        y_train, y_test = split['y_train'], split['y_test']
-        sens_train, sens_test = split['sens_train'], split['sens_test']
-
-        print(f"Xtrain shape: {X_train.shape}, ytrain shape: {y_train.shape}")
-        print(f"Xtest shape: {X_test.shape}, ytest shape: {y_test.shape}")
-
-        # Standard ML (with cross-val comparison)
-        print("Performing 5x2 cross-validation...")
-        cross_val_results = model.run_cross_validation(config, np.array(Xtransformed), np.array(ytarget))
-        experiment_results['cross_validation_results'] = cross_val_results
-        
-        for model_name, metrics in cross_val_results.items():
-            print(f"{model_name}: Mean accuracy = {metrics['mean']:.4f}, Std deviation = {metrics['std']:.4f}")
-
-        # Baseline ML model for direct fairness evaluation
-        base_models = []
-        if which_model == 'compare':
-            base_models = ['logistic_regression', 'decision_tree', 'random_forest']
-        else:
-            base_models = [which_model]
-
-        for m in base_models:
-            print(f"\nEvaluating {m}...")
-            
-            if m == 'logistic_regression':
-                from sklearn.linear_model import LogisticRegression
-                clf = LogisticRegression(max_iter=1000, random_state=randomstate)
-            elif m == 'decision_tree':
-                from sklearn.tree import DecisionTreeClassifier
-                clf = DecisionTreeClassifier(random_state=randomstate)
-            elif m == 'random_forest':
-                from sklearn.ensemble import RandomForestClassifier
-                clf = RandomForestClassifier(random_state=randomstate)
-            else:
-                print(f"Unknown model: {m}, skipping.")
-                continue
-
-            clf.fit(X_train, y_train)
-            y_pred_baseline = clf.predict(X_test)
-            metrics_base = utils.fairness_summary(y_pred_baseline, y_test, sens_test, model_name=f"Baseline {m}")
-            utils.print_fairness_report(metrics_base)
-            
-            # Store baseline results
-            experiment_results['model_results'][m] = {
-                'baseline_metrics': metrics_base
-            }
-
-            # Fair ML if enabled
-            if fairness_on:
-                print(f"\nRunning fairness mitigation ({fair_technique}) using model: {m}")
-                fair_out = fairness.run_fairness_aware_training(
-                    np.array(Xtransformed), np.array(ytarget), sensitive_attr,
-                    model_type=m, 
-                    technique=fair_technique, 
-                    test_size=testsize, random_state=randomstate)
-                
-                fair_metrics = utils.fairness_summary(
-                    fair_out['y_pred_fair'], fair_out['y_test'], fair_out['sens_test'], 
-                    model_name=fair_out['fair_metrics'].get('model_name','Fair Model')
-                )
-                
-                print("=== Fair Model results ===")
-                utils.print_fairness_report(fair_metrics)
-                
-                # Store fair results
-                experiment_results['model_results'][m]['fair_metrics'] = fair_metrics
-                experiment_results['model_results'][m]['improvement_metrics'] = {
-                    'accuracy_difference': metrics_base['overall_accuracy'] - fair_metrics['overall_accuracy'],
-                    'dp_improvement': (abs(metrics_base.get('demographic_parity_difference', 0)) - 
-                                     abs(fair_metrics.get('demographic_parity_difference', 0))),
-                    'tpr_improvement': (abs(metrics_base.get('tpr_difference', 0)) - 
-                                      abs(fair_metrics.get('tpr_difference', 0)))
-                }
-
-        # Save results if folder provided
-        if results_folder:
-            save_results_to_json(experiment_results, results_folder, 'standard_ml', config['dataname'])
-
-    except Exception as e:
-        print(f"An error occurred: {e}")
-        experiment_results['error'] = str(e)
-        
-        # Save error results if folder provided
-        if results_folder:
-            save_results_to_json(experiment_results, results_folder, 'standard_ml_error', config['dataname'])
-    
-    return experiment_results
-
-def main(config_path):
-    """Standard ML pipeline from the original code."""
-    return run_standard_ml_experiment(config_path)
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Run ML pipeline with balanced dataset augmentation.")
+    parser = argparse.ArgumentParser(description="Universal ML pipeline with multi-provider synthetic data generation.")
     parser.add_argument("config_path", type=str, help="Path to the configuration file.")
+    parser.add_argument("--fairness", action='store_true', help="Enable fairness-aware training.")
+    parser.add_argument("--balanced", action='store_true', help="Run balanced dataset augmentation.")
     
-    # Standard ML arguments
-    parser.add_argument("--fairness", action='store_true', help="Whether to run fairness-aware training.")
-    parser.add_argument("--fair_technique", type=str, default=None, help="Fairness technique to use")
+    # Enhanced method choices with multi-provider support
+    parser.add_argument("--method", type=str, 
+                       choices=['faker', 'llm_async', 'llm_deepseek', 'llm_huggingface', 
+                               'llm_huggingface_local', 'llm_openai', 'llm_custom'], 
+                       default='faker', 
+                       help="Synthetic data generation method.")
     
-    # Balanced augmentation arguments
-    parser.add_argument("--balanced", action='store_true', 
-                       help="Run balanced dataset augmentation experiment")
-    parser.add_argument("--api_key", type=str, default="dummy", 
-                       help="API key for LLM generation (required for llm_async method)")
-    parser.add_argument("--sensitive_ratio", type=float, required=False,
-                       help="Target ratio for privileged group (0.0-1.0). E.g., 0.5 = 50:50")
-    parser.add_argument("--label_ratio", type=float, required=False,
-                       help="Target ratio for positive labels (0.0-1.0). E.g., 0.5 = 50:50")
-    parser.add_argument("--scenario_name", type=str, default="balanced",
-                       help="Name for the balanced experiment scenario")
-    parser.add_argument("--method", type=str, choices=['faker', 'llm_async', 'ctgan', 'tvae'], default='faker',
-                       help="Synthetic data generation method")
+    # Provider-specific arguments
+    parser.add_argument("--model_name", type=str, default=None, 
+                       help="Specific model name (e.g., 'google/flan-t5-large', 'gpt-4', 'deepseek-chat')")
+    parser.add_argument("--base_url", type=str, default=None, 
+                       help="Custom API base URL (required for llm_custom)")
     
-    # Results saving arguments
-    parser.add_argument("--save_results", action='store_true', 
-                       help="Save results to JSON files in a dedicated folder")
-    parser.add_argument("--results_folder", type=str, default=None,
-                       help="Custom results folder path (if not specified, auto-generated)")
+    parser.add_argument("--sensitive_ratio", type=str, required=False, help="Target ratio for privileged group (e.g., 0.5 or 'original').")
+    parser.add_argument("--label_ratio", type=str, required=False, help="Target ratio for positive labels (e.g., 0.5 or 'original').")
+    parser.add_argument("--api_key", type=str, default="dummy", help="API key for LLM generation.")
+    parser.add_argument("--scenario_name", type=str, default="default_scenario", help="Name for the experiment scenario.")
+    parser.add_argument("--save_results", action='store_true', help="Save results to JSON files.")
+    parser.add_argument("--results_folder", type=str, default=None, help="Custom results folder path.")
     
     args = parser.parse_args()
 
-    # Validate method availability and requirements
-    if args.method == 'llm_async':
-        if not LLM_AVAILABLE:
-            print("Error: LLM generator not available")
-            print("Please check src/llm_synthetic_generator.py")
-            exit(1)
-        if not args.api_key or args.api_key == 'dummy':
-            print("Error: --method llm_async requires a valid --api_key")
-            print("Please provide your DeepSeek API key with --api_key YOUR_KEY")
-            exit(1)
+    # --- SETUP AND CONFIGURATION ---
+    config = load_config(args.config_path)
+    config['fairness'] = args.fairness
     
-    if args.method in ['ctgan', 'tvae']:
-        if not CTGAN_AVAILABLE:
-            print(f"Error: {args.method.upper()} not available. Install with: pip install sdv")
-            exit(1)
+    print(f"🎯 Running UNIVERSAL pipeline with {args.method.upper()} generation!")
 
-    # Create results folder if saving is enabled
-    results_folder = None
-    if args.save_results:
+    # --- Validation ---
+    if args.balanced and (args.sensitive_ratio is None or args.label_ratio is None):
+        parser.error("--balanced requires --sensitive_ratio and --label_ratio to be set.")
+    
+    # Enhanced validation for LLM methods
+    llm_methods = ['llm_async', 'llm_deepseek', 'llm_huggingface', 'llm_openai', 'llm_custom']
+    if args.method in llm_methods:
+        if not LLM_AVAILABLE:
+            parser.error(f"--method {args.method} requires necessary libraries (requests, tqdm).")
+        if args.method != 'llm_huggingface_local' and args.api_key == 'dummy':
+            parser.error(f"--method {args.method} requires a valid --api_key.")
+        if args.method == 'llm_custom' and not args.base_url:
+            parser.error("--method llm_custom requires --base_url to be set.")
+
+    # Create results folder
+    if args.save_results or args.balanced:
         if args.results_folder:
             results_folder = args.results_folder
             os.makedirs(results_folder, exist_ok=True)
+            print(f"Created/verified results folder: {results_folder}")
         else:
             results_folder = create_results_folder()
         print(f"Results will be saved to: {results_folder}")
-
-    # Load and update config
-    config = load_config(args.config_path)
-    if args.fairness:
-        config['fairness'] = True
-    if args.fair_technique is not None:
-        config['fair_technique'] = args.fair_technique
-    
-    if args.balanced:
-        # Check for required ratios
-        if args.sensitive_ratio is None or args.label_ratio is None:
-            print("Error: For balanced augmentation, both --sensitive_ratio and --label_ratio must be specified")
-            print("Example: --sensitive_ratio 0.5 --label_ratio 0.5")
-            exit(1)
-        
-        if not (0.0 <= args.sensitive_ratio <= 1.0) or not (0.0 <= args.label_ratio <= 1.0):
-            print("Error: Ratios must be between 0.0 and 1.0")
-            exit(1)
-        
-        print(f"Running balanced augmentation experiment with method: {args.method}")
-        results = run_balanced_experiment(
-            config_path=args.config_path,
-            api_key=args.api_key,
-            target_sensitive_ratio=args.sensitive_ratio,
-            target_label_ratio=args.label_ratio,
-            scenario_name=args.scenario_name,
-            results_folder=results_folder,
-            method=args.method
-        )
-        
-        if 'error' not in results:
-            print(f"\n{'='*80}")
-            print("BALANCED AUGMENTATION EXPERIMENT RESULTS")
-            print(f"{'='*80}")
-            orig = results['original_analysis']
-            final = results['final_analysis']
-            
-            print(f"Generation Method: {results.get('generation_method', 'unknown')}")
-            print(f"Original dataset: {orig['total_samples']} samples")
-            print(f"Augmented dataset: {final['total_samples']} samples")
-            print(f"Samples added: {final['total_samples'] - orig['total_samples']}")
-            
-            print(f"\nBalance Achievement:")
-            print(f"  Sensitive ratio: {orig['current_sensitive_ratio']:.3f} → {final['current_sensitive_ratio']:.3f}")
-            print(f"  Label ratio: {orig['current_label_ratio']:.3f} → {final['current_label_ratio']:.3f}")
-            
-            if results.get('improvement_metrics'):
-                print(f"\nFairness Impact:")
-                print(f"  Accuracy cost: {results['improvement_metrics'].get('accuracy_difference', 0):.4f}")
-                print(f"  DP improvement: {results['improvement_metrics'].get('dp_improvement', 0):.4f}")
-        else:
-            print(f"Error in experiment: {results['error']}")
     else:
-        # Run standard pipeline
-        results = run_standard_ml_experiment(args.config_path, results_folder)
-        
-        print(f"\n{'='*80}")
-        print("STANDARD ML EXPERIMENT COMPLETED")
-        print(f"{'='*80}")
-        
-    if results_folder:
-        print(f"\n✓ All results saved to: {results_folder}")
+        results_folder = None
+
+    # --- EXECUTION ---
+    if args.balanced:
+        run_balanced_experiment(
+            config=config, api_key=args.api_key, target_sensitive_ratio=args.sensitive_ratio,
+            target_label_ratio=args.label_ratio, scenario_name=args.scenario_name,
+            results_folder=results_folder, method=args.method, 
+            provider=None, model_name=args.model_name, base_url=args.base_url
+        )
+    else:
+        run_standard_ml_experiment(config=config, results_folder=results_folder, scenario_name=args.scenario_name)
+
+    print(f"\n{'='*80}\nUNIVERSAL EXPERIMENT '{args.scenario_name}' COMPLETED.\n{'='*80}")

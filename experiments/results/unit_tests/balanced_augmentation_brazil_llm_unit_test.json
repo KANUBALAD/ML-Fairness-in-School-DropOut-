@@ -1,0 +1,78 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-26T04:40:06.607704",
+    "experiment_type": "balanced_augmentation",
+    "config_name": "brazil",
+    "scenario_name": "llm_unit_test"
+  },
+  "results": {
+    "scenario_name": "llm_unit_test",
+    "generation_method": "llm_async",
+    "original_analysis": {
+      "total_samples": 4424,
+      "privileged_count": 1556,
+      "unprivileged_count": 2868,
+      "current_sensitive_ratio": 0.35171790235081374,
+      "positive_count": 1421,
+      "negative_count": 3003,
+      "current_label_ratio": 0.3212025316455696,
+      "cross_tab": {
+        "priv_pos": 701,
+        "priv_neg": 855,
+        "unpriv_pos": 720,
+        "unpriv_neg": 2148
+      }
+    },
+    "final_analysis": {
+      "total_samples": 8254,
+      "privileged_count": 4106,
+      "unprivileged_count": 4148,
+      "current_sensitive_ratio": 0.49745577901623456,
+      "positive_count": 4122,
+      "negative_count": 4132,
+      "current_label_ratio": 0.49939423309910347,
+      "cross_tab": {
+        "priv_pos": 2872,
+        "priv_neg": 1234,
+        "unpriv_pos": 1250,
+        "unpriv_neg": 2898
+      }
+    },
+    "baseline_metrics": {
+      "model_name": "Balanced_llm_unit_test_Baseline",
+      "overall_accuracy": 0.9254996971532404,
+      "privileged_accuracy": 0.9325153374233128,
+      "unprivileged_accuracy": 0.9186602870813397,
+      "privileged_tpr": 0.8506224066390041,
+      "unprivileged_tpr": 0.9228130360205832,
+      "privileged_fpr": 0.033101045296167246,
+      "unprivileged_fpr": 0.09090909090909091,
+      "privileged_selection_rate": 0.2748466257668712,
+      "unprivileged_selection_rate": 0.6710526315789473,
+      "accuracy_difference": 0.013855050341973096,
+      "tpr_difference": -0.07219062938157905,
+      "fpr_difference": -0.057808045612923666,
+      "demographic_parity_difference": -0.39620600581207616
+    },
+    "fair_metrics": {
+      "model_name": "Balanced_llm_unit_test_Fair",
+      "overall_accuracy": 0.917625681405209,
+      "privileged_accuracy": 0.9226993865030675,
+      "unprivileged_accuracy": 0.9126794258373205,
+      "privileged_tpr": 0.8589211618257261,
+      "unprivileged_tpr": 0.9159519725557461,
+      "privileged_fpr": 0.050522648083623695,
+      "unprivileged_fpr": 0.09486166007905138,
+      "privileged_selection_rate": 0.28957055214723926,
+      "unprivileged_selection_rate": 0.6674641148325359,
+      "accuracy_difference": 0.010019960665746952,
+      "tpr_difference": -0.05703081073002003,
+      "fpr_difference": -0.04433901199542768,
+      "demographic_parity_difference": -0.3778935626852966
+    },
+    "improvement_metrics": {
+      "accuracy_cost": 0.007874015748031482,
+      "dp_improvement": 0.018312443126779543
+    }
+  }
+}
