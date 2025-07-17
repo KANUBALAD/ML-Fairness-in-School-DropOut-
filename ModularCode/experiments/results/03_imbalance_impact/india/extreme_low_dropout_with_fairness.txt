@@ -1,0 +1,148 @@
+✓ LLM generator loaded successfully
+✓ SDV library loaded successfully with conditional sampling support
+✓ CTGAN/TVAE generators loaded successfully
+Results will be saved to: ./experiments/results/03_imbalance_impact/india
+Running balanced augmentation experiment with method: llm_async
+
+================================================================================
+BALANCED AUGMENTATION EXPERIMENT: extreme_low_dropout_with_fairness
+Dataset: india
+Generation Method: llm_async
+Target Sensitive Ratio: 0.50 (privileged:unprivileged)
+Target Label Ratio: 0.20 (positive:negative)
+================================================================================
+Original dataset shape: (2137, 16)
+
+Current Distribution Analysis:
+  Total samples: 2137
+  Privileged: 743 (0.348)
+  Unprivileged: 1394 (0.652)
+  Positive labels: 256 (0.120)
+  Negative labels: 1881 (0.880)
+
+Cross-tabulation:
+  Privileged + Positive: 118
+  Privileged + Negative: 625
+  Unprivileged + Positive: 138
+  Unprivileged + Negative: 1256
+
+Augmentation Plan:
+  Total additional samples needed: 651
+  Target total size: 2788
+  Additional samples by category:
+    Privileged + Positive: +160
+    Privileged + Negative: +491
+    Unprivileged + Positive: +141
+    Unprivileged + Negative: +0
+
+Generating targeted synthetic samples using method: llm_async
+Total additional samples needed: 651
+Using LLM async generator...
+🤖 Starting LLM async generation...
+✓ Using generate_enhanced_synthetic_data function
+🚀 Starting Enhanced LLM Synthetic Data Generation...
+Target specifications: [('priv_pos', 160), ('priv_neg', 491), ('unpriv_pos', 141)]
+🔬 Starting LLM generation for 3 categories...
+
+Generating 160 samples for priv_pos...
+✓ Generated 160 samples for priv_pos
+
+Generating 491 samples for priv_neg...
+✓ Generated 491 samples for priv_neg
+
+Generating 141 samples for unpriv_pos...
+✓ Generated 141 samples for unpriv_pos
+
+Total samples generated: 792
+Converting 792 samples to DataFrame...
+Adding missing columns: {'ENTRY_BRANCH ', 'FACULTYNAME ', 'SCHOOL_PROVINCENAME '}
+✓ Created augmented dataset with 2929 total samples
+
+Augmented dataset shape: (2929, 16)
+
+Verification - Final Distribution:
+  Privileged ratio: 0.476 (target: 0.500)
+  Positive label ratio: 0.190 (target: 0.200)
+✓ Saved augmented dataset to: ./data/augmented_india_extreme_low_dropout_with_fairness_llm_async_0.5_0.2.csv
+
+Testing fairness interventions on balanced dataset (method: llm_async)...
+Preprocessed balanced data shape: (2929, 5238)
+Final sensitive distribution: [1535 1394]
+Final label distribution: [2372  557]
+
+--- Baseline Model on Balanced Data (llm_async) ---
+
+=== Fairness Report for Baseline_Balanced_extreme_low_dropout_with_fairness_llm_async ===
+Overall Accuracy: 0.8020
+
+Group-wise Performance:
+  Privileged Group Accuracy:   0.7537
+  Unprivileged Group Accuracy: 0.8428
+  Accuracy Difference:         -0.0890
+
+True Positive Rate (Recall):
+  Privileged Group TPR:        0.3000
+  Unprivileged Group TPR:      0.1967
+  TPR Difference:              0.1033
+
+False Positive Rate:
+  Privileged Group FPR:        0.1422
+  Unprivileged Group FPR:      0.0039
+  FPR Difference:              0.1383
+
+Selection Rate (Demographic Parity):
+  Privileged Group Selection Rate:   0.1716
+  Unprivileged Group Selection Rate: 0.0409
+  Demographic Parity Difference:     0.1308
+
+Fairness Assessment:
+  ✗ Demographic Parity: Potential Bias (difference >= 0.1)
+
+Applying fairness intervention on balanced data: reweighting
+
+--- Fair Model on Balanced Data (llm_async) ---
+
+=== Fairness Report for Fair_Balanced_extreme_low_dropout_with_fairness_llm_async ===
+Overall Accuracy: 0.7577
+
+Group-wise Performance:
+  Privileged Group Accuracy:   0.6381
+  Unprivileged Group Accuracy: 0.8585
+  Accuracy Difference:         -0.2204
+
+True Positive Rate (Recall):
+  Privileged Group TPR:        0.6600
+  Unprivileged Group TPR:      0.4918
+  TPR Difference:              0.1682
+
+False Positive Rate:
+  Privileged Group FPR:        0.3670
+  Unprivileged Group FPR:      0.0545
+  FPR Difference:              0.3125
+
+Selection Rate (Demographic Parity):
+  Privileged Group Selection Rate:   0.4216
+  Unprivileged Group Selection Rate: 0.1384
+  Demographic Parity Difference:     0.2833
+
+Fairness Assessment:
+  ✗ Demographic Parity: Potential Bias (difference >= 0.1)
+✓ Saved results to: ./experiments/results/03_imbalance_impact/india/balanced_augmentation_llm_async_india_extreme_low_dropout_with_fairness.json
+
+================================================================================
+BALANCED AUGMENTATION EXPERIMENT RESULTS
+================================================================================
+Generation Method: llm_async
+Original dataset: 2137 samples
+Augmented dataset: 2929 samples
+Samples added: 792
+
+Balance Achievement:
+  Sensitive ratio: 0.348 → 0.476
+  Label ratio: 0.120 → 0.190
+
+Fairness Impact:
+  Accuracy cost: 0.0444
+  DP improvement: -0.1525
+
+✓ All results saved to: ./experiments/results/03_imbalance_impact/india

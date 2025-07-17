@@ -1,0 +1,116 @@
+[2025-06-23 16:32:44] === EXPERIMENT 3: IMBALANCE IMPACT STUDY (ENHANCED) ===
+[2025-06-23 16:32:44] CRITICAL FINDING: Fairness interventions FAIL for Brazil (-3.0%) and India (-3.5%)
+[2025-06-23 16:32:44] Objective: Test if different imbalance scenarios can make fairness interventions work
+[2025-06-23 16:32:44] Enhancement: Comprehensive analysis with breakthrough detection and detailed metrics
+[2025-06-23 16:32:44] Planning 90 total experiments across 15 scenarios
+[2025-06-23 16:32:44] Starting imbalance impact study for brazil...
+[2025-06-23 16:32:44] Using method llm_async for brazil (based on previous results)
+[2025-06-23 16:32:44] [1/90] brazil - gender_balanced_high_dropout
+[2025-06-23 16:32:50] Completed brazil - gender_balanced_high_dropout
+[2025-06-23 16:32:51] [2/90] brazil - reverse_gender_brazil
+[2025-06-23 16:32:56] Completed brazil - reverse_gender_brazil
+[2025-06-23 16:32:57] [3/90] brazil - slight_male_majority
+[2025-06-23 16:33:02] Completed brazil - slight_male_majority
+[2025-06-23 16:33:02] 🎉 BREAKTHROUGH: brazil - slight_male_majority achieved significant DP improvement (0.0361)!
+[2025-06-23 16:33:03] [4/90] brazil - reverse_gender_india
+[2025-06-23 16:33:09] Completed brazil - reverse_gender_india
+[2025-06-23 16:33:10] [5/90] brazil - slight_female_majority
+[2025-06-23 16:33:14] Completed brazil - slight_female_majority
+[2025-06-23 16:33:14] 🎉 BREAKTHROUGH: brazil - slight_female_majority achieved significant DP improvement (0.0463)!
+[2025-06-23 16:33:16] [6/90] brazil - extreme_male_majority
+[2025-06-23 16:33:20] Completed brazil - extreme_male_majority
+[2025-06-23 16:33:20] 🎉 BREAKTHROUGH: brazil - extreme_male_majority achieved significant DP improvement (0.0469)!
+[2025-06-23 16:33:21] [7/90] brazil - original
+[2025-06-23 16:33:21] Testing original dataset ratios (no augmentation)
+[2025-06-23 16:33:32] Completed brazil - original
+[2025-06-23 16:33:33] [8/90] brazil - moderate_balance_labels
+[2025-06-23 16:33:38] Completed brazil - moderate_balance_labels
+[2025-06-23 16:33:39] [9/90] brazil - extreme_high_dropout
+[2025-06-23 16:33:43] Completed brazil - extreme_high_dropout
+[2025-06-23 16:33:44] [10/90] brazil - extreme_female_majority
+[2025-06-23 16:33:49] Completed brazil - extreme_female_majority
+[2025-06-23 16:33:50] [11/90] brazil - moderate_balance_gender
+[2025-06-23 16:33:55] Completed brazil - moderate_balance_gender
+[2025-06-23 16:33:56] [12/90] brazil - reverse_label_brazil
+[2025-06-23 16:34:01] Completed brazil - reverse_label_brazil
+[2025-06-23 16:34:02] [13/90] brazil - gender_balanced_low_dropout
+[2025-06-23 16:34:07] Completed brazil - gender_balanced_low_dropout
+[2025-06-23 16:34:08] [14/90] brazil - extreme_low_dropout
+[2025-06-23 16:34:12] Completed brazil - extreme_low_dropout
+[2025-06-23 16:34:14] [15/90] brazil - perfect_balance
+[2025-06-23 16:34:18] Completed brazil - perfect_balance
+[2025-06-23 16:34:18] 🎉 BREAKTHROUGH: brazil - perfect_balance achieved significant DP improvement (0.0492)!
+[2025-06-23 16:34:19] Completed all scenarios for brazil
+[2025-06-23 16:34:19] Starting imbalance impact study for india...
+[2025-06-23 16:34:19] Using method llm_async for india (based on previous results)
+[2025-06-23 16:34:19] [16/90] india - gender_balanced_high_dropout
+[2025-06-23 16:34:27] Completed india - gender_balanced_high_dropout
+[2025-06-23 16:34:28] [17/90] india - reverse_gender_brazil
+[2025-06-23 16:34:35] Completed india - reverse_gender_brazil
+[2025-06-23 16:34:36] [18/90] india - slight_male_majority
+[2025-06-23 16:34:47] Completed india - slight_male_majority
+[2025-06-23 16:34:49] [19/90] india - reverse_gender_india
+[2025-06-23 16:34:55] Completed india - reverse_gender_india
+[2025-06-23 16:34:56] [20/90] india - slight_female_majority
+[2025-06-23 16:35:05] Completed india - slight_female_majority
+[2025-06-23 16:35:06] [21/90] india - extreme_male_majority
+[2025-06-23 16:35:20] Completed india - extreme_male_majority
+[2025-06-23 16:35:21] [22/90] india - original
+[2025-06-23 16:35:21] Testing original dataset ratios (no augmentation)
+[2025-06-23 16:35:55] Completed india - original
+[2025-06-23 16:35:56] [23/90] india - moderate_balance_labels
+[2025-06-23 16:36:05] Completed india - moderate_balance_labels
+[2025-06-23 16:36:06] [24/90] india - extreme_high_dropout
+[2025-06-23 16:36:15] Completed india - extreme_high_dropout
+[2025-06-23 16:36:16] [25/90] india - extreme_female_majority
+[2025-06-23 16:36:26] Completed india - extreme_female_majority
+[2025-06-23 16:36:27] [26/90] india - moderate_balance_gender
+[2025-06-23 16:36:34] Completed india - moderate_balance_gender
+[2025-06-23 16:36:35] [27/90] india - reverse_label_brazil
+[2025-06-23 16:36:42] Completed india - reverse_label_brazil
+[2025-06-23 16:36:43] [28/90] india - gender_balanced_low_dropout
+[2025-06-23 16:36:51] Completed india - gender_balanced_low_dropout
+[2025-06-23 16:36:52] [29/90] india - extreme_low_dropout
+[2025-06-23 16:37:00] Completed india - extreme_low_dropout
+[2025-06-23 16:37:02] [30/90] india - perfect_balance
+[2025-06-23 16:37:13] Completed india - perfect_balance
+[2025-06-23 16:37:14] Completed all scenarios for india
+[2025-06-23 16:37:14] Starting imbalance impact study for africa...
+[2025-06-23 16:37:14] Using method faker for africa (based on previous results)
+[2025-06-23 16:37:14] [31/90] africa - gender_balanced_high_dropout
+[2025-06-23 16:37:22] Completed africa - gender_balanced_high_dropout
+[2025-06-23 16:37:23] [32/90] africa - reverse_gender_brazil
+[2025-06-23 16:37:30] Completed africa - reverse_gender_brazil
+[2025-06-23 16:37:31] [33/90] africa - slight_male_majority
+[2025-06-23 16:37:41] Completed africa - slight_male_majority
+[2025-06-23 16:37:42] [34/90] africa - reverse_gender_india
+[2025-06-23 16:37:48] Completed africa - reverse_gender_india
+[2025-06-23 16:37:49] [35/90] africa - slight_female_majority
+[2025-06-23 16:37:58] Completed africa - slight_female_majority
+[2025-06-23 16:37:59] [36/90] africa - extreme_male_majority
+[2025-06-23 16:38:09] Completed africa - extreme_male_majority
+[2025-06-23 16:38:09] 🎉 BREAKTHROUGH: africa - extreme_male_majority achieved significant DP improvement (0.0755)!
+[2025-06-23 16:38:10] [37/90] africa - original
+[2025-06-23 16:38:10] Testing original dataset ratios (no augmentation)
+[2025-06-23 16:38:30] Completed africa - original
+[2025-06-23 16:38:31] [38/90] africa - moderate_balance_labels
+[2025-06-23 16:38:39] Completed africa - moderate_balance_labels
+[2025-06-23 16:38:39] 🎉 BREAKTHROUGH: africa - moderate_balance_labels achieved significant DP improvement (0.0434)!
+[2025-06-23 16:38:40] [39/90] africa - extreme_high_dropout
+[2025-06-23 16:38:48] Completed africa - extreme_high_dropout
+[2025-06-23 16:38:49] [40/90] africa - extreme_female_majority
+[2025-06-23 16:38:59] Completed africa - extreme_female_majority
+[2025-06-23 16:39:00] [41/90] africa - moderate_balance_gender
+[2025-06-23 16:39:07] Completed africa - moderate_balance_gender
+[2025-06-23 16:39:08] [42/90] africa - reverse_label_brazil
+[2025-06-23 16:39:16] Completed africa - reverse_label_brazil
+[2025-06-23 16:39:16] 🎉 BREAKTHROUGH: africa - reverse_label_brazil achieved significant DP improvement (0.0486)!
+[2025-06-23 16:39:17] [43/90] africa - gender_balanced_low_dropout
+[2025-06-23 16:39:25] Completed africa - gender_balanced_low_dropout
+[2025-06-23 16:39:25] 🎉 BREAKTHROUGH: africa - gender_balanced_low_dropout achieved significant DP improvement (0.0457)!
+[2025-06-23 16:39:26] [44/90] africa - extreme_low_dropout
+[2025-06-23 16:39:33] Completed africa - extreme_low_dropout
+[2025-06-23 16:39:34] [45/90] africa - perfect_balance
+[2025-06-23 16:39:43] Completed africa - perfect_balance
+[2025-06-23 16:39:44] Completed all scenarios for africa
+[2025-06-23 16:39:44] Creating comprehensive experiment summary...

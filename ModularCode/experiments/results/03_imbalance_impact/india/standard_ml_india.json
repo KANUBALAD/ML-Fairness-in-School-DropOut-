@@ -1,0 +1,168 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-23T16:35:55.426443",
+    "experiment_type": "standard_ml",
+    "config_name": "india",
+    "scenario_name": null
+  },
+  "results": {
+    "config": {
+      "dataname": "india",
+      "datapath": "./data/asia_dropout.csv",
+      "test_size": 0.2,
+      "random_state": 42,
+      "unawareness": true,
+      "model": "compare",
+      "fairness": true,
+      "fair_technique": "reweighting"
+    },
+    "cross_validation_results": {
+      "logistic_regression": {
+        "mean": 0.9002702999353307,
+        "std": 0.005529485892503801
+      },
+      "decision_tree": {
+        "mean": 0.8783343041882965,
+        "std": 0.00593911999419316
+      },
+      "random_forest": {
+        "mean": 0.8891541227131855,
+        "std": 0.009774724354331337
+      }
+    },
+    "model_results": {
+      "logistic_regression": {
+        "baseline_metrics": {
+          "model_name": "Baseline logistic_regression",
+          "overall_accuracy": 0.8925233644859814,
+          "privileged_accuracy": 0.8409090909090909,
+          "unprivileged_accuracy": 0.9155405405405406,
+          "privileged_tpr": 0.4166666666666667,
+          "unprivileged_tpr": 0.2222222222222222,
+          "privileged_fpr": 0.06481481481481481,
+          "unprivileged_fpr": 0.01486988847583643,
+          "privileged_selection_rate": 0.12878787878787878,
+          "unprivileged_selection_rate": 0.033783783783783786,
+          "accuracy_difference": -0.07463144963144963,
+          "tpr_difference": 0.19444444444444448,
+          "fpr_difference": 0.04994492633897838,
+          "demographic_parity_difference": 0.095004095004095
+        },
+        "fair_metrics": {
+          "model_name": "Fair (reweighting)",
+          "overall_accuracy": 0.8317757009345794,
+          "privileged_accuracy": 0.7575757575757576,
+          "unprivileged_accuracy": 0.8648648648648649,
+          "privileged_tpr": 0.5,
+          "unprivileged_tpr": 0.48148148148148145,
+          "privileged_fpr": 0.18518518518518517,
+          "unprivileged_fpr": 0.09665427509293681,
+          "privileged_selection_rate": 0.24242424242424243,
+          "unprivileged_selection_rate": 0.13175675675675674,
+          "accuracy_difference": -0.10728910728910734,
+          "tpr_difference": 0.018518518518518545,
+          "fpr_difference": 0.08853091009224837,
+          "demographic_parity_difference": 0.11066748566748569
+        },
+        "improvement_metrics": {
+          "accuracy_difference": 0.06074766355140193,
+          "dp_improvement": -0.01566339066339069,
+          "tpr_improvement": 0.17592592592592593
+        }
+      },
+      "decision_tree": {
+        "baseline_metrics": {
+          "model_name": "Baseline decision_tree",
+          "overall_accuracy": 0.8855140186915887,
+          "privileged_accuracy": 0.8257575757575758,
+          "unprivileged_accuracy": 0.9121621621621622,
+          "privileged_tpr": 0.375,
+          "unprivileged_tpr": 0.25925925925925924,
+          "privileged_fpr": 0.07407407407407407,
+          "unprivileged_fpr": 0.022304832713754646,
+          "privileged_selection_rate": 0.12878787878787878,
+          "unprivileged_selection_rate": 0.04391891891891892,
+          "accuracy_difference": -0.08640458640458637,
+          "tpr_difference": 0.11574074074074076,
+          "fpr_difference": 0.05176924136031942,
+          "demographic_parity_difference": 0.08486895986895987
+        },
+        "fair_metrics": {
+          "model_name": "Fair (reweighting)",
+          "overall_accuracy": 0.794392523364486,
+          "privileged_accuracy": 0.6893939393939394,
+          "unprivileged_accuracy": 0.8412162162162162,
+          "privileged_tpr": 0.625,
+          "unprivileged_tpr": 0.4444444444444444,
+          "privileged_fpr": 0.2962962962962963,
+          "unprivileged_fpr": 0.11895910780669144,
+          "privileged_selection_rate": 0.3560606060606061,
+          "unprivileged_selection_rate": 0.14864864864864866,
+          "accuracy_difference": -0.15182227682227678,
+          "tpr_difference": 0.18055555555555558,
+          "fpr_difference": 0.17733718848960484,
+          "demographic_parity_difference": 0.20741195741195742
+        },
+        "improvement_metrics": {
+          "accuracy_difference": 0.09112149532710279,
+          "dp_improvement": -0.12254299754299755,
+          "tpr_improvement": -0.06481481481481483
+        }
+      },
+      "random_forest": {
+        "baseline_metrics": {
+          "model_name": "Baseline random_forest",
+          "overall_accuracy": 0.8925233644859814,
+          "privileged_accuracy": 0.8257575757575758,
+          "unprivileged_accuracy": 0.9222972972972973,
+          "privileged_tpr": 0.20833333333333334,
+          "unprivileged_tpr": 0.14814814814814814,
+          "privileged_fpr": 0.037037037037037035,
+          "unprivileged_fpr": 0.0,
+          "privileged_selection_rate": 0.06818181818181818,
+          "unprivileged_selection_rate": 0.013513513513513514,
+          "accuracy_difference": -0.09653972153972146,
+          "tpr_difference": 0.0601851851851852,
+          "fpr_difference": 0.037037037037037035,
+          "demographic_parity_difference": 0.05466830466830466
+        },
+        "fair_metrics": {
+          "model_name": "Fair (reweighting)",
+          "overall_accuracy": 0.8761682242990654,
+          "privileged_accuracy": 0.7954545454545454,
+          "unprivileged_accuracy": 0.9121621621621622,
+          "privileged_tpr": 0.5416666666666666,
+          "unprivileged_tpr": 0.37037037037037035,
+          "privileged_fpr": 0.14814814814814814,
+          "unprivileged_fpr": 0.03345724907063197,
+          "privileged_selection_rate": 0.2196969696969697,
+          "unprivileged_selection_rate": 0.06418918918918919,
+          "accuracy_difference": -0.11670761670761676,
+          "tpr_difference": 0.17129629629629628,
+          "fpr_difference": 0.11469089907751617,
+          "demographic_parity_difference": 0.15550778050778052
+        },
+        "improvement_metrics": {
+          "accuracy_difference": 0.016355140186915973,
+          "dp_improvement": -0.10083947583947586,
+          "tpr_improvement": -0.11111111111111108
+        }
+      }
+    },
+    "data_analysis": {
+      "total_samples": 2137,
+      "features_shape": [
+        2137,
+        3911
+      ],
+      "sensitive_distribution": [
+        1394,
+        743
+      ],
+      "label_distribution": [
+        1881,
+        256
+      ]
+    }
+  }
+}

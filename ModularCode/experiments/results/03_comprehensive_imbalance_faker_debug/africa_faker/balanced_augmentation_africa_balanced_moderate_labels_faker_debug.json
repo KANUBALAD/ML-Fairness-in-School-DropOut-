@@ -1,0 +1,78 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-26T17:36:49.750990",
+    "experiment_type": "balanced_augmentation",
+    "config_name": "africa",
+    "scenario_name": "balanced_moderate_labels_faker_debug"
+  },
+  "results": {
+    "scenario_name": "balanced_moderate_labels_faker_debug",
+    "generation_method": "faker",
+    "original_analysis": {
+      "total_samples": 62739,
+      "privileged_count": 27684,
+      "unprivileged_count": 35055,
+      "current_sensitive_ratio": 0.441256634629178,
+      "positive_count": 5707,
+      "negative_count": 57032,
+      "current_label_ratio": 0.09096415307862733,
+      "cross_tab": {
+        "priv_pos": 2147,
+        "priv_neg": 25537,
+        "unpriv_pos": 3560,
+        "unpriv_neg": 31495
+      }
+    },
+    "final_analysis": {
+      "total_samples": 136876,
+      "privileged_count": 65459,
+      "unprivileged_count": 71417,
+      "current_sensitive_ratio": 0.47823577544638946,
+      "positive_count": 79844,
+      "negative_count": 57032,
+      "current_label_ratio": 0.5833308980391011,
+      "cross_tab": {
+        "priv_pos": 39922,
+        "priv_neg": 25537,
+        "unpriv_pos": 39922,
+        "unpriv_neg": 31495
+      }
+    },
+    "baseline_metrics": {
+      "model_name": "Balanced_balanced_moderate_labels_faker_debug_Baseline",
+      "overall_accuracy": 0.9705216247808299,
+      "privileged_accuracy": 0.9790775809407453,
+      "unprivileged_accuracy": 0.9626750700280112,
+      "privileged_tpr": 0.9838345864661654,
+      "unprivileged_tpr": 0.952184253348354,
+      "privileged_fpr": 0.028342455043002347,
+      "unprivileged_fpr": 0.024002543315848036,
+      "privileged_selection_rate": 0.610568112400733,
+      "unprivileged_selection_rate": 0.5432773109243697,
+      "accuracy_difference": 0.016402510912734036,
+      "tpr_difference": 0.0316503331178114,
+      "fpr_difference": 0.004339911727154311,
+      "demographic_parity_difference": 0.06729080147636335
+    },
+    "fair_metrics": {
+      "model_name": "Balanced_balanced_moderate_labels_faker_debug_Fair",
+      "overall_accuracy": 0.9679281122150789,
+      "privileged_accuracy": 0.9794593769089799,
+      "unprivileged_accuracy": 0.9573529411764706,
+      "privileged_tpr": 0.9714285714285714,
+      "unprivileged_tpr": 0.9357867067217424,
+      "privileged_fpr": 0.008014073494917905,
+      "unprivileged_fpr": 0.015259895088221268,
+      "privileged_selection_rate": 0.5950671960904093,
+      "unprivileged_selection_rate": 0.5302521008403361,
+      "accuracy_difference": 0.022106435732509255,
+      "tpr_difference": 0.03564186470682906,
+      "fpr_difference": -0.0072458215933033625,
+      "demographic_parity_difference": 0.06481509525007312
+    },
+    "improvement_metrics": {
+      "accuracy_cost": 0.0025935125657510216,
+      "dp_improvement": 0.0024757062262902307
+    }
+  }
+}

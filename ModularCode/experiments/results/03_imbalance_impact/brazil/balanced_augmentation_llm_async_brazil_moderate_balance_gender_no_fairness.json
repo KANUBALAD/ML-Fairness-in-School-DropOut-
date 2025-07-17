@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-23T16:33:52.992409",
+    "experiment_type": "balanced_augmentation_llm_async",
+    "config_name": "brazil",
+    "scenario_name": "moderate_balance_gender_no_fairness"
+  },
+  "results": {
+    "scenario_name": "moderate_balance_gender_no_fairness",
+    "generation_method": "llm_async",
+    "original_analysis": {
+      "total_samples": 4424,
+      "privileged_count": 2868,
+      "unprivileged_count": 1556,
+      "current_sensitive_ratio": 0.6482820976491862,
+      "positive_count": 1421,
+      "negative_count": 3003,
+      "current_label_ratio": 0.3212025316455696,
+      "cross_tab": {
+        "priv_pos": 720,
+        "priv_neg": 2148,
+        "unpriv_pos": 701,
+        "unpriv_neg": 855
+      },
+      "columns": {
+        "sensitive_col": "Gender",
+        "label_col": "Target",
+        "privileged_val": 0,
+        "positive_label": "Dropout"
+      }
+    },
+    "final_analysis": {
+      "total_samples": 5302,
+      "privileged_count": 3746,
+      "unprivileged_count": 1556,
+      "current_sensitive_ratio": 0.7065258393059223,
+      "positive_count": 1499,
+      "negative_count": 3803,
+      "current_label_ratio": 0.28272350056582424,
+      "cross_tab": {
+        "priv_pos": 798,
+        "priv_neg": 2948,
+        "unpriv_pos": 701,
+        "unpriv_neg": 855
+      },
+      "columns": {
+        "sensitive_col": "Gender",
+        "label_col": "Target",
+        "privileged_val": 0,
+        "positive_label": "Dropout"
+      }
+    },
+    "augmented_data_shape": [
+      5302,
+      35
+    ],
+    "target_ratios": {
+      "target_sensitive_ratio": 0.45,
+      "target_label_ratio": 0.32
+    },
+    "baseline_metrics": {
+      "model_name": "Baseline_Balanced_moderate_balance_gender_no_fairness_llm_async",
+      "overall_accuracy": 0.8774740810556079,
+      "privileged_accuracy": 0.8908355795148248,
+      "unprivileged_accuracy": 0.8463949843260188,
+      "privileged_tpr": 0.6266666666666667,
+      "unprivileged_tpr": 0.76,
+      "privileged_fpr": 0.04222972972972973,
+      "unprivileged_fpr": 0.07692307692307693,
+      "privileged_selection_rate": 0.16037735849056603,
+      "unprivileged_selection_rate": 0.3981191222570533,
+      "accuracy_difference": 0.044440595188806054,
+      "tpr_difference": -0.1333333333333333,
+      "fpr_difference": -0.0346933471933472,
+      "demographic_parity_difference": -0.23774176376648729
+    },
+    "fair_metrics": {
+      "model_name": "Fair_Balanced_moderate_balance_gender_no_fairness_llm_async",
+      "overall_accuracy": 0.8426013195098964,
+      "privileged_accuracy": 0.8504043126684636,
+      "unprivileged_accuracy": 0.8244514106583072,
+      "privileged_tpr": 0.74,
+      "unprivileged_tpr": 0.8133333333333334,
+      "privileged_fpr": 0.12162162162162163,
+      "unprivileged_fpr": 0.16568047337278108,
+      "privileged_selection_rate": 0.24663072776280323,
+      "unprivileged_selection_rate": 0.4702194357366771,
+      "accuracy_difference": 0.02595290201015643,
+      "tpr_difference": -0.07333333333333336,
+      "fpr_difference": -0.04405885175115945,
+      "demographic_parity_difference": -0.2235887079738739
+    },
+    "balance_achieved": {
+      "sensitive_ratio_achieved": false,
+      "label_ratio_achieved": true
+    },
+    "improvement_metrics": {
+      "accuracy_difference": 0.034872761545711506,
+      "dp_improvement": 0.01415305579261339,
+      "tpr_improvement": 0.05999999999999994,
+      "fpr_improvement": -0.009365504557812251
+    },
+    "augmentation_plan": {
+      "total_additional": 0,
+      "target_total": 4424,
+      "breakdown": {
+        "priv_pos": 0,
+        "priv_neg": 0,
+        "unpriv_pos": 78,
+        "unpriv_neg": 800
+      },
+      "target_distribution": {
+        "priv_pos": 636,
+        "priv_neg": 1354,
+        "unpriv_pos": 779,
+        "unpriv_neg": 1655
+      }
+    },
+    "augmented_dataset_path": "./data/augmented_brazil_moderate_balance_gender_no_fairness_llm_async_0.45_0.32.csv"
+  }
+}

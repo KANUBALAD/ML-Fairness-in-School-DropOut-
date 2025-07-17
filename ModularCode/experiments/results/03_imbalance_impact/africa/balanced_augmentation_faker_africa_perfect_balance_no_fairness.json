@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-23T16:39:38.420745",
+    "experiment_type": "balanced_augmentation_faker",
+    "config_name": "africa",
+    "scenario_name": "perfect_balance_no_fairness"
+  },
+  "results": {
+    "scenario_name": "perfect_balance_no_fairness",
+    "generation_method": "faker",
+    "original_analysis": {
+      "total_samples": 62739,
+      "privileged_count": 27684,
+      "unprivileged_count": 35055,
+      "current_sensitive_ratio": 0.441256634629178,
+      "positive_count": 5707,
+      "negative_count": 57032,
+      "current_label_ratio": 0.09096415307862733,
+      "cross_tab": {
+        "priv_pos": 2147,
+        "priv_neg": 25537,
+        "unpriv_pos": 3560,
+        "unpriv_neg": 31495
+      },
+      "columns": {
+        "sensitive_col": "gender",
+        "label_col": "dropout",
+        "privileged_val": "Male",
+        "positive_label": "Yes"
+      }
+    },
+    "final_analysis": {
+      "total_samples": 117043,
+      "privileged_count": 57032,
+      "unprivileged_count": 60011,
+      "current_sensitive_ratio": 0.4872739078800099,
+      "positive_count": 57032,
+      "negative_count": 60011,
+      "current_label_ratio": 0.4872739078800099,
+      "cross_tab": {
+        "priv_pos": 28516,
+        "priv_neg": 28516,
+        "unpriv_pos": 28516,
+        "unpriv_neg": 31495
+      },
+      "columns": {
+        "sensitive_col": "gender",
+        "label_col": "dropout",
+        "privileged_val": "Male",
+        "positive_label": "Yes"
+      }
+    },
+    "augmented_data_shape": [
+      117043,
+      13
+    ],
+    "target_ratios": {
+      "target_sensitive_ratio": 0.5,
+      "target_label_ratio": 0.5
+    },
+    "baseline_metrics": {
+      "model_name": "Baseline_Balanced_perfect_balance_no_fairness_faker",
+      "overall_accuracy": 0.9325473108633432,
+      "privileged_accuracy": 0.9197487787857641,
+      "unprivileged_accuracy": 0.9448304730012558,
+      "privileged_tpr": 0.9549393414211439,
+      "unprivileged_tpr": 0.9047365620010644,
+      "privileged_fpr": 0.11591148577449947,
+      "unprivileged_fpr": 0.019340519974635383,
+      "privileged_selection_rate": 0.5382065596650384,
+      "unprivileged_selection_rate": 0.4371703641691084,
+      "accuracy_difference": -0.025081694215491668,
+      "tpr_difference": 0.050202779420079446,
+      "fpr_difference": 0.09657096579986409,
+      "demographic_parity_difference": 0.10103619549592996
+    },
+    "fair_metrics": {
+      "model_name": "Fair_Balanced_perfect_balance_no_fairness_faker",
+      "overall_accuracy": 0.9337434320133282,
+      "privileged_accuracy": 0.9197487787857641,
+      "unprivileged_accuracy": 0.9471745500209292,
+      "privileged_tpr": 0.9658578856152513,
+      "unprivileged_tpr": 0.9207025013304949,
+      "privileged_fpr": 0.12697576396206534,
+      "unprivileged_fpr": 0.029169308814204185,
+      "privileged_selection_rate": 0.5491974877878576,
+      "unprivileged_selection_rate": 0.44989535370447886,
+      "accuracy_difference": -0.027425771235165097,
+      "tpr_difference": 0.045155384284756406,
+      "fpr_difference": 0.09780645514786115,
+      "demographic_parity_difference": 0.09930213408337873
+    },
+    "balance_achieved": {
+      "sensitive_ratio_achieved": true,
+      "label_ratio_achieved": true
+    },
+    "improvement_metrics": {
+      "accuracy_difference": -0.0011961211499850188,
+      "dp_improvement": 0.0017340614125512244,
+      "tpr_improvement": 0.005047395135323041,
+      "fpr_improvement": -0.001235489347997068
+    },
+    "augmentation_plan": {
+      "total_additional": 51325,
+      "target_total": 114064,
+      "breakdown": {
+        "priv_pos": 26369,
+        "priv_neg": 2979,
+        "unpriv_pos": 24956,
+        "unpriv_neg": 0
+      },
+      "target_distribution": {
+        "priv_pos": 28516,
+        "priv_neg": 28516,
+        "unpriv_pos": 28516,
+        "unpriv_neg": 28516
+      }
+    },
+    "augmented_dataset_path": "./data/augmented_africa_perfect_balance_no_fairness_faker_0.5_0.5.csv"
+  }
+}

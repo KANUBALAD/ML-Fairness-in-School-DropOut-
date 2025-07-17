@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-23T16:35:00.395815",
+    "experiment_type": "balanced_augmentation_llm_async",
+    "config_name": "india",
+    "scenario_name": "slight_female_majority_no_fairness"
+  },
+  "results": {
+    "scenario_name": "slight_female_majority_no_fairness",
+    "generation_method": "llm_async",
+    "original_analysis": {
+      "total_samples": 2137,
+      "privileged_count": 743,
+      "unprivileged_count": 1394,
+      "current_sensitive_ratio": 0.34768366869443146,
+      "positive_count": 256,
+      "negative_count": 1881,
+      "current_label_ratio": 0.11979410388394947,
+      "cross_tab": {
+        "priv_pos": 118,
+        "priv_neg": 625,
+        "unpriv_pos": 138,
+        "unpriv_neg": 1256
+      },
+      "columns": {
+        "sensitive_col": "STUDENTGENDER",
+        "label_col": "STUDENT_DROPOUT_STATUS",
+        "privileged_val": "M",
+        "positive_label": "DROPOUT"
+      }
+    },
+    "final_analysis": {
+      "total_samples": 3889,
+      "privileged_count": 1504,
+      "unprivileged_count": 2385,
+      "current_sensitive_ratio": 0.3867318076626382,
+      "positive_count": 1881,
+      "negative_count": 2008,
+      "current_label_ratio": 0.4836718950887118,
+      "cross_tab": {
+        "priv_pos": 752,
+        "priv_neg": 752,
+        "unpriv_pos": 1129,
+        "unpriv_neg": 1256
+      },
+      "columns": {
+        "sensitive_col": "STUDENTGENDER",
+        "label_col": "STUDENT_DROPOUT_STATUS",
+        "privileged_val": "M",
+        "positive_label": "DROPOUT"
+      }
+    },
+    "augmented_data_shape": [
+      3889,
+      16
+    ],
+    "target_ratios": {
+      "target_sensitive_ratio": 0.4,
+      "target_label_ratio": 0.5
+    },
+    "baseline_metrics": {
+      "model_name": "Baseline_Balanced_slight_female_majority_no_fairness_llm_async",
+      "overall_accuracy": 0.9267352185089974,
+      "privileged_accuracy": 0.8586572438162544,
+      "unprivileged_accuracy": 0.9656565656565657,
+      "privileged_tpr": 0.9271523178807947,
+      "unprivileged_tpr": 0.9333333333333333,
+      "privileged_fpr": 0.2196969696969697,
+      "unprivileged_fpr": 0.007407407407407408,
+      "privileged_selection_rate": 0.5971731448763251,
+      "unprivileged_selection_rate": 0.42828282828282827,
+      "accuracy_difference": -0.10699932184031125,
+      "tpr_difference": -0.006181015452538685,
+      "fpr_difference": 0.21228956228956228,
+      "demographic_parity_difference": 0.16889031659349685
+    },
+    "fair_metrics": {
+      "model_name": "Fair_Balanced_slight_female_majority_no_fairness_llm_async",
+      "overall_accuracy": 0.9203084832904884,
+      "privileged_accuracy": 0.8480565371024735,
+      "unprivileged_accuracy": 0.9616161616161616,
+      "privileged_tpr": 0.9205298013245033,
+      "unprivileged_tpr": 0.9333333333333333,
+      "privileged_fpr": 0.23484848484848486,
+      "unprivileged_fpr": 0.014814814814814815,
+      "privileged_selection_rate": 0.6007067137809188,
+      "unprivileged_selection_rate": 0.43232323232323233,
+      "accuracy_difference": -0.11355962451368806,
+      "tpr_difference": -0.012803532008829999,
+      "fpr_difference": 0.22003367003367005,
+      "demographic_parity_difference": 0.16838348145768645
+    },
+    "balance_achieved": {
+      "sensitive_ratio_achieved": true,
+      "label_ratio_achieved": true
+    },
+    "improvement_metrics": {
+      "accuracy_difference": 0.006426735218509005,
+      "dp_improvement": 0.0005068351358104017,
+      "tpr_improvement": -0.0066225165562913135,
+      "fpr_improvement": -0.0077441077441077755
+    },
+    "augmentation_plan": {
+      "total_additional": 1625,
+      "target_total": 3762,
+      "breakdown": {
+        "priv_pos": 634,
+        "priv_neg": 127,
+        "unpriv_pos": 991,
+        "unpriv_neg": 0
+      },
+      "target_distribution": {
+        "priv_pos": 752,
+        "priv_neg": 752,
+        "unpriv_pos": 1129,
+        "unpriv_neg": 1129
+      }
+    },
+    "augmented_dataset_path": "./data/augmented_india_slight_female_majority_no_fairness_llm_async_0.4_0.5.csv"
+  }
+}

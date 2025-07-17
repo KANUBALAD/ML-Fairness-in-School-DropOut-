@@ -1,0 +1,491 @@
+METHOD SELECTION CRITERIA STUDY (FIXED v2) - Mon Jun 23 19:02:45 CEST 2025
+====================================================
+
+RESEARCH OBJECTIVE:
+Head-to-head comparison of Faker vs LLM methods on identical scenarios
+
+FIX APPLIED:
+- Removed timeout command that was causing immediate failures
+- Using EXACT execution pattern from successful Experiment 3
+- Using EXACT scenario names from Experiment 3
+
+SCENARIOS FROM SUCCESSFUL EXPERIMENT 3:
+- extreme_male_majority: 0.8 0.5
+- original: original original
+- moderate_balance_labels: 0.65 0.45
+- extreme_female_majority: 0.2 0.5
+- moderate_balance_gender: 0.45 0.32
+- reverse_label_brazil: 0.65 0.68
+- perfect_balance: 0.5 0.5
+
+METHODOLOGY:
+- Run each scenario with both Faker and LLM methods
+- Use identical parameters and execution as Experiment 3
+- Compare results head-to-head
+- Identify method strengths and weaknesses
+
+DETAILED COMPARISON RESULTS:
+===========================
+
+=== brazil METHOD COMPARISON ===
+
+SCENARIO: extreme_male_majority (0.8 0.5)
+----------------------------------------
+faker Results:
+  DP Improvement: 0.0958 (BREAKTHROUGH)
+  Accuracy Cost: 0.0157
+  Final DP Difference: -0.4422
+  Balance Achieved: Yes
+  🎉 BREAKTHROUGH achieved!
+  ⚠️  HIGH BIAS WARNING: |DP| > 30%
+
+llm_async Results:
+  DP Improvement: 0.0542 (BREAKTHROUGH)
+  Accuracy Cost: 0.0094
+  Final DP Difference: -0.4594
+  Balance Achieved: Yes
+  🎉 BREAKTHROUGH achieved!
+  ⚠️  HIGH BIAS WARNING: |DP| > 30%
+
+HEAD-TO-HEAD COMPARISON:
+  🏆 Winner: Faker (margin: +0.0416 DP improvement)
+  📊 Comparison: Faker 0.0958 (BREAKTHROUGH) vs LLM 0.0542 (BREAKTHROUGH)
+  ⭐ SIGNIFICANT DIFFERENCE: Methods diverge by >2% DP
+
+================================================
+
+SCENARIO: original (original original)
+----------------------------------------
+faker Results:
+  DP Improvement: 0 (FAILED)
+  Accuracy Cost: 0
+  Final DP Difference: -0.1933
+  Balance Achieved: No
+
+llm_async Results:
+  DP Improvement: 0 (FAILED)
+  Accuracy Cost: 0
+  Final DP Difference: -0.2124
+  Balance Achieved: No
+
+HEAD-TO-HEAD COMPARISON:
+  🏆 Winner: TIE (margin: +0 DP improvement)
+  📊 Comparison: Faker 0 (FAILED) vs LLM 0 (FAILED)
+
+================================================
+
+SCENARIO: moderate_balance_labels (0.65 0.45)
+----------------------------------------
+faker Results:
+  DP Improvement: 0.0115 (MODERATE)
+  Accuracy Cost: 0.0100
+  Final DP Difference: -0.3521
+  Balance Achieved: Yes
+  ⚠️  HIGH BIAS WARNING: |DP| > 30%
+
+llm_async Results:
+  DP Improvement: 0.0331 (BREAKTHROUGH)
+  Accuracy Cost: 0.0090
+  Final DP Difference: -0.3336
+  Balance Achieved: Yes
+  🎉 BREAKTHROUGH achieved!
+  ⚠️  HIGH BIAS WARNING: |DP| > 30%
+
+HEAD-TO-HEAD COMPARISON:
+  🏆 Winner: LLM (margin: +0.0216 DP improvement)
+  📊 Comparison: Faker 0.0115 (MODERATE) vs LLM 0.0331 (BREAKTHROUGH)
+  ⭐ SIGNIFICANT DIFFERENCE: Methods diverge by >2% DP
+
+================================================
+
+SCENARIO: extreme_female_majority (0.2 0.5)
+----------------------------------------
+faker Results:
+  DP Improvement: -0.0389 (FAILED)
+  Accuracy Cost: -0.0221
+  Final DP Difference: 0.0616
+  Balance Achieved: Yes
+
+llm_async Results:
+  DP Improvement: 0.0077 (UNCLEAR)
+  Accuracy Cost: 0.0169
+  Final DP Difference: -0.0129
+  Balance Achieved: Yes
+
+HEAD-TO-HEAD COMPARISON:
+  🏆 Winner: LLM (margin: +0.0466 DP improvement)
+  📊 Comparison: Faker -0.0389 (FAILED) vs LLM 0.0077 (UNCLEAR)
+  ⭐ SIGNIFICANT DIFFERENCE: Methods diverge by >2% DP
+
+================================================
+
+SCENARIO: moderate_balance_gender (0.45 0.32)
+----------------------------------------
+faker Results:
+  DP Improvement: 0.0286 (MODERATE)
+  Accuracy Cost: 0.0537
+  Final DP Difference: -0.1814
+  Balance Achieved: Yes
+
+llm_async Results:
+  DP Improvement: 0.0213 (MODERATE)
+  Accuracy Cost: 0.0349
+  Final DP Difference: -0.2151
+  Balance Achieved: Yes
+
+HEAD-TO-HEAD COMPARISON:
+  🏆 Winner: Faker (margin: +0.0073 DP improvement)
+  📊 Comparison: Faker 0.0286 (MODERATE) vs LLM 0.0213 (MODERATE)
+
+================================================
+
+SCENARIO: reverse_label_brazil (0.65 0.68)
+----------------------------------------
+faker Results:
+  DP Improvement: 0.0134 (MODERATE)
+  Accuracy Cost: 0.0050
+  Final DP Difference: -0.3637
+  Balance Achieved: Yes
+  ⚠️  HIGH BIAS WARNING: |DP| > 30%
+
+llm_async Results:
+  DP Improvement: 0.0167 (MODERATE)
+  Accuracy Cost: 0.0050
+  Final DP Difference: -0.3770
+  Balance Achieved: Yes
+  ⚠️  HIGH BIAS WARNING: |DP| > 30%
+
+HEAD-TO-HEAD COMPARISON:
+  🏆 Winner: LLM (margin: +0.0033 DP improvement)
+  📊 Comparison: Faker 0.0134 (MODERATE) vs LLM 0.0167 (MODERATE)
+
+================================================
+
+SCENARIO: perfect_balance (0.5 0.5)
+----------------------------------------
+faker Results:
+  DP Improvement: 0.0110 (MODERATE)
+  Accuracy Cost: -0.0203
+  Final DP Difference: -0.1277
+  Balance Achieved: Yes
+
+llm_async Results:
+  DP Improvement: 0.0190 (MODERATE)
+  Accuracy Cost: 0.0023
+  Final DP Difference: -0.2275
+  Balance Achieved: Yes
+
+HEAD-TO-HEAD COMPARISON:
+  🏆 Winner: LLM (margin: +0.0080 DP improvement)
+  📊 Comparison: Faker 0.0110 (MODERATE) vs LLM 0.0190 (MODERATE)
+
+================================================
+
+
+=== india METHOD COMPARISON ===
+
+SCENARIO: extreme_male_majority (0.8 0.5)
+----------------------------------------
+faker Results:
+  DP Improvement: -0.0427 (FAILED)
+  Accuracy Cost: -0.0075
+  Final DP Difference: 0.5337
+  Balance Achieved: Yes
+  ⚠️  HIGH BIAS WARNING: |DP| > 30%
+
+llm_async Results:
+  DP Improvement: -0.0289 (FAILED)
+  Accuracy Cost: 0.0022
+  Final DP Difference: 0.5199
+  Balance Achieved: Yes
+  ⚠️  HIGH BIAS WARNING: |DP| > 30%
+
+HEAD-TO-HEAD COMPARISON:
+  🏆 Winner: LLM (margin: +0.0138 DP improvement)
+  📊 Comparison: Faker -0.0427 (FAILED) vs LLM -0.0289 (FAILED)
+
+================================================
+
+SCENARIO: original (original original)
+----------------------------------------
+faker Results:
+  DP Improvement: 0 (FAILED)
+  Accuracy Cost: 0
+  Final DP Difference: 0.1563
+  Balance Achieved: No
+
+llm_async Results:
+  DP Improvement: 0 (FAILED)
+  Accuracy Cost: 0
+  Final DP Difference: 0.1193
+  Balance Achieved: No
+
+HEAD-TO-HEAD COMPARISON:
+  🏆 Winner: TIE (margin: +0 DP improvement)
+  📊 Comparison: Faker 0 (FAILED) vs LLM 0 (FAILED)
+
+================================================
+
+SCENARIO: moderate_balance_labels (0.65 0.45)
+----------------------------------------
+faker Results:
+  DP Improvement: -0.0013 (FAILED)
+  Accuracy Cost: 0.0067
+  Final DP Difference: 0.3823
+  Balance Achieved: Yes
+  ⚠️  HIGH BIAS WARNING: |DP| > 30%
+
+llm_async Results:
+  DP Improvement: 0.0341 (BREAKTHROUGH)
+  Accuracy Cost: 0.0134
+  Final DP Difference: 0.3469
+  Balance Achieved: Yes
+  🎉 BREAKTHROUGH achieved!
+  ⚠️  HIGH BIAS WARNING: |DP| > 30%
+
+HEAD-TO-HEAD COMPARISON:
+  🏆 Winner: LLM (margin: +0.0354 DP improvement)
+  📊 Comparison: Faker -0.0013 (FAILED) vs LLM 0.0341 (BREAKTHROUGH)
+  ⭐ SIGNIFICANT DIFFERENCE: Methods diverge by >2% DP
+
+================================================
+
+SCENARIO: extreme_female_majority (0.2 0.5)
+----------------------------------------
+faker Results:
+  DP Improvement: 0.0124 (MODERATE)
+  Accuracy Cost: -0.0062
+  Final DP Difference: -0.1832
+  Balance Achieved: Yes
+
+llm_async Results:
+  DP Improvement: 0.0124 (MODERATE)
+  Accuracy Cost: 0.0037
+  Final DP Difference: -0.1832
+  Balance Achieved: Yes
+
+HEAD-TO-HEAD COMPARISON:
+  🏆 Winner: TIE (margin: +0 DP improvement)
+  📊 Comparison: Faker 0.0124 (MODERATE) vs LLM 0.0124 (MODERATE)
+
+================================================
+
+SCENARIO: moderate_balance_gender (0.45 0.32)
+----------------------------------------
+faker Results:
+  DP Improvement: -0.0223 (FAILED)
+  Accuracy Cost: 0.0212
+  Final DP Difference: 0.2053
+  Balance Achieved: Yes
+
+llm_async Results:
+  DP Improvement: 0.0187 (MODERATE)
+  Accuracy Cost: 0.0077
+  Final DP Difference: 0.1727
+  Balance Achieved: Yes
+
+HEAD-TO-HEAD COMPARISON:
+  🏆 Winner: LLM (margin: +0.0410 DP improvement)
+  📊 Comparison: Faker -0.0223 (FAILED) vs LLM 0.0187 (MODERATE)
+  ⭐ SIGNIFICANT DIFFERENCE: Methods diverge by >2% DP
+
+================================================
+
+SCENARIO: reverse_label_brazil (0.65 0.68)
+----------------------------------------
+faker Results:
+  DP Improvement: 0.0135 (MODERATE)
+  Accuracy Cost: -0.0015
+  Final DP Difference: 0.3553
+  Balance Achieved: Yes
+  ⚠️  HIGH BIAS WARNING: |DP| > 30%
+
+llm_async Results:
+  DP Improvement: 0.0101 (MODERATE)
+  Accuracy Cost: 0.0090
+  Final DP Difference: 0.3553
+  Balance Achieved: Yes
+  ⚠️  HIGH BIAS WARNING: |DP| > 30%
+
+HEAD-TO-HEAD COMPARISON:
+  🏆 Winner: Faker (margin: +0.0034 DP improvement)
+  📊 Comparison: Faker 0.0135 (MODERATE) vs LLM 0.0101 (MODERATE)
+
+================================================
+
+SCENARIO: perfect_balance (0.5 0.5)
+----------------------------------------
+faker Results:
+  DP Improvement: -0.0226 (FAILED)
+  Accuracy Cost: 0.0012
+  Final DP Difference: 0.2832
+  Balance Achieved: Yes
+
+llm_async Results:
+  DP Improvement: 0.0105 (MODERATE)
+  Accuracy Cost: 0.0049
+  Final DP Difference: 0.2513
+  Balance Achieved: Yes
+
+HEAD-TO-HEAD COMPARISON:
+  🏆 Winner: LLM (margin: +0.0331 DP improvement)
+  📊 Comparison: Faker -0.0226 (FAILED) vs LLM 0.0105 (MODERATE)
+  ⭐ SIGNIFICANT DIFFERENCE: Methods diverge by >2% DP
+
+================================================
+
+
+=== africa METHOD COMPARISON ===
+
+SCENARIO: extreme_male_majority (0.8 0.5)
+----------------------------------------
+faker Results:
+  DP Improvement: 0.0763 (BREAKTHROUGH)
+  Accuracy Cost: -0.0169
+  Final DP Difference: 0.3758
+  Balance Achieved: Yes
+  🎉 BREAKTHROUGH achieved!
+  ⚠️  HIGH BIAS WARNING: |DP| > 30%
+
+llm_async Results:
+  DP Improvement: 0.1077 (BREAKTHROUGH)
+  Accuracy Cost: -0.0093
+  Final DP Difference: 0.3352
+  Balance Achieved: Yes
+  🎉 BREAKTHROUGH achieved!
+  ⚠️  HIGH BIAS WARNING: |DP| > 30%
+
+HEAD-TO-HEAD COMPARISON:
+  🏆 Winner: LLM (margin: +0.0314 DP improvement)
+  📊 Comparison: Faker 0.0763 (BREAKTHROUGH) vs LLM 0.1077 (BREAKTHROUGH)
+  ⭐ SIGNIFICANT DIFFERENCE: Methods diverge by >2% DP
+
+================================================
+
+SCENARIO: original (original original)
+----------------------------------------
+faker Results:
+  DP Improvement: 0 (FAILED)
+  Accuracy Cost: 0
+  Final DP Difference: -0.0169
+  Balance Achieved: No
+
+llm_async Results:
+  DP Improvement: 0 (FAILED)
+  Accuracy Cost: 0
+  Final DP Difference: -0.0169
+  Balance Achieved: No
+
+HEAD-TO-HEAD COMPARISON:
+  🏆 Winner: TIE (margin: +0 DP improvement)
+  📊 Comparison: Faker 0 (FAILED) vs LLM 0 (FAILED)
+
+================================================
+
+SCENARIO: moderate_balance_labels (0.65 0.45)
+----------------------------------------
+faker Results:
+  DP Improvement: 0.0439 (BREAKTHROUGH)
+  Accuracy Cost: 0.0089
+  Final DP Difference: 0.1645
+  Balance Achieved: Yes
+  🎉 BREAKTHROUGH achieved!
+
+llm_async Results:
+  DP Improvement: 0.0431 (BREAKTHROUGH)
+  Accuracy Cost: 0.0086
+  Final DP Difference: 0.1647
+  Balance Achieved: Yes
+  🎉 BREAKTHROUGH achieved!
+
+HEAD-TO-HEAD COMPARISON:
+  🏆 Winner: Faker (margin: +0.0008 DP improvement)
+  📊 Comparison: Faker 0.0439 (BREAKTHROUGH) vs LLM 0.0431 (BREAKTHROUGH)
+
+================================================
+
+SCENARIO: extreme_female_majority (0.2 0.5)
+----------------------------------------
+faker Results:
+  DP Improvement: 0.0239 (MODERATE)
+  Accuracy Cost: -0.0204
+  Final DP Difference: -0.3205
+  Balance Achieved: Yes
+  ⚠️  HIGH BIAS WARNING: |DP| > 30%
+
+llm_async Results:
+  DP Improvement: 0.0270 (MODERATE)
+  Accuracy Cost: -0.0154
+  Final DP Difference: -0.3004
+  Balance Achieved: Yes
+  ⚠️  HIGH BIAS WARNING: |DP| > 30%
+
+HEAD-TO-HEAD COMPARISON:
+  🏆 Winner: LLM (margin: +0.0031 DP improvement)
+  📊 Comparison: Faker 0.0239 (MODERATE) vs LLM 0.0270 (MODERATE)
+
+================================================
+
+SCENARIO: moderate_balance_gender (0.45 0.32)
+----------------------------------------
+faker Results:
+  DP Improvement: 0.0316 (BREAKTHROUGH)
+  Accuracy Cost: 0.0094
+  Final DP Difference: -0.0002
+  Balance Achieved: Yes
+  🎉 BREAKTHROUGH achieved!
+
+llm_async Results:
+  DP Improvement: 0.0196 (MODERATE)
+  Accuracy Cost: 0.0152
+  Final DP Difference: -0.0111
+  Balance Achieved: Yes
+
+HEAD-TO-HEAD COMPARISON:
+  🏆 Winner: Faker (margin: +0.0120 DP improvement)
+  📊 Comparison: Faker 0.0316 (BREAKTHROUGH) vs LLM 0.0196 (MODERATE)
+
+================================================
+
+SCENARIO: reverse_label_brazil (0.65 0.68)
+----------------------------------------
+faker Results:
+  DP Improvement: 0.0484 (BREAKTHROUGH)
+  Accuracy Cost: 0.0069
+  Final DP Difference: 0.1777
+  Balance Achieved: Yes
+  🎉 BREAKTHROUGH achieved!
+
+llm_async Results:
+  DP Improvement: 0.0452 (BREAKTHROUGH)
+  Accuracy Cost: 0.0059
+  Final DP Difference: 0.1802
+  Balance Achieved: Yes
+  🎉 BREAKTHROUGH achieved!
+
+HEAD-TO-HEAD COMPARISON:
+  🏆 Winner: Faker (margin: +0.0032 DP improvement)
+  📊 Comparison: Faker 0.0484 (BREAKTHROUGH) vs LLM 0.0452 (BREAKTHROUGH)
+
+================================================
+
+SCENARIO: perfect_balance (0.5 0.5)
+----------------------------------------
+faker Results:
+  DP Improvement: 0.0038 (UNCLEAR)
+  Accuracy Cost: 0.0022
+  Final DP Difference: 0.0962
+  Balance Achieved: Yes
+
+llm_async Results:
+  DP Improvement: -0.0014 (FAILED)
+  Accuracy Cost: -0.0009
+  Final DP Difference: 0.0942
+  Balance Achieved: Yes
+
+HEAD-TO-HEAD COMPARISON:
+  🏆 Winner: Faker (margin: +0.0052 DP improvement)
+  📊 Comparison: Faker 0.0038 (UNCLEAR) vs LLM -0.0014 (FAILED)
+
+================================================
+

@@ -1,0 +1,13 @@
+METHOD SELECTION CRITERIA - EVIDENCE-BASED RECOMMENDATIONS (v2)
+==============================================================
+Generated: Mon Jun 23 19:07:41 CEST 2025
+
+RESEARCH QUESTION ANSWERED:
+"When should you use Faker vs LLM for fairness-aware data augmentation?"
+
+EXPERIMENTAL EVIDENCE:
+Based on 42 head-to-head comparisons using proven execution methods
+
+DATASET-SPECIFIC FINDINGS:
+
+=== brazil ANALYSIS ===

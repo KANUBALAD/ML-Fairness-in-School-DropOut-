@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-23T16:34:47.737275",
+    "experiment_type": "balanced_augmentation_llm_async",
+    "config_name": "india",
+    "scenario_name": "slight_male_majority_with_fairness"
+  },
+  "results": {
+    "scenario_name": "slight_male_majority_with_fairness",
+    "generation_method": "llm_async",
+    "original_analysis": {
+      "total_samples": 2137,
+      "privileged_count": 743,
+      "unprivileged_count": 1394,
+      "current_sensitive_ratio": 0.34768366869443146,
+      "positive_count": 256,
+      "negative_count": 1881,
+      "current_label_ratio": 0.11979410388394947,
+      "cross_tab": {
+        "priv_pos": 118,
+        "priv_neg": 625,
+        "unpriv_pos": 138,
+        "unpriv_neg": 1256
+      },
+      "columns": {
+        "sensitive_col": "STUDENTGENDER",
+        "label_col": "STUDENT_DROPOUT_STATUS",
+        "privileged_val": "M",
+        "positive_label": "DROPOUT"
+      }
+    },
+    "final_analysis": {
+      "total_samples": 4266,
+      "privileged_count": 2257,
+      "unprivileged_count": 2009,
+      "current_sensitive_ratio": 0.5290670417252695,
+      "positive_count": 1881,
+      "negative_count": 2385,
+      "current_label_ratio": 0.4409282700421941,
+      "cross_tab": {
+        "priv_pos": 1128,
+        "priv_neg": 1129,
+        "unpriv_pos": 753,
+        "unpriv_neg": 1256
+      },
+      "columns": {
+        "sensitive_col": "STUDENTGENDER",
+        "label_col": "STUDENT_DROPOUT_STATUS",
+        "privileged_val": "M",
+        "positive_label": "DROPOUT"
+      }
+    },
+    "augmented_data_shape": [
+      4266,
+      16
+    ],
+    "target_ratios": {
+      "target_sensitive_ratio": 0.6,
+      "target_label_ratio": 0.5
+    },
+    "baseline_metrics": {
+      "model_name": "Baseline_Balanced_slight_male_majority_with_fairness_llm_async",
+      "overall_accuracy": 0.7868852459016393,
+      "privileged_accuracy": 0.6839729119638827,
+      "unprivileged_accuracy": 0.8978102189781022,
+      "privileged_tpr": 0.8423423423423423,
+      "unprivileged_tpr": 0.7354838709677419,
+      "privileged_fpr": 0.4751131221719457,
+      "unprivileged_fpr": 0.00390625,
+      "privileged_selection_rate": 0.6591422121896162,
+      "unprivileged_selection_rate": 0.2798053527980535,
+      "accuracy_difference": -0.21383730701421955,
+      "tpr_difference": 0.10685847137460036,
+      "fpr_difference": 0.4712068721719457,
+      "demographic_parity_difference": 0.3793368593915627
+    },
+    "fair_metrics": {
+      "model_name": "Fair_Balanced_slight_male_majority_with_fairness_llm_async",
+      "overall_accuracy": 0.7997658079625293,
+      "privileged_accuracy": 0.6952595936794582,
+      "unprivileged_accuracy": 0.9124087591240876,
+      "privileged_tpr": 0.8558558558558559,
+      "unprivileged_tpr": 0.7677419354838709,
+      "privileged_fpr": 0.4660633484162896,
+      "unprivileged_fpr": 0.0,
+      "privileged_selection_rate": 0.6613995485327314,
+      "unprivileged_selection_rate": 0.2895377128953771,
+      "accuracy_difference": -0.21714916544462937,
+      "tpr_difference": 0.08811392037198496,
+      "fpr_difference": 0.4660633484162896,
+      "demographic_parity_difference": 0.3718618356373543
+    },
+    "balance_achieved": {
+      "sensitive_ratio_achieved": false,
+      "label_ratio_achieved": false
+    },
+    "improvement_metrics": {
+      "accuracy_difference": -0.012880562060889944,
+      "dp_improvement": 0.0074750237542083875,
+      "tpr_improvement": 0.018744551002615406,
+      "fpr_improvement": 0.0051435237556560764
+    },
+    "augmentation_plan": {
+      "total_additional": 1625,
+      "target_total": 3762,
+      "breakdown": {
+        "priv_pos": 1010,
+        "priv_neg": 504,
+        "unpriv_pos": 615,
+        "unpriv_neg": 0
+      },
+      "target_distribution": {
+        "priv_pos": 1128,
+        "priv_neg": 1129,
+        "unpriv_pos": 753,
+        "unpriv_neg": 752
+      }
+    },
+    "augmented_dataset_path": "./data/augmented_india_slight_male_majority_with_fairness_llm_async_0.6_0.5.csv"
+  }
+}

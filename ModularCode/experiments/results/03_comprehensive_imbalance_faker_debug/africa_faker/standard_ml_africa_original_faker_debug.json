@@ -1,0 +1,62 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-26T17:37:01.248601",
+    "experiment_type": "standard_ml",
+    "config_name": "africa",
+    "scenario_name": "original_faker_debug"
+  },
+  "results": {
+    "scenario_name": "original_faker_debug",
+    "original_analysis": {
+      "total_samples": 62739,
+      "privileged_count": 27684,
+      "unprivileged_count": 35055,
+      "current_sensitive_ratio": 0.441256634629178,
+      "positive_count": 5707,
+      "negative_count": 57032,
+      "current_label_ratio": 0.09096415307862733,
+      "cross_tab": {
+        "priv_pos": 2147,
+        "priv_neg": 25537,
+        "unpriv_pos": 3560,
+        "unpriv_neg": 31495
+      }
+    },
+    "baseline_metrics": {
+      "model_name": "Standard_Baseline",
+      "overall_accuracy": 0.9411858463500159,
+      "privileged_accuracy": 0.9567177637511272,
+      "unprivileged_accuracy": 0.9288876195916036,
+      "privileged_tpr": 0.7645687645687645,
+      "unprivileged_tpr": 0.46629213483146065,
+      "privileged_fpr": 0.02716966379984363,
+      "unprivileged_fpr": 0.018756954379271974,
+      "privileged_selection_rate": 0.0842200180342651,
+      "unprivileged_selection_rate": 0.06425817506782808,
+      "accuracy_difference": 0.027830144159523562,
+      "tpr_difference": 0.2982766297373039,
+      "fpr_difference": 0.008412709420571655,
+      "demographic_parity_difference": 0.01996184296643702
+    },
+    "fair_metrics": {
+      "model_name": "Standard_Fair",
+      "overall_accuracy": 0.927080012751036,
+      "privileged_accuracy": 0.9325518485121731,
+      "unprivileged_accuracy": 0.9227473939740112,
+      "privileged_tpr": 1.0,
+      "unprivileged_tpr": 1.0,
+      "privileged_fpr": 0.07310398749022674,
+      "unprivileged_fpr": 0.08599586711174693,
+      "privileged_selection_rate": 0.14481514878268711,
+      "unprivileged_selection_rate": 0.1789233185777524,
+      "accuracy_difference": 0.009804454538161922,
+      "tpr_difference": 0.0,
+      "fpr_difference": -0.012891879621520191,
+      "demographic_parity_difference": -0.034108169795065285
+    },
+    "improvement_metrics": {
+      "accuracy_cost": 0.014105833598979878,
+      "dp_improvement": -0.014146326828628264
+    }
+  }
+}

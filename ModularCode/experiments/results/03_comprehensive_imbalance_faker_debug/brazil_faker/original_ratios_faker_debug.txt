@@ -1,0 +1,13 @@
+✓ Fast, multithreaded LLM generator loaded successfully.
+Results will be saved to: ./experiments/results/03_comprehensive_imbalance_faker_debug/brazil_faker
+
+================================================================================
+STANDARD ML EXPERIMENT: original_faker_debug
+================================================================================
+
+DP improvement: -0.0175, Accuracy cost: 0.0068
+✓ Saved results to: ./experiments/results/03_comprehensive_imbalance_faker_debug/brazil_faker/standard_ml_brazil_original_faker_debug.json
+
+================================================================================
+EXPERIMENT 'original_faker_debug' COMPLETED.
+================================================================================

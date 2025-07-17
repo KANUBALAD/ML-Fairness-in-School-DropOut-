@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-23T19:06:41.077799",
+    "experiment_type": "balanced_augmentation_faker",
+    "config_name": "africa",
+    "scenario_name": "moderate_balance_labels_faker"
+  },
+  "results": {
+    "scenario_name": "moderate_balance_labels_faker",
+    "generation_method": "faker",
+    "original_analysis": {
+      "total_samples": 62739,
+      "privileged_count": 27684,
+      "unprivileged_count": 35055,
+      "current_sensitive_ratio": 0.441256634629178,
+      "positive_count": 5707,
+      "negative_count": 57032,
+      "current_label_ratio": 0.09096415307862733,
+      "cross_tab": {
+        "priv_pos": 2147,
+        "priv_neg": 25537,
+        "unpriv_pos": 3560,
+        "unpriv_neg": 31495
+      },
+      "columns": {
+        "sensitive_col": "gender",
+        "label_col": "dropout",
+        "privileged_val": "Male",
+        "positive_label": "Yes"
+      }
+    },
+    "final_analysis": {
+      "total_samples": 85264,
+      "privileged_count": 43888,
+      "unprivileged_count": 41376,
+      "current_sensitive_ratio": 0.514730718708951,
+      "positive_count": 28232,
+      "negative_count": 57032,
+      "current_label_ratio": 0.3311127791330456,
+      "cross_tab": {
+        "priv_pos": 18351,
+        "priv_neg": 25537,
+        "unpriv_pos": 9881,
+        "unpriv_neg": 31495
+      },
+      "columns": {
+        "sensitive_col": "gender",
+        "label_col": "dropout",
+        "privileged_val": "Male",
+        "positive_label": "Yes"
+      }
+    },
+    "augmented_data_shape": [
+      85264,
+      13
+    ],
+    "target_ratios": {
+      "target_sensitive_ratio": 0.65,
+      "target_label_ratio": 0.45
+    },
+    "baseline_metrics": {
+      "model_name": "Baseline_Balanced_moderate_balance_labels_faker_faker",
+      "overall_accuracy": 0.9574268457162962,
+      "privileged_accuracy": 0.9697589813551615,
+      "unprivileged_accuracy": 0.9442896935933147,
+      "privileged_tpr": 0.9671195652173913,
+      "unprivileged_tpr": 0.8296032553407935,
+      "privileged_fpr": 0.028342455043002347,
+      "unprivileged_fpr": 0.01986965506278811,
+      "privileged_selection_rate": 0.4211005002273761,
+      "unprivileged_selection_rate": 0.2126680392394332,
+      "accuracy_difference": 0.02546928776184676,
+      "tpr_difference": 0.1375163098765978,
+      "fpr_difference": 0.008472799980214236,
+      "demographic_parity_difference": 0.2084324609879429
+    },
+    "fair_metrics": {
+      "model_name": "Fair_Balanced_moderate_balance_labels_faker_faker",
+      "overall_accuracy": 0.9485134580425731,
+      "privileged_accuracy": 0.9548658481127785,
+      "unprivileged_accuracy": 0.9417463969964879,
+      "privileged_tpr": 0.9953804347826087,
+      "unprivileged_tpr": 0.9974567650050865,
+      "privileged_fpr": 0.07427677873338545,
+      "unprivileged_fpr": 0.07566364647909712,
+      "privileged_selection_rate": 0.4596407457935425,
+      "unprivileged_selection_rate": 0.2951435145936781,
+      "accuracy_difference": 0.013119451116290648,
+      "tpr_difference": -0.0020763302224777735,
+      "fpr_difference": -0.001386867745711673,
+      "demographic_parity_difference": 0.16449723119986442
+    },
+    "balance_achieved": {
+      "sensitive_ratio_achieved": false,
+      "label_ratio_achieved": false
+    },
+    "improvement_metrics": {
+      "accuracy_difference": 0.008913387673723072,
+      "dp_improvement": 0.043935229788078484,
+      "tpr_improvement": 0.13543997965412002,
+      "fpr_improvement": 0.007085932234502563
+    },
+    "augmentation_plan": {
+      "total_additional": 0,
+      "target_total": 62739,
+      "breakdown": {
+        "priv_pos": 16204,
+        "priv_neg": 0,
+        "unpriv_pos": 6321,
+        "unpriv_neg": 0
+      },
+      "target_distribution": {
+        "priv_pos": 18351,
+        "priv_neg": 22429,
+        "unpriv_pos": 9881,
+        "unpriv_neg": 12078
+      }
+    },
+    "augmented_dataset_path": "./data/augmented_africa_moderate_balance_labels_faker_faker_0.65_0.45.csv"
+  }
+}

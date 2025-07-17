@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-23T19:06:10.510085",
+    "experiment_type": "balanced_augmentation_llm_async",
+    "config_name": "africa",
+    "scenario_name": "extreme_male_majority_llm_async"
+  },
+  "results": {
+    "scenario_name": "extreme_male_majority_llm_async",
+    "generation_method": "llm_async",
+    "original_analysis": {
+      "total_samples": 62739,
+      "privileged_count": 27684,
+      "unprivileged_count": 35055,
+      "current_sensitive_ratio": 0.441256634629178,
+      "positive_count": 5707,
+      "negative_count": 57032,
+      "current_label_ratio": 0.09096415307862733,
+      "cross_tab": {
+        "priv_pos": 2147,
+        "priv_neg": 25537,
+        "unpriv_pos": 3560,
+        "unpriv_neg": 31495
+      },
+      "columns": {
+        "sensitive_col": "gender",
+        "label_col": "dropout",
+        "privileged_val": "Male",
+        "positive_label": "Yes"
+      }
+    },
+    "final_analysis": {
+      "total_samples": 134153,
+      "privileged_count": 91251,
+      "unprivileged_count": 42902,
+      "current_sensitive_ratio": 0.6802009645703041,
+      "positive_count": 57032,
+      "negative_count": 77121,
+      "current_label_ratio": 0.4251265346283721,
+      "cross_tab": {
+        "priv_pos": 45625,
+        "priv_neg": 45626,
+        "unpriv_pos": 11407,
+        "unpriv_neg": 31495
+      },
+      "columns": {
+        "sensitive_col": "gender",
+        "label_col": "dropout",
+        "privileged_val": "Male",
+        "positive_label": "Yes"
+      }
+    },
+    "augmented_data_shape": [
+      134153,
+      13
+    ],
+    "target_ratios": {
+      "target_sensitive_ratio": 0.8,
+      "target_label_ratio": 0.5
+    },
+    "baseline_metrics": {
+      "model_name": "Baseline_Balanced_extreme_male_majority_llm_async_llm_async",
+      "overall_accuracy": 0.7818195371026052,
+      "privileged_accuracy": 0.729309682025372,
+      "unprivileged_accuracy": 0.8927163071213176,
+      "privileged_tpr": 0.8390766874521387,
+      "unprivileged_tpr": 0.6160635481023831,
+      "privileged_fpr": 0.38134097926775473,
+      "unprivileged_fpr": 0.008653241032095658,
+      "privileged_selection_rate": 0.6111263660827063,
+      "unprivileged_selection_rate": 0.16829041985618187,
+      "accuracy_difference": -0.1634066250959455,
+      "tpr_difference": 0.22301313934975564,
+      "fpr_difference": 0.3726877382356591,
+      "demographic_parity_difference": 0.44283594622652445
+    },
+    "fair_metrics": {
+      "model_name": "Fair_Balanced_extreme_male_majority_llm_async_llm_async",
+      "overall_accuracy": 0.7911371175133242,
+      "privileged_accuracy": 0.7295842715140864,
+      "unprivileged_accuracy": 0.9211319879378335,
+      "privileged_tpr": 0.8863362870583087,
+      "unprivileged_tpr": 0.9646954986760812,
+      "privileged_fpr": 0.428429642699603,
+      "unprivileged_fpr": 0.09439899307740718,
+      "privileged_selection_rate": 0.6583008402438355,
+      "unprivileged_selection_rate": 0.3231268847135235,
+      "accuracy_difference": -0.19154771642374702,
+      "tpr_difference": -0.07835921161777248,
+      "fpr_difference": 0.3340306496221958,
+      "demographic_parity_difference": 0.335173955530312
+    },
+    "balance_achieved": {
+      "sensitive_ratio_achieved": false,
+      "label_ratio_achieved": false
+    },
+    "improvement_metrics": {
+      "accuracy_difference": -0.00931758041071895,
+      "dp_improvement": 0.10766199069621246,
+      "tpr_improvement": 0.14465392773198316,
+      "fpr_improvement": 0.038657088613463286
+    },
+    "augmentation_plan": {
+      "total_additional": 51325,
+      "target_total": 114064,
+      "breakdown": {
+        "priv_pos": 43478,
+        "priv_neg": 20089,
+        "unpriv_pos": 7847,
+        "unpriv_neg": 0
+      },
+      "target_distribution": {
+        "priv_pos": 45625,
+        "priv_neg": 45626,
+        "unpriv_pos": 11407,
+        "unpriv_neg": 11406
+      }
+    },
+    "augmented_dataset_path": "./data/augmented_africa_extreme_male_majority_llm_async_llm_async_0.8_0.5.csv"
+  }
+}

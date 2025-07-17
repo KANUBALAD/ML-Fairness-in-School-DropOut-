@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-23T16:33:08.734791",
+    "experiment_type": "balanced_augmentation_llm_async",
+    "config_name": "brazil",
+    "scenario_name": "reverse_gender_india_with_fairness"
+  },
+  "results": {
+    "scenario_name": "reverse_gender_india_with_fairness",
+    "generation_method": "llm_async",
+    "original_analysis": {
+      "total_samples": 4424,
+      "privileged_count": 2868,
+      "unprivileged_count": 1556,
+      "current_sensitive_ratio": 0.6482820976491862,
+      "positive_count": 1421,
+      "negative_count": 3003,
+      "current_label_ratio": 0.3212025316455696,
+      "cross_tab": {
+        "priv_pos": 720,
+        "priv_neg": 2148,
+        "unpriv_pos": 701,
+        "unpriv_neg": 855
+      },
+      "columns": {
+        "sensitive_col": "Gender",
+        "label_col": "Target",
+        "privileged_val": 0,
+        "positive_label": "Dropout"
+      }
+    },
+    "final_analysis": {
+      "total_samples": 6100,
+      "privileged_count": 4544,
+      "unprivileged_count": 1556,
+      "current_sensitive_ratio": 0.7449180327868853,
+      "positive_count": 1421,
+      "negative_count": 4679,
+      "current_label_ratio": 0.23295081967213116,
+      "cross_tab": {
+        "priv_pos": 720,
+        "priv_neg": 3824,
+        "unpriv_pos": 701,
+        "unpriv_neg": 855
+      },
+      "columns": {
+        "sensitive_col": "Gender",
+        "label_col": "Target",
+        "privileged_val": 0,
+        "positive_label": "Dropout"
+      }
+    },
+    "augmented_data_shape": [
+      6100,
+      35
+    ],
+    "target_ratios": {
+      "target_sensitive_ratio": 0.35,
+      "target_label_ratio": 0.12
+    },
+    "baseline_metrics": {
+      "model_name": "Baseline_Balanced_reverse_gender_india_with_fairness_llm_async",
+      "overall_accuracy": 0.8942622950819672,
+      "privileged_accuracy": 0.9205298013245033,
+      "unprivileged_accuracy": 0.8184713375796179,
+      "privileged_tpr": 0.6058394160583942,
+      "unprivileged_tpr": 0.7142857142857143,
+      "privileged_fpr": 0.02340702210663199,
+      "unprivileged_fpr": 0.08982035928143713,
+      "privileged_selection_rate": 0.11147902869757174,
+      "unprivileged_selection_rate": 0.3821656050955414,
+      "accuracy_difference": 0.10205846374488547,
+      "tpr_difference": -0.1084462982273201,
+      "fpr_difference": -0.06641333717480513,
+      "demographic_parity_difference": -0.27068657639796967
+    },
+    "fair_metrics": {
+      "model_name": "Fair_Balanced_reverse_gender_india_with_fairness_llm_async",
+      "overall_accuracy": 0.8713114754098361,
+      "privileged_accuracy": 0.891832229580574,
+      "unprivileged_accuracy": 0.8121019108280255,
+      "privileged_tpr": 0.7664233576642335,
+      "unprivileged_tpr": 0.8027210884353742,
+      "privileged_fpr": 0.0858257477243173,
+      "unprivileged_fpr": 0.17964071856287425,
+      "privileged_selection_rate": 0.18874172185430463,
+      "unprivileged_selection_rate": 0.4713375796178344,
+      "accuracy_difference": 0.07973031875254843,
+      "tpr_difference": -0.036297730771140624,
+      "fpr_difference": -0.09381497083855696,
+      "demographic_parity_difference": -0.2825958577635298
+    },
+    "balance_achieved": {
+      "sensitive_ratio_achieved": false,
+      "label_ratio_achieved": false
+    },
+    "improvement_metrics": {
+      "accuracy_difference": 0.022950819672131084,
+      "dp_improvement": -0.011909281365560132,
+      "tpr_improvement": 0.07214856745617948,
+      "fpr_improvement": -0.027401633663751826
+    },
+    "augmentation_plan": {
+      "total_additional": 0,
+      "target_total": 4424,
+      "breakdown": {
+        "priv_pos": 0,
+        "priv_neg": 0,
+        "unpriv_pos": 0,
+        "unpriv_neg": 1676
+      },
+      "target_distribution": {
+        "priv_pos": 185,
+        "priv_neg": 1363,
+        "unpriv_pos": 345,
+        "unpriv_neg": 2531
+      }
+    },
+    "augmented_dataset_path": "./data/augmented_brazil_reverse_gender_india_with_fairness_llm_async_0.35_0.12.csv"
+  }
+}

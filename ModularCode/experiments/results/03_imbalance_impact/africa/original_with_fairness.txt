@@ -1,0 +1,196 @@
+✓ LLM generator loaded successfully
+✓ SDV library loaded successfully with conditional sampling support
+✓ CTGAN/TVAE generators loaded successfully
+Results will be saved to: ./experiments/results/03_imbalance_impact/africa
+
+================================================================================
+STANDARD ML EXPERIMENT
+Dataset: africa
+================================================================================
+Current working directory: /Users/abubakarialidu/Desktop/ML-Fairness-in-School-DropOut-/ModularCode
+Loading configuration from: yaml/africa.yaml and fairness unawareness is True
+Sensitive attribute (privileged=1, unprivileged=0) counts: [35055 27684]
+Xtrain shape: (50191, 44), ytrain shape: (50191,)
+Xtest shape: (12548, 44), ytest shape: (12548,)
+Performing 5x2 cross-validation...
+logistic_regression: Mean accuracy = 0.9410, Std deviation = 0.0008
+decision_tree: Mean accuracy = 0.9455, Std deviation = 0.0007
+random_forest: Mean accuracy = 0.9456, Std deviation = 0.0005
+
+Evaluating logistic_regression...
+
+=== Fairness Report for Baseline logistic_regression ===
+Overall Accuracy: 0.9412
+
+Group-wise Performance:
+  Privileged Group Accuracy:   0.9567
+  Unprivileged Group Accuracy: 0.9289
+  Accuracy Difference:         0.0278
+
+True Positive Rate (Recall):
+  Privileged Group TPR:        0.7646
+  Unprivileged Group TPR:      0.4663
+  TPR Difference:              0.2983
+
+False Positive Rate:
+  Privileged Group FPR:        0.0272
+  Unprivileged Group FPR:      0.0188
+  FPR Difference:              0.0084
+
+Selection Rate (Demographic Parity):
+  Privileged Group Selection Rate:   0.0842
+  Unprivileged Group Selection Rate: 0.0643
+  Demographic Parity Difference:     0.0200
+
+Fairness Assessment:
+  ✓ Demographic Parity: FAIR (difference < 0.1)
+
+Running fairness mitigation (reweighting) using model: logistic_regression
+=== Fair Model results ===
+
+=== Fairness Report for Fair (reweighting) ===
+Overall Accuracy: 0.9270
+
+Group-wise Performance:
+  Privileged Group Accuracy:   0.9324
+  Unprivileged Group Accuracy: 0.9227
+  Accuracy Difference:         0.0096
+
+True Positive Rate (Recall):
+  Privileged Group TPR:        1.0000
+  Unprivileged Group TPR:      1.0000
+  TPR Difference:              0.0000
+
+False Positive Rate:
+  Privileged Group FPR:        0.0733
+  Unprivileged Group FPR:      0.0860
+  FPR Difference:              -0.0127
+
+Selection Rate (Demographic Parity):
+  Privileged Group Selection Rate:   0.1450
+  Unprivileged Group Selection Rate: 0.1789
+  Demographic Parity Difference:     -0.0339
+
+Fairness Assessment:
+  ✓ Demographic Parity: FAIR (difference < 0.1)
+
+Evaluating decision_tree...
+
+=== Fairness Report for Baseline decision_tree ===
+Overall Accuracy: 0.9453
+
+Group-wise Performance:
+  Privileged Group Accuracy:   0.9607
+  Unprivileged Group Accuracy: 0.9330
+  Accuracy Difference:         0.0277
+
+True Positive Rate (Recall):
+  Privileged Group TPR:        0.8135
+  Unprivileged Group TPR:      0.4635
+  TPR Difference:              0.3500
+
+False Positive Rate:
+  Privileged Group FPR:        0.0270
+  Unprivileged Group FPR:      0.0138
+  FPR Difference:              0.0131
+
+Selection Rate (Demographic Parity):
+  Privileged Group Selection Rate:   0.0878
+  Unprivileged Group Selection Rate: 0.0595
+  Demographic Parity Difference:     0.0283
+
+Fairness Assessment:
+  ✓ Demographic Parity: FAIR (difference < 0.1)
+
+Running fairness mitigation (reweighting) using model: decision_tree
+=== Fair Model results ===
+
+=== Fairness Report for Fair (reweighting) ===
+Overall Accuracy: 0.9366
+
+Group-wise Performance:
+  Privileged Group Accuracy:   0.9324
+  Unprivileged Group Accuracy: 0.9400
+  Accuracy Difference:         -0.0077
+
+True Positive Rate (Recall):
+  Privileged Group TPR:        0.9977
+  Unprivileged Group TPR:      1.0000
+  TPR Difference:              -0.0023
+
+False Positive Rate:
+  Privileged Group FPR:        0.0731
+  Unprivileged Group FPR:      0.0668
+  FPR Difference:              0.0063
+
+Selection Rate (Demographic Parity):
+  Privileged Group Selection Rate:   0.1446
+  Unprivileged Group Selection Rate: 0.1616
+  Demographic Parity Difference:     -0.0170
+
+Fairness Assessment:
+  ✓ Demographic Parity: FAIR (difference < 0.1)
+
+Evaluating random_forest...
+
+=== Fairness Report for Baseline random_forest ===
+Overall Accuracy: 0.9452
+
+Group-wise Performance:
+  Privileged Group Accuracy:   0.9607
+  Unprivileged Group Accuracy: 0.9329
+  Accuracy Difference:         0.0278
+
+True Positive Rate (Recall):
+  Privileged Group TPR:        0.8135
+  Unprivileged Group TPR:      0.4635
+  TPR Difference:              0.3500
+
+False Positive Rate:
+  Privileged Group FPR:        0.0270
+  Unprivileged Group FPR:      0.0140
+  FPR Difference:              0.0130
+
+Selection Rate (Demographic Parity):
+  Privileged Group Selection Rate:   0.0878
+  Unprivileged Group Selection Rate: 0.0597
+  Demographic Parity Difference:     0.0281
+
+Fairness Assessment:
+  ✓ Demographic Parity: FAIR (difference < 0.1)
+
+Running fairness mitigation (reweighting) using model: random_forest
+=== Fair Model results ===
+
+=== Fairness Report for Fair (reweighting) ===
+Overall Accuracy: 0.9368
+
+Group-wise Performance:
+  Privileged Group Accuracy:   0.9326
+  Unprivileged Group Accuracy: 0.9402
+  Accuracy Difference:         -0.0076
+
+True Positive Rate (Recall):
+  Privileged Group TPR:        1.0000
+  Unprivileged Group TPR:      1.0000
+  TPR Difference:              0.0000
+
+False Positive Rate:
+  Privileged Group FPR:        0.0731
+  Unprivileged Group FPR:      0.0666
+  FPR Difference:              0.0065
+
+Selection Rate (Demographic Parity):
+  Privileged Group Selection Rate:   0.1448
+  Unprivileged Group Selection Rate: 0.1615
+  Demographic Parity Difference:     -0.0167
+
+Fairness Assessment:
+  ✓ Demographic Parity: FAIR (difference < 0.1)
+✓ Saved results to: ./experiments/results/03_imbalance_impact/africa/standard_ml_africa.json
+
+================================================================================
+STANDARD ML EXPERIMENT COMPLETED
+================================================================================
+
+✓ All results saved to: ./experiments/results/03_imbalance_impact/africa

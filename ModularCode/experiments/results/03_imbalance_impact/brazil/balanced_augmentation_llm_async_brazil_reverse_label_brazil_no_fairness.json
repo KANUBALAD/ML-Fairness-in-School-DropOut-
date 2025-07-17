@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-23T16:33:58.691568",
+    "experiment_type": "balanced_augmentation_llm_async",
+    "config_name": "brazil",
+    "scenario_name": "reverse_label_brazil_no_fairness"
+  },
+  "results": {
+    "scenario_name": "reverse_label_brazil_no_fairness",
+    "generation_method": "llm_async",
+    "original_analysis": {
+      "total_samples": 4424,
+      "privileged_count": 2868,
+      "unprivileged_count": 1556,
+      "current_sensitive_ratio": 0.6482820976491862,
+      "positive_count": 1421,
+      "negative_count": 3003,
+      "current_label_ratio": 0.3212025316455696,
+      "cross_tab": {
+        "priv_pos": 720,
+        "priv_neg": 2148,
+        "unpriv_pos": 701,
+        "unpriv_neg": 855
+      },
+      "columns": {
+        "sensitive_col": "Gender",
+        "label_col": "Target",
+        "privileged_val": 0,
+        "positive_label": "Dropout"
+      }
+    },
+    "final_analysis": {
+      "total_samples": 6011,
+      "privileged_count": 3220,
+      "unprivileged_count": 2791,
+      "current_sensitive_ratio": 0.5356845782731658,
+      "positive_count": 3008,
+      "negative_count": 3003,
+      "current_label_ratio": 0.5004159041756779,
+      "cross_tab": {
+        "priv_pos": 1072,
+        "priv_neg": 2148,
+        "unpriv_pos": 1936,
+        "unpriv_neg": 855
+      },
+      "columns": {
+        "sensitive_col": "Gender",
+        "label_col": "Target",
+        "privileged_val": 0,
+        "positive_label": "Dropout"
+      }
+    },
+    "augmented_data_shape": [
+      6011,
+      35
+    ],
+    "target_ratios": {
+      "target_sensitive_ratio": 0.65,
+      "target_label_ratio": 0.68
+    },
+    "baseline_metrics": {
+      "model_name": "Baseline_Balanced_reverse_label_brazil_no_fairness_llm_async",
+      "overall_accuracy": 0.9177057356608479,
+      "privileged_accuracy": 0.9189627228525121,
+      "unprivileged_accuracy": 0.9163822525597269,
+      "privileged_tpr": 0.8272251308900523,
+      "unprivileged_tpr": 0.9221411192214112,
+      "privileged_fpr": 0.03990610328638498,
+      "unprivileged_fpr": 0.09714285714285714,
+      "privileged_selection_rate": 0.28363047001620745,
+      "unprivileged_selection_rate": 0.6757679180887372,
+      "accuracy_difference": 0.0025804702927851864,
+      "tpr_difference": -0.09491598833135884,
+      "fpr_difference": -0.057236753856472165,
+      "demographic_parity_difference": -0.3921374480725297
+    },
+    "fair_metrics": {
+      "model_name": "Fair_Balanced_reverse_label_brazil_no_fairness_llm_async",
+      "overall_accuracy": 0.912718204488778,
+      "privileged_accuracy": 0.9173419773095624,
+      "unprivileged_accuracy": 0.9078498293515358,
+      "privileged_tpr": 0.8324607329842932,
+      "unprivileged_tpr": 0.9099756690997567,
+      "privileged_fpr": 0.04460093896713615,
+      "unprivileged_fpr": 0.09714285714285714,
+      "privileged_selection_rate": 0.2884927066450567,
+      "unprivileged_selection_rate": 0.6672354948805461,
+      "accuracy_difference": 0.009492147958026553,
+      "tpr_difference": -0.07751493611546345,
+      "fpr_difference": -0.05254191817572099,
+      "demographic_parity_difference": -0.3787427882354894
+    },
+    "balance_achieved": {
+      "sensitive_ratio_achieved": false,
+      "label_ratio_achieved": false
+    },
+    "improvement_metrics": {
+      "accuracy_difference": 0.004987531172069848,
+      "dp_improvement": 0.013394659837040301,
+      "tpr_improvement": 0.017401052215895385,
+      "fpr_improvement": 0.004694835680751172
+    },
+    "augmentation_plan": {
+      "total_additional": 0,
+      "target_total": 4424,
+      "breakdown": {
+        "priv_pos": 1235,
+        "priv_neg": 0,
+        "unpriv_pos": 352,
+        "unpriv_neg": 0
+      },
+      "target_distribution": {
+        "priv_pos": 1955,
+        "priv_neg": 920,
+        "unpriv_pos": 1053,
+        "unpriv_neg": 496
+      }
+    },
+    "augmented_dataset_path": "./data/augmented_brazil_reverse_label_brazil_no_fairness_llm_async_0.65_0.68.csv"
+  }
+}

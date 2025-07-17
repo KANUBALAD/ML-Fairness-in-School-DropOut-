@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-23T16:34:06.859036",
+    "experiment_type": "balanced_augmentation_llm_async",
+    "config_name": "brazil",
+    "scenario_name": "gender_balanced_low_dropout_with_fairness"
+  },
+  "results": {
+    "scenario_name": "gender_balanced_low_dropout_with_fairness",
+    "generation_method": "llm_async",
+    "original_analysis": {
+      "total_samples": 4424,
+      "privileged_count": 2868,
+      "unprivileged_count": 1556,
+      "current_sensitive_ratio": 0.6482820976491862,
+      "positive_count": 1421,
+      "negative_count": 3003,
+      "current_label_ratio": 0.3212025316455696,
+      "cross_tab": {
+        "priv_pos": 720,
+        "priv_neg": 2148,
+        "unpriv_pos": 701,
+        "unpriv_neg": 855
+      },
+      "columns": {
+        "sensitive_col": "Gender",
+        "label_col": "Target",
+        "privileged_val": 0,
+        "positive_label": "Dropout"
+      }
+    },
+    "final_analysis": {
+      "total_samples": 5876,
+      "privileged_count": 4180,
+      "unprivileged_count": 1696,
+      "current_sensitive_ratio": 0.7113682777399591,
+      "positive_count": 1720,
+      "negative_count": 4156,
+      "current_label_ratio": 0.292716133424098,
+      "cross_tab": {
+        "priv_pos": 879,
+        "priv_neg": 3301,
+        "unpriv_pos": 841,
+        "unpriv_neg": 855
+      },
+      "columns": {
+        "sensitive_col": "Gender",
+        "label_col": "Target",
+        "privileged_val": 0,
+        "positive_label": "Dropout"
+      }
+    },
+    "augmented_data_shape": [
+      5876,
+      35
+    ],
+    "target_ratios": {
+      "target_sensitive_ratio": 0.5,
+      "target_label_ratio": 0.3
+    },
+    "baseline_metrics": {
+      "model_name": "Baseline_Balanced_gender_balanced_low_dropout_with_fairness_llm_async",
+      "overall_accuracy": 0.8656462585034014,
+      "privileged_accuracy": 0.8931203931203932,
+      "unprivileged_accuracy": 0.8038674033149171,
+      "privileged_tpr": 0.6139240506329114,
+      "unprivileged_tpr": 0.6935483870967742,
+      "privileged_fpr": 0.039634146341463415,
+      "unprivileged_fpr": 0.07954545454545454,
+      "privileged_selection_rate": 0.1511056511056511,
+      "unprivileged_selection_rate": 0.39502762430939226,
+      "accuracy_difference": 0.08925298980547602,
+      "tpr_difference": -0.0796243364638628,
+      "fpr_difference": -0.03991130820399113,
+      "demographic_parity_difference": -0.24392197320374115
+    },
+    "fair_metrics": {
+      "model_name": "Fair_Balanced_gender_balanced_low_dropout_with_fairness_llm_async",
+      "overall_accuracy": 0.8460884353741497,
+      "privileged_accuracy": 0.8525798525798526,
+      "unprivileged_accuracy": 0.8314917127071824,
+      "privileged_tpr": 0.7721518987341772,
+      "unprivileged_tpr": 0.8064516129032258,
+      "privileged_fpr": 0.12804878048780488,
+      "unprivileged_fpr": 0.14204545454545456,
+      "privileged_selection_rate": 0.25307125307125306,
+      "unprivileged_selection_rate": 0.48342541436464087,
+      "accuracy_difference": 0.02108813987267022,
+      "tpr_difference": -0.034299714169048534,
+      "fpr_difference": -0.013996674057649677,
+      "demographic_parity_difference": -0.23035416129338782
+    },
+    "balance_achieved": {
+      "sensitive_ratio_achieved": false,
+      "label_ratio_achieved": true
+    },
+    "improvement_metrics": {
+      "accuracy_difference": 0.019557823129251695,
+      "dp_improvement": 0.013567811910353333,
+      "tpr_improvement": 0.045324622294814265,
+      "fpr_improvement": 0.025914634146341452
+    },
+    "augmentation_plan": {
+      "total_additional": 1312,
+      "target_total": 5736,
+      "breakdown": {
+        "priv_pos": 140,
+        "priv_neg": 0,
+        "unpriv_pos": 159,
+        "unpriv_neg": 1153
+      },
+      "target_distribution": {
+        "priv_pos": 860,
+        "priv_neg": 2008,
+        "unpriv_pos": 860,
+        "unpriv_neg": 2008
+      }
+    },
+    "augmented_dataset_path": "./data/augmented_brazil_gender_balanced_low_dropout_with_fairness_llm_async_0.5_0.3.csv"
+  }
+}

@@ -1,0 +1,86 @@
+BASELINE FAIRNESS ASSESSMENT - Mon Jun 23 15:44:49 CEST 2025
+=========================================
+=== brazil Baseline (Model: logistic_regression) ===
+Fairness metrics found - extracting summary...
+=== Fairness Report for Baseline logistic_regression ===
+Overall Accuracy: 0.8802
+
+Group-wise Performance:
+  Privileged Group Accuracy:   0.8989
+  Unprivileged Group Accuracy: 0.8474
+  Accuracy Difference:         0.0516
+
+True Positive Rate (Recall):
+  Privileged Group TPR:        0.7029
+  Unprivileged Group TPR:      0.7603
+  TPR Difference:              -0.0574
+
+False Positive Rate:
+  Privileged Group FPR:        0.0376
+  Unprivileged Group FPR:      0.0800
+  FPR Difference:              -0.0424
+
+Selection Rate (Demographic Parity):
+  Privileged Group Selection Rate:   0.2004
+  Unprivileged Group Selection Rate: 0.3894
+--
+=== Fairness Report for Fair (reweighting) ===
+Overall Accuracy: 0.8723
+
+
+=== africa Baseline (Model: random_forest) ===
+Fairness metrics found - extracting summary...
+=== Fairness Report for Baseline random_forest ===
+Overall Accuracy: 0.9452
+
+Group-wise Performance:
+  Privileged Group Accuracy:   0.9607
+  Unprivileged Group Accuracy: 0.9329
+  Accuracy Difference:         0.0278
+
+True Positive Rate (Recall):
+  Privileged Group TPR:        0.8135
+  Unprivileged Group TPR:      0.4635
+  TPR Difference:              0.3500
+
+False Positive Rate:
+  Privileged Group FPR:        0.0270
+  Unprivileged Group FPR:      0.0140
+  FPR Difference:              0.0130
+
+Selection Rate (Demographic Parity):
+  Privileged Group Selection Rate:   0.0878
+  Unprivileged Group Selection Rate: 0.0597
+--
+=== Fairness Report for Fair (reweighting) ===
+Overall Accuracy: 0.9367
+
+
+=== india Baseline (Model: logistic_regression) ===
+Fairness metrics found - extracting summary...
+=== Fairness Report for Baseline logistic_regression ===
+Overall Accuracy: 0.8925
+
+Group-wise Performance:
+  Privileged Group Accuracy:   0.8409
+  Unprivileged Group Accuracy: 0.9155
+  Accuracy Difference:         -0.0746
+
+True Positive Rate (Recall):
+  Privileged Group TPR:        0.4167
+  Unprivileged Group TPR:      0.2222
+  TPR Difference:              0.1944
+
+False Positive Rate:
+  Privileged Group FPR:        0.0648
+  Unprivileged Group FPR:      0.0149
+  FPR Difference:              0.0499
+
+Selection Rate (Demographic Parity):
+  Privileged Group Selection Rate:   0.1288
+  Unprivileged Group Selection Rate: 0.0338
+--
+=== Fairness Report for Fair (reweighting) ===
+Overall Accuracy: 0.8318
+
+

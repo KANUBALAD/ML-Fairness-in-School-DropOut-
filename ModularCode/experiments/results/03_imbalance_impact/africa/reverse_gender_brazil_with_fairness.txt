@@ -1,0 +1,137 @@
+✓ LLM generator loaded successfully
+✓ SDV library loaded successfully with conditional sampling support
+✓ CTGAN/TVAE generators loaded successfully
+Results will be saved to: ./experiments/results/03_imbalance_impact/africa
+Running balanced augmentation experiment with method: faker
+
+================================================================================
+BALANCED AUGMENTATION EXPERIMENT: reverse_gender_brazil_with_fairness
+Dataset: africa
+Generation Method: faker
+Target Sensitive Ratio: 0.35 (privileged:unprivileged)
+Target Label Ratio: 0.32 (positive:negative)
+================================================================================
+Original dataset shape: (62739, 13)
+
+Current Distribution Analysis:
+  Total samples: 62739
+  Privileged: 27684 (0.441)
+  Unprivileged: 35055 (0.559)
+  Positive labels: 5707 (0.091)
+  Negative labels: 57032 (0.909)
+
+Cross-tabulation:
+  Privileged + Positive: 2147
+  Privileged + Negative: 25537
+  Unprivileged + Positive: 3560
+  Unprivileged + Negative: 31495
+
+Augmentation Plan:
+  Total additional samples needed: 0
+  Target total size: 62739
+  Additional samples by category:
+    Privileged + Positive: +4879
+    Privileged + Negative: +0
+    Unprivileged + Positive: +9490
+    Unprivileged + Negative: +0
+
+Generating targeted synthetic samples using method: faker
+Total additional samples needed: 0
+Using Faker generator...
+Generating 4879 samples for Privileged + Positive
+  Generating 4879 samples for privileged group with positive outcome
+    Using 100% Faker generation for reliability and speed
+    ✓ Generated 4879 samples
+Generating 9490 samples for Unprivileged + Positive
+  Generating 9490 samples for unprivileged group with positive outcome
+    Using 100% Faker generation for reliability and speed
+    ✓ Generated 9490 samples
+
+Augmented dataset shape: (77108, 13)
+
+Verification - Final Distribution:
+  Privileged ratio: 0.422 (target: 0.350)
+  Positive label ratio: 0.260 (target: 0.320)
+✓ Saved augmented dataset to: ./data/augmented_africa_reverse_gender_brazil_with_fairness_faker_0.35_0.32.csv
+
+Testing fairness interventions on balanced dataset (method: faker)...
+Preprocessed balanced data shape: (77108, 57)
+Final sensitive distribution: [44545 32563]
+Final label distribution: [57032 20076]
+
+--- Baseline Model on Balanced Data (faker) ---
+
+=== Fairness Report for Baseline_Balanced_reverse_gender_brazil_with_fairness_faker ===
+Overall Accuracy: 0.9530
+
+Group-wise Performance:
+  Privileged Group Accuracy:   0.9606
+  Unprivileged Group Accuracy: 0.9474
+  Accuracy Difference:         0.0133
+
+True Positive Rate (Recall):
+  Privileged Group TPR:        0.9201
+  Unprivileged Group TPR:      0.8669
+  TPR Difference:              0.0532
+
+False Positive Rate:
+  Privileged Group FPR:        0.0281
+  Unprivileged Group FPR:      0.0194
+  FPR Difference:              0.0088
+
+Selection Rate (Demographic Parity):
+  Privileged Group Selection Rate:   0.2214
+  Unprivileged Group Selection Rate: 0.2672
+  Demographic Parity Difference:     -0.0458
+
+Fairness Assessment:
+  ✓ Demographic Parity: FAIR (difference < 0.1)
+
+Applying fairness intervention on balanced data: reweighting
+
+--- Fair Model on Balanced Data (faker) ---
+
+=== Fairness Report for Fair_Balanced_reverse_gender_brazil_with_fairness_faker ===
+Overall Accuracy: 0.9376
+
+Group-wise Performance:
+  Privileged Group Accuracy:   0.9411
+  Unprivileged Group Accuracy: 0.9350
+  Accuracy Difference:         0.0061
+
+True Positive Rate (Recall):
+  Privileged Group TPR:        0.9965
+  Unprivileged Group TPR:      0.9981
+  TPR Difference:              -0.0016
+
+False Positive Rate:
+  Privileged Group FPR:        0.0743
+  Unprivileged Group FPR:      0.0911
+  FPR Difference:              -0.0168
+
+Selection Rate (Demographic Parity):
+  Privileged Group Selection Rate:   0.2741
+  Unprivileged Group Selection Rate: 0.3563
+  Demographic Parity Difference:     -0.0822
+
+Fairness Assessment:
+  ✓ Demographic Parity: FAIR (difference < 0.1)
+✓ Saved results to: ./experiments/results/03_imbalance_impact/africa/balanced_augmentation_faker_africa_reverse_gender_brazil_with_fairness.json
+
+================================================================================
+BALANCED AUGMENTATION EXPERIMENT RESULTS
+================================================================================
+Generation Method: faker
+Original dataset: 62739 samples
+Augmented dataset: 77108 samples
+Samples added: 14369
+
+Balance Achievement:
+  Sensitive ratio: 0.441 → 0.422
+  Label ratio: 0.091 → 0.260
+
+Fairness Impact:
+  Accuracy cost: 0.0154
+  DP improvement: -0.0364
+
+✓ All results saved to: ./experiments/results/03_imbalance_impact/africa

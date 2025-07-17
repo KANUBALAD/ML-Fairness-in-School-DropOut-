@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-23T16:34:41.824995",
+    "experiment_type": "balanced_augmentation_llm_async",
+    "config_name": "india",
+    "scenario_name": "slight_male_majority_no_fairness"
+  },
+  "results": {
+    "scenario_name": "slight_male_majority_no_fairness",
+    "generation_method": "llm_async",
+    "original_analysis": {
+      "total_samples": 2137,
+      "privileged_count": 743,
+      "unprivileged_count": 1394,
+      "current_sensitive_ratio": 0.34768366869443146,
+      "positive_count": 256,
+      "negative_count": 1881,
+      "current_label_ratio": 0.11979410388394947,
+      "cross_tab": {
+        "priv_pos": 118,
+        "priv_neg": 625,
+        "unpriv_pos": 138,
+        "unpriv_neg": 1256
+      },
+      "columns": {
+        "sensitive_col": "STUDENTGENDER",
+        "label_col": "STUDENT_DROPOUT_STATUS",
+        "privileged_val": "M",
+        "positive_label": "DROPOUT"
+      }
+    },
+    "final_analysis": {
+      "total_samples": 4266,
+      "privileged_count": 2257,
+      "unprivileged_count": 2009,
+      "current_sensitive_ratio": 0.5290670417252695,
+      "positive_count": 1881,
+      "negative_count": 2385,
+      "current_label_ratio": 0.4409282700421941,
+      "cross_tab": {
+        "priv_pos": 1128,
+        "priv_neg": 1129,
+        "unpriv_pos": 753,
+        "unpriv_neg": 1256
+      },
+      "columns": {
+        "sensitive_col": "STUDENTGENDER",
+        "label_col": "STUDENT_DROPOUT_STATUS",
+        "privileged_val": "M",
+        "positive_label": "DROPOUT"
+      }
+    },
+    "augmented_data_shape": [
+      4266,
+      16
+    ],
+    "target_ratios": {
+      "target_sensitive_ratio": 0.6,
+      "target_label_ratio": 0.5
+    },
+    "baseline_metrics": {
+      "model_name": "Baseline_Balanced_slight_male_majority_no_fairness_llm_async",
+      "overall_accuracy": 0.8021077283372365,
+      "privileged_accuracy": 0.6975169300225733,
+      "unprivileged_accuracy": 0.9148418491484185,
+      "privileged_tpr": 0.8603603603603603,
+      "unprivileged_tpr": 0.7806451612903226,
+      "privileged_fpr": 0.4660633484162896,
+      "unprivileged_fpr": 0.00390625,
+      "privileged_selection_rate": 0.6636568848758465,
+      "unprivileged_selection_rate": 0.29683698296836986,
+      "accuracy_difference": -0.21732491912584517,
+      "tpr_difference": 0.07971519907003777,
+      "fpr_difference": 0.4621570984162896,
+      "demographic_parity_difference": 0.36681990190747665
+    },
+    "fair_metrics": {
+      "model_name": "Fair_Balanced_slight_male_majority_no_fairness_llm_async",
+      "overall_accuracy": 0.8021077283372365,
+      "privileged_accuracy": 0.6997742663656885,
+      "unprivileged_accuracy": 0.9124087591240876,
+      "privileged_tpr": 0.8603603603603603,
+      "unprivileged_tpr": 0.7806451612903226,
+      "privileged_fpr": 0.46153846153846156,
+      "unprivileged_fpr": 0.0078125,
+      "privileged_selection_rate": 0.6613995485327314,
+      "unprivileged_selection_rate": 0.29927007299270075,
+      "accuracy_difference": -0.21263449275839907,
+      "tpr_difference": 0.07971519907003777,
+      "fpr_difference": 0.45372596153846156,
+      "demographic_parity_difference": 0.36212947554003067
+    },
+    "balance_achieved": {
+      "sensitive_ratio_achieved": false,
+      "label_ratio_achieved": false
+    },
+    "improvement_metrics": {
+      "accuracy_difference": 0.0,
+      "dp_improvement": 0.004690426367445988,
+      "tpr_improvement": 0.0,
+      "fpr_improvement": 0.008431136877828038
+    },
+    "augmentation_plan": {
+      "total_additional": 1625,
+      "target_total": 3762,
+      "breakdown": {
+        "priv_pos": 1010,
+        "priv_neg": 504,
+        "unpriv_pos": 615,
+        "unpriv_neg": 0
+      },
+      "target_distribution": {
+        "priv_pos": 1128,
+        "priv_neg": 1129,
+        "unpriv_pos": 753,
+        "unpriv_neg": 752
+      }
+    },
+    "augmented_dataset_path": "./data/augmented_india_slight_male_majority_no_fairness_llm_async_0.6_0.5.csv"
+  }
+}

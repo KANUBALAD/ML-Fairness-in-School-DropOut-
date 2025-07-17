@@ -1,0 +1,501 @@
+IMBALANCE IMPACT STUDY (ENHANCED) - Mon Jun 23 16:32:44 CEST 2025
+==========================================
+BASELINE FAIRNESS INTERVENTION RESULTS:
+- Brazil: -3.0% DP improvement (FAILS - makes bias worse)
+- India: -3.5% DP improvement (FAILS - makes bias worse)  
+- Africa: +1.2% DP improvement (works, but marginal)
+
+RESEARCH QUESTIONS:
+1. Can dataset rebalancing make fairness interventions effective?
+2. Which balance scenarios enable breakthrough improvements (>3%)?
+3. Do different datasets need different balance strategies?
+
+METHOD SELECTION (based on previous experiments):
+- Brazil: LLM method (best DP improvement: +5.18%)
+- India: LLM method (testing effectiveness)
+- Africa: Faker method (baseline already works)
+
+Scenarios tested: 15
+Success criteria: BREAKTHROUGH (>3%), MODERATE (1-3%), FAILURE (≤0%)
+
+DETAILED RESULTS:
+=================
+
+=== brazil Results (Method: llm_async) ===
+
+gender_balanced_high_dropout (0.5 0.7):
+  DP Improvement: 0.0095
+  Accuracy Cost: 0.0021
+  Balance Achievement:
+      Sensitive ratio: 0.648 → 0.595
+      Label ratio: 0.321 → 0.572
+  Final Fairness Metrics:
+      Demographic Parity Difference:     -0.2172
+    Overall Accuracy: 0.9224
+
+reverse_gender_brazil (0.35 0.32):
+  DP Improvement: -0.0383
+  -- FAILED: Fairness intervention made bias worse
+  Accuracy Cost: 0.0244
+  Balance Achievement:
+      Sensitive ratio: 0.648 → 0.729
+      Label ratio: 0.321 → 0.286
+  Final Fairness Metrics:
+      Demographic Parity Difference:     -0.2522
+    Overall Accuracy: 0.8503
+
+slight_male_majority (0.6 0.5):
+  DP Improvement: 0.0361
+  *** BREAKTHROUGH SCENARIO *** (>3% improvement)
+  Accuracy Cost: 0.0142
+  Balance Achievement:
+      Sensitive ratio: 0.648 → 0.585
+      Label ratio: 0.321 → 0.473
+  Final Fairness Metrics:
+      Demographic Parity Difference:     -0.3031
+    Overall Accuracy: 0.8765
+
+reverse_gender_india (0.35 0.12):
+  DP Improvement: -0.0119
+  -- FAILED: Fairness intervention made bias worse
+  Accuracy Cost: 0.0230
+  Balance Achievement:
+      Sensitive ratio: 0.648 → 0.745
+      Label ratio: 0.321 → 0.233
+  Final Fairness Metrics:
+      Demographic Parity Difference:     -0.2826
+    Overall Accuracy: 0.8713
+
+slight_female_majority (0.4 0.5):
+  DP Improvement: 0.0463
+  *** BREAKTHROUGH SCENARIO *** (>3% improvement)
+  Accuracy Cost: 0.0158
+  Balance Achievement:
+      Sensitive ratio: 0.648 → 0.707
+      Label ratio: 0.321 → 0.432
+  Final Fairness Metrics:
+      Demographic Parity Difference:     -0.1130
+    Overall Accuracy: 0.8584
+
+extreme_male_majority (0.8 0.5):
+  DP Improvement: 0.0469
+  *** BREAKTHROUGH SCENARIO *** (>3% improvement)
+  Accuracy Cost: 0.0094
+  Balance Achievement:
+      Sensitive ratio: 0.648 → 0.451
+      Label ratio: 0.321 → 0.488
+  Final Fairness Metrics:
+      Demographic Parity Difference:     -0.4617
+    Overall Accuracy: 0.8711
+
+original (original original):
+  DP Improvement: Not found
+  Final Fairness Metrics:
+      Demographic Parity Difference:     -0.1954
+    Overall Accuracy: 0.8678
+
+moderate_balance_labels (0.65 0.45):
+  DP Improvement: 0.0218
+  ++ Moderate improvement (1-3%)
+  Accuracy Cost: 0.0080
+  Balance Achievement:
+      Sensitive ratio: 0.648 → 0.574
+      Label ratio: 0.321 → 0.399
+  Final Fairness Metrics:
+      Demographic Parity Difference:     -0.3494
+    Overall Accuracy: 0.8920
+
+extreme_high_dropout (0.5 0.8):
+  DP Improvement: 0.0028
+  Accuracy Cost: -0.0007
+  Balance Achievement:
+      Sensitive ratio: 0.648 → 0.588
+      Label ratio: 0.321 → 0.604
+  Final Fairness Metrics:
+      Demographic Parity Difference:     -0.2241
+    Overall Accuracy: 0.9263
+
+extreme_female_majority (0.2 0.5):
+  DP Improvement: 0.0091
+  Accuracy Cost: 0.0085
+  Balance Achievement:
+      Sensitive ratio: 0.648 → 0.797
+      Label ratio: 0.321 → 0.407
+  Final Fairness Metrics:
+      Demographic Parity Difference:     -0.0302
+    Overall Accuracy: 0.8619
+
+moderate_balance_gender (0.45 0.32):
+  DP Improvement: 0.0272
+  ++ Moderate improvement (1-3%)
+  Accuracy Cost: 0.0452
+  Balance Achievement:
+      Sensitive ratio: 0.648 → 0.707
+      Label ratio: 0.321 → 0.283
+  Final Fairness Metrics:
+      Demographic Parity Difference:     -0.2034
+    Overall Accuracy: 0.8379
+
+reverse_label_brazil (0.65 0.68):
+  DP Improvement: 0.0201
+  ++ Moderate improvement (1-3%)
+  Accuracy Cost: 0.0067
+  Balance Achievement:
+      Sensitive ratio: 0.648 → 0.536
+      Label ratio: 0.321 → 0.500
+  Final Fairness Metrics:
+      Demographic Parity Difference:     -0.3770
+    Overall Accuracy: 0.9119
+
+gender_balanced_low_dropout (0.5 0.3):
+  DP Improvement: 0.0136
+  ++ Moderate improvement (1-3%)
+  Accuracy Cost: 0.0196
+  Balance Achievement:
+      Sensitive ratio: 0.648 → 0.711
+      Label ratio: 0.321 → 0.293
+  Final Fairness Metrics:
+      Demographic Parity Difference:     -0.2304
+    Overall Accuracy: 0.8461
+
+extreme_low_dropout (0.5 0.2):
+  DP Improvement: -0.0280
+  -- FAILED: Fairness intervention made bias worse
+  Accuracy Cost: 0.0241
+  Balance Achievement:
+      Sensitive ratio: 0.648 → 0.717
+      Label ratio: 0.321 → 0.236
+  Final Fairness Metrics:
+      Demographic Parity Difference:     -0.2414
+    Overall Accuracy: 0.8760
+
+perfect_balance (0.5 0.5):
+  DP Improvement: 0.0492
+  *** BREAKTHROUGH SCENARIO *** (>3% improvement)
+  Accuracy Cost: 0.0135
+  Balance Achievement:
+      Sensitive ratio: 0.648 → 0.649
+      Label ratio: 0.321 → 0.451
+  Final Fairness Metrics:
+      Demographic Parity Difference:     -0.2006
+    Overall Accuracy: 0.8505
+
+=== india Results (Method: llm_async) ===
+
+gender_balanced_high_dropout (0.5 0.7):
+  DP Improvement: -0.0033
+  -- FAILED: Fairness intervention made bias worse
+  Accuracy Cost: 0.0013
+  Balance Achievement:
+      Sensitive ratio: 0.348 → 0.418
+      Label ratio: 0.120 → 0.509
+  Final Fairness Metrics:
+      Demographic Parity Difference:     0.2302
+    Overall Accuracy: 0.9505
+
+reverse_gender_brazil (0.35 0.32):
+  DP Improvement: -0.0191
+  -- FAILED: Fairness intervention made bias worse
+  Accuracy Cost: 0.0058
+  Balance Achievement:
+      Sensitive ratio: 0.348 → 0.337
+      Label ratio: 0.120 → 0.266
+  Final Fairness Metrics:
+      Demographic Parity Difference:     0.1335
+    Overall Accuracy: 0.9123
+
+slight_male_majority (0.6 0.5):
+  DP Improvement: 0.0075
+  Accuracy Cost: -0.0129
+  Balance Achievement:
+      Sensitive ratio: 0.348 → 0.529
+      Label ratio: 0.120 → 0.441
+  Final Fairness Metrics:
+      Demographic Parity Difference:     0.3719
+    Overall Accuracy: 0.7998
+
+reverse_gender_india (0.35 0.12):
+  DP Improvement: -0.0407
+  -- FAILED: Fairness intervention made bias worse
+  Accuracy Cost: 0.0455
+  Balance Achievement:
+      Sensitive ratio: 0.348 → 0.353
+      Label ratio: 0.120 → 0.130
+  Final Fairness Metrics:
+      Demographic Parity Difference:     0.1424
+    Overall Accuracy: 0.8386
+
+slight_female_majority (0.4 0.5):
+  DP Improvement: -0.0010
+  -- FAILED: Fairness intervention made bias worse
+  Accuracy Cost: 0.0026
+  Balance Achievement:
+      Sensitive ratio: 0.348 → 0.387
+      Label ratio: 0.120 → 0.484
+  Final Fairness Metrics:
+      Demographic Parity Difference:     0.1659
+    Overall Accuracy: 0.9216
+
+extreme_male_majority (0.8 0.5):
+  DP Improvement: -0.0179
+  -- FAILED: Fairness intervention made bias worse
+  Accuracy Cost: 0.0097
+  Balance Achievement:
+      Sensitive ratio: 0.348 → 0.648
+      Label ratio: 0.120 → 0.405
+  Final Fairness Metrics:
+      Demographic Parity Difference:     0.4910
+    Overall Accuracy: 0.7255
+
+original (original original):
+  DP Improvement: Not found
+  Final Fairness Metrics:
+      Demographic Parity Difference:     0.1555
+    Overall Accuracy: 0.8762
+
+moderate_balance_labels (0.65 0.45):
+  DP Improvement: 0.0062
+  Accuracy Cost: 0.0151
+  Balance Achievement:
+      Sensitive ratio: 0.348 → 0.466
+      Label ratio: 0.120 → 0.322
+  Final Fairness Metrics:
+      Demographic Parity Difference:     0.3758
+    Overall Accuracy: 0.8727
+
+extreme_high_dropout (0.5 0.8):
+  DP Improvement: -0.0050
+  -- FAILED: Fairness intervention made bias worse
+  Accuracy Cost: 0.0024
+  Balance Achievement:
+      Sensitive ratio: 0.348 → 0.423
+      Label ratio: 0.120 → 0.542
+  Final Fairness Metrics:
+      Demographic Parity Difference:     0.2369
+    Overall Accuracy: 0.9538
+
+extreme_female_majority (0.2 0.5):
+  DP Improvement: 0.0016
+  Accuracy Cost: -0.0037
+  Balance Achievement:
+      Sensitive ratio: 0.348 → 0.250
+      Label ratio: 0.120 → 0.469
+  Final Fairness Metrics:
+      Demographic Parity Difference:     -0.1989
+    Overall Accuracy: 0.8717
+
+moderate_balance_gender (0.45 0.32):
+  DP Improvement: -0.0198
+  -- FAILED: Fairness intervention made bias worse
+  Accuracy Cost: 0.0289
+  Balance Achievement:
+      Sensitive ratio: 0.348 → 0.371
+      Label ratio: 0.120 → 0.263
+  Final Fairness Metrics:
+      Demographic Parity Difference:     0.2027
+    Overall Accuracy: 0.8844
+
+reverse_label_brazil (0.65 0.68):
+  DP Improvement: 0.0101
+  ++ Moderate improvement (1-3%)
+  Accuracy Cost: 0.0030
+  Balance Achievement:
+      Sensitive ratio: 0.348 → 0.471
+      Label ratio: 0.120 → 0.436
+  Final Fairness Metrics:
+      Demographic Parity Difference:     0.3587
+    Overall Accuracy: 0.9400
+
+gender_balanced_low_dropout (0.5 0.3):
+  DP Improvement: -0.0525
+  -- FAILED: Fairness intervention made bias worse
+  Accuracy Cost: -0.0016
+  Balance Achievement:
+      Sensitive ratio: 0.348 → 0.454
+      Label ratio: 0.120 → 0.272
+  Final Fairness Metrics:
+      Demographic Parity Difference:     0.2811
+    Overall Accuracy: 0.8062
+
+extreme_low_dropout (0.5 0.2):
+  DP Improvement: -0.1525
+  -- FAILED: Fairness intervention made bias worse
+  Accuracy Cost: 0.0444
+  Balance Achievement:
+      Sensitive ratio: 0.348 → 0.476
+      Label ratio: 0.120 → 0.190
+  Final Fairness Metrics:
+      Demographic Parity Difference:     0.2833
+    Overall Accuracy: 0.7577
+
+perfect_balance (0.5 0.5):
+  DP Improvement: 0.0034
+  Accuracy Cost: -0.0049
+  Balance Achievement:
+      Sensitive ratio: 0.348 → 0.461
+      Label ratio: 0.120 → 0.461
+  Final Fairness Metrics:
+      Demographic Parity Difference:     0.2624
+    Overall Accuracy: 0.8529
+
+=== africa Results (Method: faker) ===
+
+gender_balanced_high_dropout (0.5 0.7):
+  DP Improvement: -0.0011
+  -- FAILED: Fairness intervention made bias worse
+  Accuracy Cost: -0.0007
+  Balance Achievement:
+      Sensitive ratio: 0.441 → 0.472
+      Label ratio: 0.091 → 0.463
+  Final Fairness Metrics:
+      Demographic Parity Difference:     0.0750
+    Overall Accuracy: 0.9623
+
+reverse_gender_brazil (0.35 0.32):
+  DP Improvement: -0.0364
+  -- FAILED: Fairness intervention made bias worse
+  Accuracy Cost: 0.0154
+  Balance Achievement:
+      Sensitive ratio: 0.441 → 0.422
+      Label ratio: 0.091 → 0.260
+  Final Fairness Metrics:
+      Demographic Parity Difference:     -0.0822
+    Overall Accuracy: 0.9376
+
+slight_male_majority (0.6 0.5):
+  DP Improvement: 0.0103
+  ++ Moderate improvement (1-3%)
+  Accuracy Cost: -0.0016
+  Balance Achievement:
+      Sensitive ratio: 0.441 → 0.558
+      Label ratio: 0.091 → 0.465
+  Final Fairness Metrics:
+      Demographic Parity Difference:     0.2176
+    Overall Accuracy: 0.8822
+
+reverse_gender_india (0.35 0.12):
+  DP Improvement: -0.1058
+  -- FAILED: Fairness intervention made bias worse
+  Accuracy Cost: 0.0405
+  Balance Achievement:
+      Sensitive ratio: 0.441 → 0.409
+      Label ratio: 0.091 → 0.109
+  Final Fairness Metrics:
+      Demographic Parity Difference:     -0.1205
+    Overall Accuracy: 0.8709
+
+slight_female_majority (0.4 0.5):
+  DP Improvement: 0.0028
+  Accuracy Cost: -0.0012
+  Balance Achievement:
+      Sensitive ratio: 0.441 → 0.414
+      Label ratio: 0.091 → 0.488
+  Final Fairness Metrics:
+      Demographic Parity Difference:     -0.0487
+    Overall Accuracy: 0.9326
+
+extreme_male_majority (0.8 0.5):
+  DP Improvement: 0.0755
+  *** BREAKTHROUGH SCENARIO *** (>3% improvement)
+  Accuracy Cost: -0.0179
+  Balance Achievement:
+      Sensitive ratio: 0.441 → 0.680
+      Label ratio: 0.091 → 0.425
+  Final Fairness Metrics:
+      Demographic Parity Difference:     0.3760
+    Overall Accuracy: 0.8011
+
+original (original original):
+  DP Improvement: Not found
+  Final Fairness Metrics:
+      Demographic Parity Difference:     -0.0167
+    Overall Accuracy: 0.9368
+
+moderate_balance_labels (0.65 0.45):
+  DP Improvement: 0.0434
+  *** BREAKTHROUGH SCENARIO *** (>3% improvement)
+  Accuracy Cost: 0.0089
+  Balance Achievement:
+      Sensitive ratio: 0.441 → 0.515
+      Label ratio: 0.091 → 0.331
+  Final Fairness Metrics:
+      Demographic Parity Difference:     0.1653
+    Overall Accuracy: 0.9487
+
+extreme_high_dropout (0.5 0.8):
+  DP Improvement: -0.0021
+  -- FAILED: Fairness intervention made bias worse
+  Accuracy Cost: -0.0011
+  Balance Achievement:
+      Sensitive ratio: 0.441 → 0.474
+      Label ratio: 0.091 → 0.496
+  Final Fairness Metrics:
+      Demographic Parity Difference:     0.0762
+    Overall Accuracy: 0.9651
+
+extreme_female_majority (0.2 0.5):
+  DP Improvement: 0.0249
+  ++ Moderate improvement (1-3%)
+  Accuracy Cost: -0.0207
+  Balance Achievement:
+      Sensitive ratio: 0.441 → 0.288
+      Label ratio: 0.091 → 0.445
+  Final Fairness Metrics:
+      Demographic Parity Difference:     -0.3191
+    Overall Accuracy: 0.8474
+
+moderate_balance_gender (0.45 0.32):
+  DP Improvement: 0.0212
+  ++ Moderate improvement (1-3%)
+  Accuracy Cost: 0.0136
+  Balance Achievement:
+      Sensitive ratio: 0.441 → 0.448
+      Label ratio: 0.091 → 0.260
+  Final Fairness Metrics:
+      Demographic Parity Difference:     -0.0096
+    Overall Accuracy: 0.9389
+
+reverse_label_brazil (0.65 0.68):
+  DP Improvement: 0.0486
+  *** BREAKTHROUGH SCENARIO *** (>3% improvement)
+  Accuracy Cost: 0.0070
+  Balance Achievement:
+      Sensitive ratio: 0.441 → 0.534
+      Label ratio: 0.091 → 0.428
+  Final Fairness Metrics:
+      Demographic Parity Difference:     0.1777
+    Overall Accuracy: 0.9536
+
+gender_balanced_low_dropout (0.5 0.3):
+  DP Improvement: 0.0457
+  *** BREAKTHROUGH SCENARIO *** (>3% improvement)
+  Accuracy Cost: 0.0158
+  Balance Achievement:
+      Sensitive ratio: 0.441 → 0.462
+      Label ratio: 0.091 → 0.269
+  Final Fairness Metrics:
+      Demographic Parity Difference:     0.0247
+    Overall Accuracy: 0.9381
+
+extreme_low_dropout (0.5 0.2):
+  DP Improvement: 0.0291
+  ++ Moderate improvement (1-3%)
+  Accuracy Cost: -0.0028
+  Balance Achievement:
+      Sensitive ratio: 0.441 → 0.477
+      Label ratio: 0.091 → 0.191
+  Final Fairness Metrics:
+      Demographic Parity Difference:     0.0631
+    Overall Accuracy: 0.8981
+
+perfect_balance (0.5 0.5):
+  DP Improvement: -0.0026
+  -- FAILED: Fairness intervention made bias worse
+  Accuracy Cost: -0.0041
+  Balance Achievement:
+      Sensitive ratio: 0.441 → 0.487
+      Label ratio: 0.091 → 0.487
+  Final Fairness Metrics:
+      Demographic Parity Difference:     0.0989
+    Overall Accuracy: 0.9312
+

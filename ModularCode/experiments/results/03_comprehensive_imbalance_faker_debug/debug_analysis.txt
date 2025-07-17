@@ -1,0 +1,33 @@
+DEBUG ANALYSIS REPORT - Thu Jun 26 17:37:02 CEST 2025
+==============================
+
+FIXES IMPLEMENTED:
+1. Enhanced metric extraction with multiple pattern matching
+2. Fixed categorization function with proper Python float handling
+3. Corrected CSV formatting (eliminated double commas)
+4. Added comprehensive debugging output
+5. Enhanced input validation
+
+CATEGORIZATION CRITERIA:
+- BREAKTHROUGH: >3% DP improvement with <5% accuracy cost
+- HIGH_ACCURACY_COST: >3% DP improvement with ≥5% accuracy cost  
+- MODERATE: 1-3% DP improvement
+- UNCLEAR: 0-1% DP improvement
+- FAILED: ≤0% DP improvement
+
+RESULTS SUMMARY:
+===============
+- BREAKTHROUGH results: 0
+0/30
+- MODERATE improvements: 4/30
+- HIGH ACCURACY COST: 0
+0/30
+- UNCLEAR results: 13/30
+- FAILED attempts: 13/30
+- ERROR cases: 0
+0/30
+
+TOP PERFORMING SCENARIOS:
+========================
+Best DP improvements:
+Dataset,Scenario,Sensitive_Ratio,Label_Ratio,Method,DP_Improvement,Accuracy_Cost,Category,Final_DP_Diff,Balance_Achieved,Status,Duration_Seconds
