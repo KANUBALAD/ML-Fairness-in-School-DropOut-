@@ -1,0 +1,82 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-23T15:45:03.622604",
+    "experiment_type": "standard_ml",
+    "config_name": "africa",
+    "scenario_name": null
+  },
+  "results": {
+    "config": {
+      "dataname": "africa",
+      "datapath": "./data/Secondary_school_dropout_dataset.csv",
+      "test_size": 0.2,
+      "random_state": 42,
+      "unawareness": true,
+      "model": "random_forest",
+      "fairness": true,
+      "fair_technique": "reweighting"
+    },
+    "cross_validation_results": {
+      "random_forest": {
+        "mean": 0.9456538254643997,
+        "std": 0.0006733678739627813
+      }
+    },
+    "model_results": {
+      "random_forest": {
+        "baseline_metrics": {
+          "model_name": "Baseline random_forest",
+          "overall_accuracy": 0.9451705451067899,
+          "privileged_accuracy": 0.9606853020739405,
+          "unprivileged_accuracy": 0.9328859060402684,
+          "privileged_tpr": 0.8135198135198135,
+          "unprivileged_tpr": 0.46348314606741575,
+          "privileged_fpr": 0.02697419859265051,
+          "unprivileged_fpr": 0.013988237164202829,
+          "privileged_selection_rate": 0.0878268710550045,
+          "unprivileged_selection_rate": 0.05968870484078252,
+          "accuracy_difference": 0.027799396033672097,
+          "tpr_difference": 0.35003666745239775,
+          "fpr_difference": 0.01298596142844768,
+          "demographic_parity_difference": 0.02813816621422198
+        },
+        "fair_metrics": {
+          "model_name": "Fair (reweighting)",
+          "overall_accuracy": 0.9367229837424291,
+          "privileged_accuracy": 0.9323715058611362,
+          "unprivileged_accuracy": 0.9401684992146223,
+          "privileged_tpr": 0.9976689976689976,
+          "unprivileged_tpr": 0.9985955056179775,
+          "privileged_fpr": 0.07310398749022674,
+          "unprivileged_fpr": 0.06644412652996344,
+          "privileged_selection_rate": 0.14463480613165014,
+          "unprivileged_selection_rate": 0.16121662144795088,
+          "accuracy_difference": -0.007796993353486159,
+          "tpr_difference": -0.00092650794897986,
+          "fpr_difference": 0.006659860960263303,
+          "demographic_parity_difference": -0.016581815316300735
+        },
+        "improvement_metrics": {
+          "accuracy_difference": 0.008447561364360756,
+          "dp_improvement": 0.011556350897921244,
+          "tpr_improvement": 0.3491101595034179
+        }
+      }
+    },
+    "data_analysis": {
+      "total_samples": 62739,
+      "features_shape": [
+        62739,
+        44
+      ],
+      "sensitive_distribution": [
+        35055,
+        27684
+      ],
+      "label_distribution": [
+        57032,
+        5707
+      ]
+    }
+  }
+}

@@ -1,0 +1,23 @@
+✓ Fast, multithreaded LLM generator loaded successfully.
+Results will be saved to: ./experiments/results/03_comprehensive_imbalance_faker_debug/india_faker
+
+================================================================================
+BALANCED AUGMENTATION EXPERIMENT: reverse_sensitive_faker_debug (FAKER)
+================================================================================
+
+Generating targeted synthetic samples using method: FAKER
+  Generating 446 samples for privileged group with positive outcome
+    Using 100% Faker generation for reliability and speed
+    ✓ Generated 446 samples
+  Generating 1179 samples for unprivileged group with positive outcome
+    Using 100% Faker generation for reliability and speed
+    ✓ Generated 1179 samples
+
+Final Distribution: Sensitive Ratio=0.316, Label Ratio=0.500
+
+DP improvement: -0.0019, Accuracy cost: -0.0066
+✓ Saved results to: ./experiments/results/03_comprehensive_imbalance_faker_debug/india_faker/balanced_augmentation_india_reverse_sensitive_faker_debug.json
+
+================================================================================
+EXPERIMENT 'reverse_sensitive_faker_debug' COMPLETED.
+================================================================================

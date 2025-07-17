@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-23T19:06:03.483737",
+    "experiment_type": "balanced_augmentation_faker",
+    "config_name": "africa",
+    "scenario_name": "extreme_male_majority_faker"
+  },
+  "results": {
+    "scenario_name": "extreme_male_majority_faker",
+    "generation_method": "faker",
+    "original_analysis": {
+      "total_samples": 62739,
+      "privileged_count": 27684,
+      "unprivileged_count": 35055,
+      "current_sensitive_ratio": 0.441256634629178,
+      "positive_count": 5707,
+      "negative_count": 57032,
+      "current_label_ratio": 0.09096415307862733,
+      "cross_tab": {
+        "priv_pos": 2147,
+        "priv_neg": 25537,
+        "unpriv_pos": 3560,
+        "unpriv_neg": 31495
+      },
+      "columns": {
+        "sensitive_col": "gender",
+        "label_col": "dropout",
+        "privileged_val": "Male",
+        "positive_label": "Yes"
+      }
+    },
+    "final_analysis": {
+      "total_samples": 134153,
+      "privileged_count": 91251,
+      "unprivileged_count": 42902,
+      "current_sensitive_ratio": 0.6802009645703041,
+      "positive_count": 57032,
+      "negative_count": 77121,
+      "current_label_ratio": 0.4251265346283721,
+      "cross_tab": {
+        "priv_pos": 45625,
+        "priv_neg": 45626,
+        "unpriv_pos": 11407,
+        "unpriv_neg": 31495
+      },
+      "columns": {
+        "sensitive_col": "gender",
+        "label_col": "dropout",
+        "privileged_val": "Male",
+        "positive_label": "Yes"
+      }
+    },
+    "augmented_data_shape": [
+      134153,
+      13
+    ],
+    "target_ratios": {
+      "target_sensitive_ratio": 0.8,
+      "target_label_ratio": 0.5
+    },
+    "baseline_metrics": {
+      "model_name": "Baseline_Balanced_extreme_male_majority_faker_faker",
+      "overall_accuracy": 0.783981215757892,
+      "privileged_accuracy": 0.731067054753144,
+      "unprivileged_accuracy": 0.8957318487589886,
+      "privileged_tpr": 0.847062684607811,
+      "unprivileged_tpr": 0.6160635481023831,
+      "privileged_fpr": 0.38586237318041466,
+      "unprivileged_fpr": 0.004562617998741347,
+      "privileged_selection_rate": 0.617387006425394,
+      "unprivileged_selection_rate": 0.16527487821851078,
+      "accuracy_difference": -0.16466479400584455,
+      "tpr_difference": 0.23099913650542792,
+      "fpr_difference": 0.3812997551816733,
+      "demographic_parity_difference": 0.45211212820688323
+    },
+    "fair_metrics": {
+      "model_name": "Fair_Balanced_extreme_male_majority_faker_faker",
+      "overall_accuracy": 0.8009019417837576,
+      "privileged_accuracy": 0.7452358723708057,
+      "unprivileged_accuracy": 0.9184643934122013,
+      "privileged_tpr": 0.9399409255004922,
+      "unprivileged_tpr": 0.9549867608120035,
+      "privileged_fpr": 0.45103661226290254,
+      "unprivileged_fpr": 0.09455632473253618,
+      "privileged_selection_rate": 0.6964687791751332,
+      "unprivileged_selection_rate": 0.32069125492925077,
+      "accuracy_difference": -0.17322852104139563,
+      "tpr_difference": -0.015045835311511269,
+      "fpr_difference": 0.35648028753036637,
+      "demographic_parity_difference": 0.3757775242458824
+    },
+    "balance_achieved": {
+      "sensitive_ratio_achieved": false,
+      "label_ratio_achieved": false
+    },
+    "improvement_metrics": {
+      "accuracy_difference": -0.016920726025865584,
+      "dp_improvement": 0.07633460396100084,
+      "tpr_improvement": 0.21595330119391665,
+      "fpr_improvement": 0.024819467651306937
+    },
+    "augmentation_plan": {
+      "total_additional": 51325,
+      "target_total": 114064,
+      "breakdown": {
+        "priv_pos": 43478,
+        "priv_neg": 20089,
+        "unpriv_pos": 7847,
+        "unpriv_neg": 0
+      },
+      "target_distribution": {
+        "priv_pos": 45625,
+        "priv_neg": 45626,
+        "unpriv_pos": 11407,
+        "unpriv_neg": 11406
+      }
+    },
+    "augmented_dataset_path": "./data/augmented_africa_extreme_male_majority_faker_faker_0.8_0.5.csv"
+  }
+}

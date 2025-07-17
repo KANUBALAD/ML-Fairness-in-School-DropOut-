@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-23T16:34:12.732876",
+    "experiment_type": "balanced_augmentation_llm_async",
+    "config_name": "brazil",
+    "scenario_name": "extreme_low_dropout_with_fairness"
+  },
+  "results": {
+    "scenario_name": "extreme_low_dropout_with_fairness",
+    "generation_method": "llm_async",
+    "original_analysis": {
+      "total_samples": 4424,
+      "privileged_count": 2868,
+      "unprivileged_count": 1556,
+      "current_sensitive_ratio": 0.6482820976491862,
+      "positive_count": 1421,
+      "negative_count": 3003,
+      "current_label_ratio": 0.3212025316455696,
+      "cross_tab": {
+        "priv_pos": 720,
+        "priv_neg": 2148,
+        "unpriv_pos": 701,
+        "unpriv_neg": 855
+      },
+      "columns": {
+        "sensitive_col": "Gender",
+        "label_col": "Target",
+        "privileged_val": 0,
+        "positive_label": "Dropout"
+      }
+    },
+    "final_analysis": {
+      "total_samples": 6010,
+      "privileged_count": 4307,
+      "unprivileged_count": 1703,
+      "current_sensitive_ratio": 0.7166389351081531,
+      "positive_count": 1421,
+      "negative_count": 4589,
+      "current_label_ratio": 0.23643926788685524,
+      "cross_tab": {
+        "priv_pos": 720,
+        "priv_neg": 3587,
+        "unpriv_pos": 701,
+        "unpriv_neg": 1002
+      },
+      "columns": {
+        "sensitive_col": "Gender",
+        "label_col": "Target",
+        "privileged_val": 0,
+        "positive_label": "Dropout"
+      }
+    },
+    "augmented_data_shape": [
+      6010,
+      35
+    ],
+    "target_ratios": {
+      "target_sensitive_ratio": 0.5,
+      "target_label_ratio": 0.2
+    },
+    "baseline_metrics": {
+      "model_name": "Baseline_Balanced_extreme_low_dropout_with_fairness_llm_async",
+      "overall_accuracy": 0.9001663893510815,
+      "privileged_accuracy": 0.9237983587338804,
+      "unprivileged_accuracy": 0.8424068767908309,
+      "privileged_tpr": 0.6231884057971014,
+      "unprivileged_tpr": 0.7054794520547946,
+      "privileged_fpr": 0.01818181818181818,
+      "unprivileged_fpr": 0.059113300492610835,
+      "privileged_selection_rate": 0.1160609613130129,
+      "unprivileged_selection_rate": 0.32951289398280803,
+      "accuracy_difference": 0.08139148194304946,
+      "tpr_difference": -0.08229104625769312,
+      "fpr_difference": -0.040931482310792654,
+      "demographic_parity_difference": -0.21345193266979512
+    },
+    "fair_metrics": {
+      "model_name": "Fair_Balanced_extreme_low_dropout_with_fairness_llm_async",
+      "overall_accuracy": 0.8760399334442596,
+      "privileged_accuracy": 0.8991793669402111,
+      "unprivileged_accuracy": 0.8194842406876791,
+      "privileged_tpr": 0.7971014492753623,
+      "unprivileged_tpr": 0.8082191780821918,
+      "privileged_fpr": 0.08111888111888112,
+      "unprivileged_fpr": 0.1724137931034483,
+      "privileged_selection_rate": 0.1969519343493552,
+      "unprivileged_selection_rate": 0.4383954154727794,
+      "accuracy_difference": 0.07969512625253194,
+      "tpr_difference": -0.011117728806829485,
+      "fpr_difference": -0.09129491198456717,
+      "demographic_parity_difference": -0.24144348112342418
+    },
+    "balance_achieved": {
+      "sensitive_ratio_achieved": false,
+      "label_ratio_achieved": true
+    },
+    "improvement_metrics": {
+      "accuracy_difference": 0.024126455906821942,
+      "dp_improvement": -0.027991548453629056,
+      "tpr_improvement": 0.07117331745086364,
+      "fpr_improvement": -0.05036342967377452
+    },
+    "augmentation_plan": {
+      "total_additional": 1312,
+      "target_total": 5736,
+      "breakdown": {
+        "priv_pos": 0,
+        "priv_neg": 147,
+        "unpriv_pos": 0,
+        "unpriv_neg": 1439
+      },
+      "target_distribution": {
+        "priv_pos": 573,
+        "priv_neg": 2295,
+        "unpriv_pos": 574,
+        "unpriv_neg": 2294
+      }
+    },
+    "augmented_dataset_path": "./data/augmented_brazil_extreme_low_dropout_with_fairness_llm_async_0.5_0.2.csv"
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-23T16:39:32.882747",
+    "experiment_type": "balanced_augmentation_faker",
+    "config_name": "africa",
+    "scenario_name": "extreme_low_dropout_with_fairness"
+  },
+  "results": {
+    "scenario_name": "extreme_low_dropout_with_fairness",
+    "generation_method": "faker",
+    "original_analysis": {
+      "total_samples": 62739,
+      "privileged_count": 27684,
+      "unprivileged_count": 35055,
+      "current_sensitive_ratio": 0.441256634629178,
+      "positive_count": 5707,
+      "negative_count": 57032,
+      "current_label_ratio": 0.09096415307862733,
+      "cross_tab": {
+        "priv_pos": 2147,
+        "priv_neg": 25537,
+        "unpriv_pos": 3560,
+        "unpriv_neg": 31495
+      },
+      "columns": {
+        "sensitive_col": "gender",
+        "label_col": "dropout",
+        "privileged_val": "Male",
+        "positive_label": "Yes"
+      }
+    },
+    "final_analysis": {
+      "total_samples": 73561,
+      "privileged_count": 35055,
+      "unprivileged_count": 38506,
+      "current_sensitive_ratio": 0.47654327700819726,
+      "positive_count": 14022,
+      "negative_count": 59539,
+      "current_label_ratio": 0.1906173108032789,
+      "cross_tab": {
+        "priv_pos": 7011,
+        "priv_neg": 28044,
+        "unpriv_pos": 7011,
+        "unpriv_neg": 31495
+      },
+      "columns": {
+        "sensitive_col": "gender",
+        "label_col": "dropout",
+        "privileged_val": "Male",
+        "positive_label": "Yes"
+      }
+    },
+    "augmented_data_shape": [
+      73561,
+      13
+    ],
+    "target_ratios": {
+      "target_sensitive_ratio": 0.5,
+      "target_label_ratio": 0.2
+    },
+    "baseline_metrics": {
+      "model_name": "Baseline_Balanced_extreme_low_dropout_with_fairness_faker",
+      "overall_accuracy": 0.895330659960579,
+      "privileged_accuracy": 0.8766828988828416,
+      "unprivileged_accuracy": 0.9121717759668866,
+      "privileged_tpr": 0.7405797101449275,
+      "unprivileged_tpr": 0.6042105263157894,
+      "privileged_fpr": 0.08978936094252053,
+      "unprivileged_fpr": 0.01823660006343165,
+      "privileged_selection_rate": 0.21841879117731308,
+      "unprivileged_selection_rate": 0.1262449877118096,
+      "accuracy_difference": -0.03548887708404502,
+      "tpr_difference": 0.1363691838291381,
+      "fpr_difference": 0.07155276087908888,
+      "demographic_parity_difference": 0.0921738034655035
+    },
+    "fair_metrics": {
+      "model_name": "Fair_Balanced_extreme_low_dropout_with_fairness_faker",
+      "overall_accuracy": 0.8981173112213688,
+      "privileged_accuracy": 0.8705242050988256,
+      "unprivileged_accuracy": 0.9230371232699521,
+      "privileged_tpr": 0.981159420289855,
+      "unprivileged_tpr": 0.9873684210526316,
+      "privileged_fpr": 0.15672973937879328,
+      "unprivileged_fpr": 0.09150015857913099,
+      "privileged_selection_rate": 0.3196791750214838,
+      "unprivileged_selection_rate": 0.25662915534859654,
+      "accuracy_difference": -0.05251291817112658,
+      "tpr_difference": -0.006209000762776529,
+      "fpr_difference": 0.06522958079966229,
+      "demographic_parity_difference": 0.06305001967288726
+    },
+    "balance_achieved": {
+      "sensitive_ratio_achieved": true,
+      "label_ratio_achieved": true
+    },
+    "improvement_metrics": {
+      "accuracy_difference": -0.0027866512607898075,
+      "dp_improvement": 0.029123783792616237,
+      "tpr_improvement": 0.13016018306636157,
+      "fpr_improvement": 0.006323180079426588
+    },
+    "augmentation_plan": {
+      "total_additional": 7371,
+      "target_total": 70110,
+      "breakdown": {
+        "priv_pos": 4864,
+        "priv_neg": 2507,
+        "unpriv_pos": 3451,
+        "unpriv_neg": 0
+      },
+      "target_distribution": {
+        "priv_pos": 7011,
+        "priv_neg": 28044,
+        "unpriv_pos": 7011,
+        "unpriv_neg": 28044
+      }
+    },
+    "augmented_dataset_path": "./data/augmented_africa_extreme_low_dropout_with_fairness_faker_0.5_0.2.csv"
+  }
+}

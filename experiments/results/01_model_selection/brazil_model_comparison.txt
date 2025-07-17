@@ -1,0 +1,192 @@
+✓ LLM generator loaded successfully
+✓ SDV library loaded successfully with conditional sampling support
+✓ CTGAN/TVAE generators loaded successfully
+
+================================================================================
+STANDARD ML EXPERIMENT
+Dataset: brazil
+================================================================================
+Current working directory: /Users/abubakarialidu/Desktop/ML-Fairness-in-School-DropOut-/ModularCode
+Loading configuration from: yaml/brazil.yaml and fairness unawareness is True
+Sensitive attribute (privileged=1, unprivileged=0) counts: [1556 2868]
+Xtrain shape: (3539, 33), ytrain shape: (3539,)
+Xtest shape: (885, 33), ytest shape: (885,)
+Performing 5x2 cross-validation...
+logistic_regression: Mean accuracy = 0.8735, Std deviation = 0.0070
+decision_tree: Mean accuracy = 0.8020, Std deviation = 0.0104
+random_forest: Mean accuracy = 0.8699, Std deviation = 0.0060
+
+Evaluating logistic_regression...
+
+=== Fairness Report for Baseline logistic_regression ===
+Overall Accuracy: 0.8802
+
+Group-wise Performance:
+  Privileged Group Accuracy:   0.8989
+  Unprivileged Group Accuracy: 0.8474
+  Accuracy Difference:         0.0516
+
+True Positive Rate (Recall):
+  Privileged Group TPR:        0.7029
+  Unprivileged Group TPR:      0.7603
+  TPR Difference:              -0.0574
+
+False Positive Rate:
+  Privileged Group FPR:        0.0376
+  Unprivileged Group FPR:      0.0800
+  FPR Difference:              -0.0424
+
+Selection Rate (Demographic Parity):
+  Privileged Group Selection Rate:   0.2004
+  Unprivileged Group Selection Rate: 0.3894
+  Demographic Parity Difference:     -0.1891
+
+Fairness Assessment:
+  ✗ Demographic Parity: Potential Bias (difference >= 0.1)
+
+Running fairness mitigation (reweighting) using model: logistic_regression
+=== Fair Model results ===
+
+=== Fairness Report for Fair (reweighting) ===
+Overall Accuracy: 0.8712
+
+Group-wise Performance:
+  Privileged Group Accuracy:   0.8865
+  Unprivileged Group Accuracy: 0.8442
+  Accuracy Difference:         0.0423
+
+True Positive Rate (Recall):
+  Privileged Group TPR:        0.8188
+  Unprivileged Group TPR:      0.8425
+  TPR Difference:              -0.0236
+
+False Positive Rate:
+  Privileged Group FPR:        0.0915
+  Unprivileged Group FPR:      0.1543
+  FPR Difference:              -0.0627
+
+Selection Rate (Demographic Parity):
+  Privileged Group Selection Rate:   0.2695
+  Unprivileged Group Selection Rate: 0.4673
+  Demographic Parity Difference:     -0.1978
+
+Fairness Assessment:
+  ✗ Demographic Parity: Potential Bias (difference >= 0.1)
+
+Evaluating decision_tree...
+
+=== Fairness Report for Baseline decision_tree ===
+Overall Accuracy: 0.7876
+
+Group-wise Performance:
+  Privileged Group Accuracy:   0.8121
+  Unprivileged Group Accuracy: 0.7445
+  Accuracy Difference:         0.0675
+
+True Positive Rate (Recall):
+  Privileged Group TPR:        0.7101
+  Unprivileged Group TPR:      0.6918
+  TPR Difference:              0.0184
+
+False Positive Rate:
+  Privileged Group FPR:        0.1549
+  Unprivileged Group FPR:      0.2114
+  FPR Difference:              -0.0565
+
+Selection Rate (Demographic Parity):
+  Privileged Group Selection Rate:   0.2908
+  Unprivileged Group Selection Rate: 0.4299
+  Demographic Parity Difference:     -0.1391
+
+Fairness Assessment:
+  ✗ Demographic Parity: Potential Bias (difference >= 0.1)
+
+Running fairness mitigation (reweighting) using model: decision_tree
+=== Fair Model results ===
+
+=== Fairness Report for Fair (reweighting) ===
+Overall Accuracy: 0.7672
+
+Group-wise Performance:
+  Privileged Group Accuracy:   0.7677
+  Unprivileged Group Accuracy: 0.7664
+  Accuracy Difference:         0.0014
+
+True Positive Rate (Recall):
+  Privileged Group TPR:        0.7246
+  Unprivileged Group TPR:      0.8014
+  TPR Difference:              -0.0767
+
+False Positive Rate:
+  Privileged Group FPR:        0.2183
+  Unprivileged Group FPR:      0.2629
+  FPR Difference:              -0.0445
+
+Selection Rate (Demographic Parity):
+  Privileged Group Selection Rate:   0.3422
+  Unprivileged Group Selection Rate: 0.5078
+  Demographic Parity Difference:     -0.1656
+
+Fairness Assessment:
+  ✗ Demographic Parity: Potential Bias (difference >= 0.1)
+
+Evaluating random_forest...
+
+=== Fairness Report for Baseline random_forest ===
+Overall Accuracy: 0.8802
+
+Group-wise Performance:
+  Privileged Group Accuracy:   0.9043
+  Unprivileged Group Accuracy: 0.8380
+  Accuracy Difference:         0.0662
+
+True Positive Rate (Recall):
+  Privileged Group TPR:        0.7174
+  Unprivileged Group TPR:      0.7603
+  TPR Difference:              -0.0429
+
+False Positive Rate:
+  Privileged Group FPR:        0.0352
+  Unprivileged Group FPR:      0.0971
+  FPR Difference:              -0.0619
+
+Selection Rate (Demographic Parity):
+  Privileged Group Selection Rate:   0.2021
+  Unprivileged Group Selection Rate: 0.3988
+  Demographic Parity Difference:     -0.1966
+
+Fairness Assessment:
+  ✗ Demographic Parity: Potential Bias (difference >= 0.1)
+
+Running fairness mitigation (reweighting) using model: random_forest
+=== Fair Model results ===
+
+=== Fairness Report for Fair (reweighting) ===
+Overall Accuracy: 0.8847
+
+Group-wise Performance:
+  Privileged Group Accuracy:   0.9096
+  Unprivileged Group Accuracy: 0.8411
+  Accuracy Difference:         0.0685
+
+True Positive Rate (Recall):
+  Privileged Group TPR:        0.8188
+  Unprivileged Group TPR:      0.8151
+  TPR Difference:              0.0038
+
+False Positive Rate:
+  Privileged Group FPR:        0.0610
+  Unprivileged Group FPR:      0.1371
+  FPR Difference:              -0.0761
+
+Selection Rate (Demographic Parity):
+  Privileged Group Selection Rate:   0.2465
+  Unprivileged Group Selection Rate: 0.4455
+  Demographic Parity Difference:     -0.1990
+
+Fairness Assessment:
+  ✗ Demographic Parity: Potential Bias (difference >= 0.1)
+
+================================================================================
+STANDARD ML EXPERIMENT COMPLETED
+================================================================================

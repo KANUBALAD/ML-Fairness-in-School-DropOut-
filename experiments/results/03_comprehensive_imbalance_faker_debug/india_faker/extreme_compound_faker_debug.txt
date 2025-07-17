@@ -1,0 +1,29 @@
+✓ Fast, multithreaded LLM generator loaded successfully.
+Results will be saved to: ./experiments/results/03_comprehensive_imbalance_faker_debug/india_faker
+
+================================================================================
+BALANCED AUGMENTATION EXPERIMENT: extreme_compound_faker_debug (FAKER)
+================================================================================
+
+Generating targeted synthetic samples using method: FAKER
+  Generating 1725 samples for privileged group with positive outcome
+    Using 100% Faker generation for reliability and speed
+    ✓ Generated 1725 samples
+  Generating 165 samples for privileged group with negative outcome
+    Using 100% Faker generation for reliability and speed
+    ✓ Generated 165 samples
+  Generating 652 samples for unprivileged group with positive outcome
+    Using 100% Faker generation for reliability and speed
+    ✓ Generated 652 samples
+  Generating 587 samples for unprivileged group with negative outcome
+    Using 100% Faker generation for reliability and speed
+    ✓ Generated 587 samples
+
+Final Distribution: Sensitive Ratio=0.500, Label Ratio=0.500
+
+DP improvement: 0.0077, Accuracy cost: 0.0152
+✓ Saved results to: ./experiments/results/03_comprehensive_imbalance_faker_debug/india_faker/balanced_augmentation_india_extreme_compound_faker_debug.json
+
+================================================================================
+EXPERIMENT 'extreme_compound_faker_debug' COMPLETED.
+================================================================================

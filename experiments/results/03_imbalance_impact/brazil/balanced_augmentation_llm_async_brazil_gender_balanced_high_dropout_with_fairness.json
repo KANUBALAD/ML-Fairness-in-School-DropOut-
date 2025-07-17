@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-23T16:32:50.041164",
+    "experiment_type": "balanced_augmentation_llm_async",
+    "config_name": "brazil",
+    "scenario_name": "gender_balanced_high_dropout_with_fairness"
+  },
+  "results": {
+    "scenario_name": "gender_balanced_high_dropout_with_fairness",
+    "generation_method": "llm_async",
+    "original_analysis": {
+      "total_samples": 4424,
+      "privileged_count": 2868,
+      "unprivileged_count": 1556,
+      "current_sensitive_ratio": 0.6482820976491862,
+      "positive_count": 1421,
+      "negative_count": 3003,
+      "current_label_ratio": 0.3212025316455696,
+      "cross_tab": {
+        "priv_pos": 720,
+        "priv_neg": 2148,
+        "unpriv_pos": 701,
+        "unpriv_neg": 855
+      },
+      "columns": {
+        "sensitive_col": "Gender",
+        "label_col": "Target",
+        "privileged_val": 0,
+        "positive_label": "Dropout"
+      }
+    },
+    "final_analysis": {
+      "total_samples": 7023,
+      "privileged_count": 4180,
+      "unprivileged_count": 2843,
+      "current_sensitive_ratio": 0.5951872419194076,
+      "positive_count": 4015,
+      "negative_count": 3008,
+      "current_label_ratio": 0.5716930086857468,
+      "cross_tab": {
+        "priv_pos": 2027,
+        "priv_neg": 2153,
+        "unpriv_pos": 1988,
+        "unpriv_neg": 855
+      },
+      "columns": {
+        "sensitive_col": "Gender",
+        "label_col": "Target",
+        "privileged_val": 0,
+        "positive_label": "Dropout"
+      }
+    },
+    "augmented_data_shape": [
+      7023,
+      35
+    ],
+    "target_ratios": {
+      "target_sensitive_ratio": 0.5,
+      "target_label_ratio": 0.7
+    },
+    "baseline_metrics": {
+      "model_name": "Baseline_Balanced_gender_balanced_high_dropout_with_fairness_llm_async",
+      "overall_accuracy": 0.9245551601423487,
+      "privileged_accuracy": 0.9294554455445545,
+      "unprivileged_accuracy": 0.9179229480737019,
+      "privileged_tpr": 0.9105263157894737,
+      "unprivileged_tpr": 0.9243498817966903,
+      "privileged_fpr": 0.053738317757009345,
+      "unprivileged_fpr": 0.09770114942528736,
+      "privileged_selection_rate": 0.4566831683168317,
+      "unprivileged_selection_rate": 0.6834170854271356,
+      "accuracy_difference": 0.01153249747085261,
+      "tpr_difference": -0.01382356600721657,
+      "fpr_difference": -0.04396283166827802,
+      "demographic_parity_difference": -0.22673391711030394
+    },
+    "fair_metrics": {
+      "model_name": "Fair_Balanced_gender_balanced_high_dropout_with_fairness_llm_async",
+      "overall_accuracy": 0.9224199288256227,
+      "privileged_accuracy": 0.931930693069307,
+      "unprivileged_accuracy": 0.9095477386934674,
+      "privileged_tpr": 0.8894736842105263,
+      "unprivileged_tpr": 0.8959810874704491,
+      "privileged_fpr": 0.030373831775700934,
+      "unprivileged_fpr": 0.05747126436781609,
+      "privileged_selection_rate": 0.4344059405940594,
+      "unprivileged_selection_rate": 0.6515912897822446,
+      "accuracy_difference": 0.022382954375839592,
+      "tpr_difference": -0.006507403259922828,
+      "fpr_difference": -0.027097432592115157,
+      "demographic_parity_difference": -0.21718534918818516
+    },
+    "balance_achieved": {
+      "sensitive_ratio_achieved": false,
+      "label_ratio_achieved": false
+    },
+    "improvement_metrics": {
+      "accuracy_difference": 0.002135231316725994,
+      "dp_improvement": 0.009548567922118778,
+      "tpr_improvement": 0.007316162747293742,
+      "fpr_improvement": 0.01686539907616286
+    },
+    "augmentation_plan": {
+      "total_additional": 1312,
+      "target_total": 5736,
+      "breakdown": {
+        "priv_pos": 1287,
+        "priv_neg": 0,
+        "unpriv_pos": 1307,
+        "unpriv_neg": 5
+      },
+      "target_distribution": {
+        "priv_pos": 2007,
+        "priv_neg": 861,
+        "unpriv_pos": 2008,
+        "unpriv_neg": 860
+      }
+    },
+    "augmented_dataset_path": "./data/augmented_brazil_gender_balanced_high_dropout_with_fairness_llm_async_0.5_0.7.csv"
+  }
+}

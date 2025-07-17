@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-23T16:38:48.411218",
+    "experiment_type": "balanced_augmentation_faker",
+    "config_name": "africa",
+    "scenario_name": "extreme_high_dropout_with_fairness"
+  },
+  "results": {
+    "scenario_name": "extreme_high_dropout_with_fairness",
+    "generation_method": "faker",
+    "original_analysis": {
+      "total_samples": 62739,
+      "privileged_count": 27684,
+      "unprivileged_count": 35055,
+      "current_sensitive_ratio": 0.441256634629178,
+      "positive_count": 5707,
+      "negative_count": 57032,
+      "current_label_ratio": 0.09096415307862733,
+      "cross_tab": {
+        "priv_pos": 2147,
+        "priv_neg": 25537,
+        "unpriv_pos": 3560,
+        "unpriv_neg": 31495
+      },
+      "columns": {
+        "sensitive_col": "gender",
+        "label_col": "dropout",
+        "privileged_val": "Male",
+        "positive_label": "Yes"
+      }
+    },
+    "final_analysis": {
+      "total_samples": 113120,
+      "privileged_count": 53581,
+      "unprivileged_count": 59539,
+      "current_sensitive_ratio": 0.4736651343705799,
+      "positive_count": 56088,
+      "negative_count": 57032,
+      "current_label_ratio": 0.4958274398868458,
+      "cross_tab": {
+        "priv_pos": 28044,
+        "priv_neg": 25537,
+        "unpriv_pos": 28044,
+        "unpriv_neg": 31495
+      },
+      "columns": {
+        "sensitive_col": "gender",
+        "label_col": "dropout",
+        "privileged_val": "Male",
+        "positive_label": "Yes"
+      }
+    },
+    "augmented_data_shape": [
+      113120,
+      13
+    ],
+    "target_ratios": {
+      "target_sensitive_ratio": 0.5,
+      "target_label_ratio": 0.8
+    },
+    "baseline_metrics": {
+      "model_name": "Baseline_Balanced_extreme_high_dropout_with_fairness_faker",
+      "overall_accuracy": 0.9640205091937766,
+      "privileged_accuracy": 0.9738604651162791,
+      "unprivileged_accuracy": 0.9551120094323733,
+      "privileged_tpr": 0.9758608448704296,
+      "unprivileged_tpr": 0.9315902578796562,
+      "privileged_fpr": 0.028342455043002347,
+      "unprivileged_fpr": 0.024006359300476947,
+      "privileged_selection_rate": 0.5249302325581395,
+      "unprivileged_selection_rate": 0.4508169108977598,
+      "accuracy_difference": 0.018748455683905818,
+      "tpr_difference": 0.04427058699077335,
+      "fpr_difference": 0.0043360957425254,
+      "demographic_parity_difference": 0.0741133216603797
+    },
+    "fair_metrics": {
+      "model_name": "Fair_Balanced_extreme_high_dropout_with_fairness_faker",
+      "overall_accuracy": 0.9651255304101839,
+      "privileged_accuracy": 0.9738604651162791,
+      "unprivileged_accuracy": 0.957217449890517,
+      "privileged_tpr": 0.9758608448704296,
+      "unprivileged_tpr": 0.9315902578796562,
+      "privileged_fpr": 0.028342455043002347,
+      "unprivileged_fpr": 0.02003179650238474,
+      "privileged_selection_rate": 0.5249302325581395,
+      "unprivileged_selection_rate": 0.44871147043961596,
+      "accuracy_difference": 0.01664301522576206,
+      "tpr_difference": 0.04427058699077335,
+      "fpr_difference": 0.008310658540617608,
+      "demographic_parity_difference": 0.07621876211852358
+    },
+    "balance_achieved": {
+      "sensitive_ratio_achieved": true,
+      "label_ratio_achieved": false
+    },
+    "improvement_metrics": {
+      "accuracy_difference": -0.0011050212164073203,
+      "dp_improvement": -0.00210544045814387,
+      "tpr_improvement": 0.0,
+      "fpr_improvement": -0.003974562798092208
+    },
+    "augmentation_plan": {
+      "total_additional": 7371,
+      "target_total": 70110,
+      "breakdown": {
+        "priv_pos": 25897,
+        "priv_neg": 0,
+        "unpriv_pos": 24484,
+        "unpriv_neg": 0
+      },
+      "target_distribution": {
+        "priv_pos": 28044,
+        "priv_neg": 7011,
+        "unpriv_pos": 28044,
+        "unpriv_neg": 7011
+      }
+    },
+    "augmented_dataset_path": "./data/augmented_africa_extreme_high_dropout_with_fairness_faker_0.5_0.8.csv"
+  }
+}

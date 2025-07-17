@@ -1,0 +1,11 @@
+{
+    "experiment": "model_selection",
+    "timestamp": "2025-06-23T15:36:34+02:00",
+    "best_models": {
+        "brazil": "logistic_regression",
+        "africa": "random_forest",
+        "india": "logistic_regression"
+    },
+    "methodology": "5x2_cross_validation",
+    "models_tested": ["logistic_regression", "decision_tree", "random_forest"]
+}

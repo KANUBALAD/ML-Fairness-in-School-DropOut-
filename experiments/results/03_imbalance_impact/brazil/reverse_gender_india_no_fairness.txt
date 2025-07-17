@@ -1,0 +1,141 @@
+✓ LLM generator loaded successfully
+✓ SDV library loaded successfully with conditional sampling support
+✓ CTGAN/TVAE generators loaded successfully
+Results will be saved to: ./experiments/results/03_imbalance_impact/brazil
+Running balanced augmentation experiment with method: llm_async
+
+================================================================================
+BALANCED AUGMENTATION EXPERIMENT: reverse_gender_india_no_fairness
+Dataset: brazil
+Generation Method: llm_async
+Target Sensitive Ratio: 0.35 (privileged:unprivileged)
+Target Label Ratio: 0.12 (positive:negative)
+================================================================================
+Original dataset shape: (4424, 35)
+
+Current Distribution Analysis:
+  Total samples: 4424
+  Privileged: 2868 (0.648)
+  Unprivileged: 1556 (0.352)
+  Positive labels: 1421 (0.321)
+  Negative labels: 3003 (0.679)
+
+Cross-tabulation:
+  Privileged + Positive: 720
+  Privileged + Negative: 2148
+  Unprivileged + Positive: 701
+  Unprivileged + Negative: 855
+
+Augmentation Plan:
+  Total additional samples needed: 0
+  Target total size: 4424
+  Additional samples by category:
+    Privileged + Positive: +0
+    Privileged + Negative: +0
+    Unprivileged + Positive: +0
+    Unprivileged + Negative: +1676
+
+Generating targeted synthetic samples using method: llm_async
+Total additional samples needed: 0
+Using LLM async generator...
+🤖 Starting LLM async generation...
+✓ Using generate_enhanced_synthetic_data function
+🚀 Starting Enhanced LLM Synthetic Data Generation...
+Target specifications: [('unpriv_neg', 1676)]
+🔬 Starting LLM generation for 1 categories...
+
+Generating 1676 samples for unpriv_neg...
+✓ Generated 1676 samples for unpriv_neg
+
+Total samples generated: 1676
+Converting 1676 samples to DataFrame...
+✓ Created augmented dataset with 6100 total samples
+
+Augmented dataset shape: (6100, 35)
+
+Verification - Final Distribution:
+  Privileged ratio: 0.745 (target: 0.350)
+  Positive label ratio: 0.233 (target: 0.120)
+✓ Saved augmented dataset to: ./data/augmented_brazil_reverse_gender_india_no_fairness_llm_async_0.35_0.12.csv
+
+Testing fairness interventions on balanced dataset (method: llm_async)...
+Preprocessed balanced data shape: (6100, 33)
+Final sensitive distribution: [1556 4544]
+Final label distribution: [4679 1421]
+
+--- Baseline Model on Balanced Data (llm_async) ---
+
+=== Fairness Report for Baseline_Balanced_reverse_gender_india_no_fairness_llm_async ===
+Overall Accuracy: 0.8951
+
+Group-wise Performance:
+  Privileged Group Accuracy:   0.9205
+  Unprivileged Group Accuracy: 0.8217
+  Accuracy Difference:         0.0989
+
+True Positive Rate (Recall):
+  Privileged Group TPR:        0.6058
+  Unprivileged Group TPR:      0.7211
+  TPR Difference:              -0.1152
+
+False Positive Rate:
+  Privileged Group FPR:        0.0234
+  Unprivileged Group FPR:      0.0898
+  FPR Difference:              -0.0664
+
+Selection Rate (Demographic Parity):
+  Privileged Group Selection Rate:   0.1115
+  Unprivileged Group Selection Rate: 0.3854
+  Demographic Parity Difference:     -0.2739
+
+Fairness Assessment:
+  ✗ Demographic Parity: Potential Bias (difference >= 0.1)
+
+Applying fairness intervention on balanced data: reweighting
+
+--- Fair Model on Balanced Data (llm_async) ---
+
+=== Fairness Report for Fair_Balanced_reverse_gender_india_no_fairness_llm_async ===
+Overall Accuracy: 0.8623
+
+Group-wise Performance:
+  Privileged Group Accuracy:   0.8852
+  Unprivileged Group Accuracy: 0.7962
+  Accuracy Difference:         0.0890
+
+True Positive Rate (Recall):
+  Privileged Group TPR:        0.7664
+  Unprivileged Group TPR:      0.8095
+  TPR Difference:              -0.0431
+
+False Positive Rate:
+  Privileged Group FPR:        0.0936
+  Unprivileged Group FPR:      0.2156
+  FPR Difference:              -0.1219
+
+Selection Rate (Demographic Parity):
+  Privileged Group Selection Rate:   0.1954
+  Unprivileged Group Selection Rate: 0.4936
+  Demographic Parity Difference:     -0.2983
+
+Fairness Assessment:
+  ✗ Demographic Parity: Potential Bias (difference >= 0.1)
+✓ Saved results to: ./experiments/results/03_imbalance_impact/brazil/balanced_augmentation_llm_async_brazil_reverse_gender_india_no_fairness.json
+
+================================================================================
+BALANCED AUGMENTATION EXPERIMENT RESULTS
+================================================================================
+Generation Method: llm_async
+Original dataset: 4424 samples
+Augmented dataset: 6100 samples
+Samples added: 1676
+
+Balance Achievement:
+  Sensitive ratio: 0.648 → 0.745
+  Label ratio: 0.321 → 0.233
+
+Fairness Impact:
+  Accuracy cost: 0.0328
+  DP improvement: -0.0244
+
+✓ All results saved to: ./experiments/results/03_imbalance_impact/brazil

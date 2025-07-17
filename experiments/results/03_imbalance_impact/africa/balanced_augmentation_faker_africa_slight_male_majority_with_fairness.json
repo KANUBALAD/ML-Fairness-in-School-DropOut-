@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-23T16:37:40.790974",
+    "experiment_type": "balanced_augmentation_faker",
+    "config_name": "africa",
+    "scenario_name": "slight_male_majority_with_fairness"
+  },
+  "results": {
+    "scenario_name": "slight_male_majority_with_fairness",
+    "generation_method": "faker",
+    "original_analysis": {
+      "total_samples": 62739,
+      "privileged_count": 27684,
+      "unprivileged_count": 35055,
+      "current_sensitive_ratio": 0.441256634629178,
+      "positive_count": 5707,
+      "negative_count": 57032,
+      "current_label_ratio": 0.09096415307862733,
+      "cross_tab": {
+        "priv_pos": 2147,
+        "priv_neg": 25537,
+        "unpriv_pos": 3560,
+        "unpriv_neg": 31495
+      },
+      "columns": {
+        "sensitive_col": "gender",
+        "label_col": "dropout",
+        "privileged_val": "Male",
+        "positive_label": "Yes"
+      }
+    },
+    "final_analysis": {
+      "total_samples": 122746,
+      "privileged_count": 68438,
+      "unprivileged_count": 54308,
+      "current_sensitive_ratio": 0.5575578837599596,
+      "positive_count": 57032,
+      "negative_count": 65714,
+      "current_label_ratio": 0.46463428543496327,
+      "cross_tab": {
+        "priv_pos": 34219,
+        "priv_neg": 34219,
+        "unpriv_pos": 22813,
+        "unpriv_neg": 31495
+      },
+      "columns": {
+        "sensitive_col": "gender",
+        "label_col": "dropout",
+        "privileged_val": "Male",
+        "positive_label": "Yes"
+      }
+    },
+    "augmented_data_shape": [
+      122746,
+      13
+    ],
+    "target_ratios": {
+      "target_sensitive_ratio": 0.6,
+      "target_label_ratio": 0.5
+    },
+    "baseline_metrics": {
+      "model_name": "Baseline_Balanced_slight_male_majority_with_fairness_faker",
+      "overall_accuracy": 0.8806517311608961,
+      "privileged_accuracy": 0.8435125657510228,
+      "unprivileged_accuracy": 0.9274535076413184,
+      "privileged_tpr": 0.9345671815797144,
+      "unprivileged_tpr": 0.8486248624862486,
+      "privileged_fpr": 0.2480222677995898,
+      "unprivileged_fpr": 0.015830299192654742,
+      "privileged_selection_rate": 0.592197545295149,
+      "unprivileged_selection_rate": 0.3642975510955625,
+      "accuracy_difference": -0.08394094189029555,
+      "tpr_difference": 0.08594231909346584,
+      "fpr_difference": 0.23219196860693506,
+      "demographic_parity_difference": 0.2278999941995865
+    },
+    "fair_metrics": {
+      "model_name": "Fair_Balanced_slight_male_majority_with_fairness_faker",
+      "overall_accuracy": 0.8822403258655804,
+      "privileged_accuracy": 0.847895967270602,
+      "unprivileged_accuracy": 0.9255201620327748,
+      "privileged_tpr": 0.944768289128534,
+      "unprivileged_tpr": 0.8655665566556656,
+      "privileged_fpr": 0.24948725461470847,
+      "unprivileged_fpr": 0.03134399240145639,
+      "privileged_selection_rate": 0.598042080654588,
+      "unprivileged_selection_rate": 0.3804087645000921,
+      "accuracy_difference": -0.07762419476217275,
+      "tpr_difference": 0.07920173247286832,
+      "fpr_difference": 0.2181432622132521,
+      "demographic_parity_difference": 0.21763331615449588
+    },
+    "balance_achieved": {
+      "sensitive_ratio_achieved": true,
+      "label_ratio_achieved": true
+    },
+    "improvement_metrics": {
+      "accuracy_difference": -0.0015885947046843096,
+      "dp_improvement": 0.010266678045090627,
+      "tpr_improvement": 0.006740586620597511,
+      "fpr_improvement": 0.01404870639368297
+    },
+    "augmentation_plan": {
+      "total_additional": 51325,
+      "target_total": 114064,
+      "breakdown": {
+        "priv_pos": 32072,
+        "priv_neg": 8682,
+        "unpriv_pos": 19253,
+        "unpriv_neg": 0
+      },
+      "target_distribution": {
+        "priv_pos": 34219,
+        "priv_neg": 34219,
+        "unpriv_pos": 22813,
+        "unpriv_neg": 22813
+      }
+    },
+    "augmented_dataset_path": "./data/augmented_africa_slight_male_majority_with_fairness_faker_0.6_0.5.csv"
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-23T19:07:32.169730",
+    "experiment_type": "balanced_augmentation_faker",
+    "config_name": "africa",
+    "scenario_name": "perfect_balance_faker"
+  },
+  "results": {
+    "scenario_name": "perfect_balance_faker",
+    "generation_method": "faker",
+    "original_analysis": {
+      "total_samples": 62739,
+      "privileged_count": 27684,
+      "unprivileged_count": 35055,
+      "current_sensitive_ratio": 0.441256634629178,
+      "positive_count": 5707,
+      "negative_count": 57032,
+      "current_label_ratio": 0.09096415307862733,
+      "cross_tab": {
+        "priv_pos": 2147,
+        "priv_neg": 25537,
+        "unpriv_pos": 3560,
+        "unpriv_neg": 31495
+      },
+      "columns": {
+        "sensitive_col": "gender",
+        "label_col": "dropout",
+        "privileged_val": "Male",
+        "positive_label": "Yes"
+      }
+    },
+    "final_analysis": {
+      "total_samples": 117043,
+      "privileged_count": 57032,
+      "unprivileged_count": 60011,
+      "current_sensitive_ratio": 0.4872739078800099,
+      "positive_count": 57032,
+      "negative_count": 60011,
+      "current_label_ratio": 0.4872739078800099,
+      "cross_tab": {
+        "priv_pos": 28516,
+        "priv_neg": 28516,
+        "unpriv_pos": 28516,
+        "unpriv_neg": 31495
+      },
+      "columns": {
+        "sensitive_col": "gender",
+        "label_col": "dropout",
+        "privileged_val": "Male",
+        "positive_label": "Yes"
+      }
+    },
+    "augmented_data_shape": [
+      117043,
+      13
+    ],
+    "target_ratios": {
+      "target_sensitive_ratio": 0.5,
+      "target_label_ratio": 0.5
+    },
+    "baseline_metrics": {
+      "model_name": "Baseline_Balanced_perfect_balance_faker_faker",
+      "overall_accuracy": 0.9306249733008672,
+      "privileged_accuracy": 0.922278436845778,
+      "unprivileged_accuracy": 0.9386354123064043,
+      "privileged_tpr": 0.9538994800693241,
+      "unprivileged_tpr": 0.8955117970551711,
+      "privileged_fpr": 0.10976466455918511,
+      "unprivileged_fpr": 0.022828154724159798,
+      "privileged_selection_rate": 0.5346301465457083,
+      "unprivileged_selection_rate": 0.43465885307660107,
+      "accuracy_difference": -0.01635697546062631,
+      "tpr_difference": 0.05838768301415298,
+      "fpr_difference": 0.08693650983502532,
+      "demographic_parity_difference": 0.09997129346910721
+    },
+    "fair_metrics": {
+      "model_name": "Fair_Balanced_perfect_balance_faker_faker",
+      "overall_accuracy": 0.928403605450895,
+      "privileged_accuracy": 0.920969993021633,
+      "unprivileged_accuracy": 0.9355378819589787,
+      "privileged_tpr": 0.9582322357019064,
+      "unprivileged_tpr": 0.9022529714387085,
+      "privileged_fpr": 0.11678960309097296,
+      "unprivileged_fpr": 0.034717818642993024,
+      "privileged_selection_rate": 0.5403000697836706,
+      "unprivileged_selection_rate": 0.44411887819171203,
+      "accuracy_difference": -0.01456788893734573,
+      "tpr_difference": 0.05597926426319788,
+      "fpr_difference": 0.08207178444797994,
+      "demographic_parity_difference": 0.09618119159195859
+    },
+    "balance_achieved": {
+      "sensitive_ratio_achieved": true,
+      "label_ratio_achieved": true
+    },
+    "improvement_metrics": {
+      "accuracy_difference": 0.002221367849972289,
+      "dp_improvement": 0.0037901018771486217,
+      "tpr_improvement": 0.002408418750955099,
+      "fpr_improvement": 0.004864725387045382
+    },
+    "augmentation_plan": {
+      "total_additional": 51325,
+      "target_total": 114064,
+      "breakdown": {
+        "priv_pos": 26369,
+        "priv_neg": 2979,
+        "unpriv_pos": 24956,
+        "unpriv_neg": 0
+      },
+      "target_distribution": {
+        "priv_pos": 28516,
+        "priv_neg": 28516,
+        "unpriv_pos": 28516,
+        "unpriv_neg": 28516
+      }
+    },
+    "augmented_dataset_path": "./data/augmented_africa_perfect_balance_faker_faker_0.5_0.5.csv"
+  }
+}

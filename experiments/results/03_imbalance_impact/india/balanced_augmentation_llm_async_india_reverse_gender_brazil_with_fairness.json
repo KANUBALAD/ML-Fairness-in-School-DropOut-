@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-23T16:34:34.837253",
+    "experiment_type": "balanced_augmentation_llm_async",
+    "config_name": "india",
+    "scenario_name": "reverse_gender_brazil_with_fairness"
+  },
+  "results": {
+    "scenario_name": "reverse_gender_brazil_with_fairness",
+    "generation_method": "llm_async",
+    "original_analysis": {
+      "total_samples": 2137,
+      "privileged_count": 743,
+      "unprivileged_count": 1394,
+      "current_sensitive_ratio": 0.34768366869443146,
+      "positive_count": 256,
+      "negative_count": 1881,
+      "current_label_ratio": 0.11979410388394947,
+      "cross_tab": {
+        "priv_pos": 118,
+        "priv_neg": 625,
+        "unpriv_pos": 138,
+        "unpriv_neg": 1256
+      },
+      "columns": {
+        "sensitive_col": "STUDENTGENDER",
+        "label_col": "STUDENT_DROPOUT_STATUS",
+        "privileged_val": "M",
+        "positive_label": "DROPOUT"
+      }
+    },
+    "final_analysis": {
+      "total_samples": 2564,
+      "privileged_count": 864,
+      "unprivileged_count": 1700,
+      "current_sensitive_ratio": 0.3369734789391576,
+      "positive_count": 683,
+      "negative_count": 1881,
+      "current_label_ratio": 0.2663806552262091,
+      "cross_tab": {
+        "priv_pos": 239,
+        "priv_neg": 625,
+        "unpriv_pos": 444,
+        "unpriv_neg": 1256
+      },
+      "columns": {
+        "sensitive_col": "STUDENTGENDER",
+        "label_col": "STUDENT_DROPOUT_STATUS",
+        "privileged_val": "M",
+        "positive_label": "DROPOUT"
+      }
+    },
+    "augmented_data_shape": [
+      2564,
+      16
+    ],
+    "target_ratios": {
+      "target_sensitive_ratio": 0.35,
+      "target_label_ratio": 0.32
+    },
+    "baseline_metrics": {
+      "model_name": "Baseline_Balanced_reverse_gender_brazil_with_fairness_llm_async",
+      "overall_accuracy": 0.9181286549707602,
+      "privileged_accuracy": 0.8674698795180723,
+      "unprivileged_accuracy": 0.9423631123919308,
+      "privileged_tpr": 0.7586206896551724,
+      "unprivileged_tpr": 0.810126582278481,
+      "privileged_fpr": 0.07407407407407407,
+      "unprivileged_fpr": 0.018656716417910446,
+      "privileged_selection_rate": 0.3132530120481928,
+      "unprivileged_selection_rate": 0.1988472622478386,
+      "accuracy_difference": -0.07489323287385852,
+      "tpr_difference": -0.051505892623308625,
+      "fpr_difference": 0.055417357656163624,
+      "demographic_parity_difference": 0.11440574980035417
+    },
+    "fair_metrics": {
+      "model_name": "Fair_Balanced_reverse_gender_brazil_with_fairness_llm_async",
+      "overall_accuracy": 0.9122807017543859,
+      "privileged_accuracy": 0.8493975903614458,
+      "unprivileged_accuracy": 0.9423631123919308,
+      "privileged_tpr": 0.7931034482758621,
+      "unprivileged_tpr": 0.8607594936708861,
+      "privileged_fpr": 0.12037037037037036,
+      "unprivileged_fpr": 0.033582089552238806,
+      "privileged_selection_rate": 0.35542168674698793,
+      "unprivileged_selection_rate": 0.2219020172910663,
+      "accuracy_difference": -0.09296552203048503,
+      "tpr_difference": -0.06765604539502401,
+      "fpr_difference": 0.08678828081813156,
+      "demographic_parity_difference": 0.13351966945592164
+    },
+    "balance_achieved": {
+      "sensitive_ratio_achieved": true,
+      "label_ratio_achieved": false
+    },
+    "improvement_metrics": {
+      "accuracy_difference": 0.005847953216374324,
+      "dp_improvement": -0.01911391965556747,
+      "tpr_improvement": -0.016150152771715387,
+      "fpr_improvement": -0.031370923161967934
+    },
+    "augmentation_plan": {
+      "total_additional": 0,
+      "target_total": 2137,
+      "breakdown": {
+        "priv_pos": 121,
+        "priv_neg": 0,
+        "unpriv_pos": 306,
+        "unpriv_neg": 0
+      },
+      "target_distribution": {
+        "priv_pos": 239,
+        "priv_neg": 508,
+        "unpriv_pos": 444,
+        "unpriv_neg": 946
+      }
+    },
+    "augmented_dataset_path": "./data/augmented_india_reverse_gender_brazil_with_fairness_llm_async_0.35_0.32.csv"
+  }
+}

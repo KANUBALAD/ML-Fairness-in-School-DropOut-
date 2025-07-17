@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-23T16:35:13.582453",
+    "experiment_type": "balanced_augmentation_llm_async",
+    "config_name": "india",
+    "scenario_name": "extreme_male_majority_no_fairness"
+  },
+  "results": {
+    "scenario_name": "extreme_male_majority_no_fairness",
+    "generation_method": "llm_async",
+    "original_analysis": {
+      "total_samples": 2137,
+      "privileged_count": 743,
+      "unprivileged_count": 1394,
+      "current_sensitive_ratio": 0.34768366869443146,
+      "positive_count": 256,
+      "negative_count": 1881,
+      "current_label_ratio": 0.11979410388394947,
+      "cross_tab": {
+        "priv_pos": 118,
+        "priv_neg": 625,
+        "unpriv_pos": 138,
+        "unpriv_neg": 1256
+      },
+      "columns": {
+        "sensitive_col": "STUDENTGENDER",
+        "label_col": "STUDENT_DROPOUT_STATUS",
+        "privileged_val": "M",
+        "positive_label": "DROPOUT"
+      }
+    },
+    "final_analysis": {
+      "total_samples": 4642,
+      "privileged_count": 3009,
+      "unprivileged_count": 1633,
+      "current_sensitive_ratio": 0.6482119775958638,
+      "positive_count": 1881,
+      "negative_count": 2761,
+      "current_label_ratio": 0.4052132701421801,
+      "cross_tab": {
+        "priv_pos": 1504,
+        "priv_neg": 1505,
+        "unpriv_pos": 377,
+        "unpriv_neg": 1256
+      },
+      "columns": {
+        "sensitive_col": "STUDENTGENDER",
+        "label_col": "STUDENT_DROPOUT_STATUS",
+        "privileged_val": "M",
+        "positive_label": "DROPOUT"
+      }
+    },
+    "augmented_data_shape": [
+      4642,
+      16
+    ],
+    "target_ratios": {
+      "target_sensitive_ratio": 0.8,
+      "target_label_ratio": 0.5
+    },
+    "baseline_metrics": {
+      "model_name": "Baseline_Balanced_extreme_male_majority_no_fairness_llm_async",
+      "overall_accuracy": 0.7373519913885899,
+      "privileged_accuracy": 0.6468646864686468,
+      "unprivileged_accuracy": 0.9071207430340558,
+      "privileged_tpr": 0.7588424437299035,
+      "unprivileged_tpr": 0.5538461538461539,
+      "privileged_fpr": 0.4711864406779661,
+      "unprivileged_fpr": 0.003875968992248062,
+      "privileged_selection_rate": 0.6188118811881188,
+      "unprivileged_selection_rate": 0.11455108359133127,
+      "accuracy_difference": -0.26025605656540896,
+      "tpr_difference": 0.20499628988374963,
+      "fpr_difference": 0.46731047168571804,
+      "demographic_parity_difference": 0.5042607975967875
+    },
+    "fair_metrics": {
+      "model_name": "Fair_Balanced_extreme_male_majority_no_fairness_llm_async",
+      "overall_accuracy": 0.7319698600645855,
+      "privileged_accuracy": 0.6303630363036303,
+      "unprivileged_accuracy": 0.9226006191950464,
+      "privileged_tpr": 0.7877813504823151,
+      "unprivileged_tpr": 0.6923076923076923,
+      "privileged_fpr": 0.535593220338983,
+      "unprivileged_fpr": 0.01937984496124031,
+      "privileged_selection_rate": 0.665016501650165,
+      "unprivileged_selection_rate": 0.15479876160990713,
+      "accuracy_difference": -0.2922375828914161,
+      "tpr_difference": 0.09547365817462283,
+      "fpr_difference": 0.5162133753777427,
+      "demographic_parity_difference": 0.5102177400402579
+    },
+    "balance_achieved": {
+      "sensitive_ratio_achieved": false,
+      "label_ratio_achieved": false
+    },
+    "improvement_metrics": {
+      "accuracy_difference": 0.005382131324004336,
+      "dp_improvement": -0.005956942443470337,
+      "tpr_improvement": 0.1095226317091268,
+      "fpr_improvement": -0.04890290369202466
+    },
+    "augmentation_plan": {
+      "total_additional": 1625,
+      "target_total": 3762,
+      "breakdown": {
+        "priv_pos": 1386,
+        "priv_neg": 880,
+        "unpriv_pos": 239,
+        "unpriv_neg": 0
+      },
+      "target_distribution": {
+        "priv_pos": 1504,
+        "priv_neg": 1505,
+        "unpriv_pos": 377,
+        "unpriv_neg": 376
+      }
+    },
+    "augmented_dataset_path": "./data/augmented_india_extreme_male_majority_no_fairness_llm_async_0.8_0.5.csv"
+  }
+}

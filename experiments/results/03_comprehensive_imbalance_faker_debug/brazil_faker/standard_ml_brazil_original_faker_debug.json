@@ -1,0 +1,62 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-26T17:35:23.431991",
+    "experiment_type": "standard_ml",
+    "config_name": "brazil",
+    "scenario_name": "original_faker_debug"
+  },
+  "results": {
+    "scenario_name": "original_faker_debug",
+    "original_analysis": {
+      "total_samples": 4424,
+      "privileged_count": 1556,
+      "unprivileged_count": 2868,
+      "current_sensitive_ratio": 0.35171790235081374,
+      "positive_count": 1421,
+      "negative_count": 3003,
+      "current_label_ratio": 0.3212025316455696,
+      "cross_tab": {
+        "priv_pos": 701,
+        "priv_neg": 855,
+        "unpriv_pos": 720,
+        "unpriv_neg": 2148
+      }
+    },
+    "baseline_metrics": {
+      "model_name": "Standard_Baseline",
+      "overall_accuracy": 0.880225988700565,
+      "privileged_accuracy": 0.898936170212766,
+      "unprivileged_accuracy": 0.8473520249221184,
+      "privileged_tpr": 0.7028985507246377,
+      "unprivileged_tpr": 0.7602739726027398,
+      "privileged_fpr": 0.03755868544600939,
+      "unprivileged_fpr": 0.08,
+      "privileged_selection_rate": 0.20035460992907803,
+      "unprivileged_selection_rate": 0.3894080996884735,
+      "accuracy_difference": 0.05158414529064759,
+      "tpr_difference": -0.05737542187810207,
+      "fpr_difference": -0.04244131455399061,
+      "demographic_parity_difference": -0.18905348975939548
+    },
+    "fair_metrics": {
+      "model_name": "Standard_Fair",
+      "overall_accuracy": 0.8734463276836159,
+      "privileged_accuracy": 0.8971631205673759,
+      "unprivileged_accuracy": 0.8317757009345794,
+      "privileged_tpr": 0.7971014492753623,
+      "unprivileged_tpr": 0.815068493150685,
+      "privileged_fpr": 0.07042253521126761,
+      "unprivileged_fpr": 0.15428571428571428,
+      "privileged_selection_rate": 0.24822695035460993,
+      "unprivileged_selection_rate": 0.45482866043613707,
+      "accuracy_difference": 0.06538741963279648,
+      "tpr_difference": -0.017967043875322664,
+      "fpr_difference": -0.08386317907444667,
+      "demographic_parity_difference": -0.20660171008152714
+    },
+    "improvement_metrics": {
+      "accuracy_cost": 0.006779661016949157,
+      "dp_improvement": -0.017548220322131658
+    }
+  }
+}

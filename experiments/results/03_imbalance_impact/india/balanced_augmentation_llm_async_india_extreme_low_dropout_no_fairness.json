@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-23T16:36:56.458233",
+    "experiment_type": "balanced_augmentation_llm_async",
+    "config_name": "india",
+    "scenario_name": "extreme_low_dropout_no_fairness"
+  },
+  "results": {
+    "scenario_name": "extreme_low_dropout_no_fairness",
+    "generation_method": "llm_async",
+    "original_analysis": {
+      "total_samples": 2137,
+      "privileged_count": 743,
+      "unprivileged_count": 1394,
+      "current_sensitive_ratio": 0.34768366869443146,
+      "positive_count": 256,
+      "negative_count": 1881,
+      "current_label_ratio": 0.11979410388394947,
+      "cross_tab": {
+        "priv_pos": 118,
+        "priv_neg": 625,
+        "unpriv_pos": 138,
+        "unpriv_neg": 1256
+      },
+      "columns": {
+        "sensitive_col": "STUDENTGENDER",
+        "label_col": "STUDENT_DROPOUT_STATUS",
+        "privileged_val": "M",
+        "positive_label": "DROPOUT"
+      }
+    },
+    "final_analysis": {
+      "total_samples": 2929,
+      "privileged_count": 1394,
+      "unprivileged_count": 1535,
+      "current_sensitive_ratio": 0.47593035165585523,
+      "positive_count": 557,
+      "negative_count": 2372,
+      "current_label_ratio": 0.19016729259132809,
+      "cross_tab": {
+        "priv_pos": 278,
+        "priv_neg": 1116,
+        "unpriv_pos": 279,
+        "unpriv_neg": 1256
+      },
+      "columns": {
+        "sensitive_col": "STUDENTGENDER",
+        "label_col": "STUDENT_DROPOUT_STATUS",
+        "privileged_val": "M",
+        "positive_label": "DROPOUT"
+      }
+    },
+    "augmented_data_shape": [
+      2929,
+      16
+    ],
+    "target_ratios": {
+      "target_sensitive_ratio": 0.5,
+      "target_label_ratio": 0.2
+    },
+    "baseline_metrics": {
+      "model_name": "Baseline_Balanced_extreme_low_dropout_no_fairness_llm_async",
+      "overall_accuracy": 0.773037542662116,
+      "privileged_accuracy": 0.7126865671641791,
+      "unprivileged_accuracy": 0.8238993710691824,
+      "privileged_tpr": 0.1,
+      "unprivileged_tpr": 0.09836065573770492,
+      "privileged_fpr": 0.14678899082568808,
+      "unprivileged_fpr": 0.0038910505836575876,
+      "privileged_selection_rate": 0.13805970149253732,
+      "unprivileged_selection_rate": 0.0220125786163522,
+      "accuracy_difference": -0.11121280390500332,
+      "tpr_difference": 0.0016393442622950893,
+      "fpr_difference": 0.1428979402420305,
+      "demographic_parity_difference": 0.11604712287618513
+    },
+    "fair_metrics": {
+      "model_name": "Fair_Balanced_extreme_low_dropout_no_fairness_llm_async",
+      "overall_accuracy": 0.7337883959044369,
+      "privileged_accuracy": 0.5783582089552238,
+      "unprivileged_accuracy": 0.8647798742138365,
+      "privileged_tpr": 0.56,
+      "unprivileged_tpr": 0.4918032786885246,
+      "privileged_fpr": 0.41743119266055045,
+      "unprivileged_fpr": 0.04669260700389105,
+      "privileged_selection_rate": 0.44402985074626866,
+      "unprivileged_selection_rate": 0.1320754716981132,
+      "accuracy_difference": -0.2864216652586127,
+      "tpr_difference": 0.06819672131147547,
+      "fpr_difference": 0.3707385856566594,
+      "demographic_parity_difference": 0.3119543790481555
+    },
+    "balance_achieved": {
+      "sensitive_ratio_achieved": true,
+      "label_ratio_achieved": true
+    },
+    "improvement_metrics": {
+      "accuracy_difference": 0.0392491467576791,
+      "dp_improvement": -0.19590725617197036,
+      "tpr_improvement": -0.06655737704918038,
+      "fpr_improvement": -0.2278406454146289
+    },
+    "augmentation_plan": {
+      "total_additional": 651,
+      "target_total": 2788,
+      "breakdown": {
+        "priv_pos": 160,
+        "priv_neg": 491,
+        "unpriv_pos": 141,
+        "unpriv_neg": 0
+      },
+      "target_distribution": {
+        "priv_pos": 278,
+        "priv_neg": 1116,
+        "unpriv_pos": 279,
+        "unpriv_neg": 1115
+      }
+    },
+    "augmented_dataset_path": "./data/augmented_india_extreme_low_dropout_no_fairness_llm_async_0.5_0.2.csv"
+  }
+}

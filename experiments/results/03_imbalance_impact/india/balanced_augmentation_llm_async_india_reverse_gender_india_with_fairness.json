@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-23T16:34:54.764756",
+    "experiment_type": "balanced_augmentation_llm_async",
+    "config_name": "india",
+    "scenario_name": "reverse_gender_india_with_fairness"
+  },
+  "results": {
+    "scenario_name": "reverse_gender_india_with_fairness",
+    "generation_method": "llm_async",
+    "original_analysis": {
+      "total_samples": 2137,
+      "privileged_count": 743,
+      "unprivileged_count": 1394,
+      "current_sensitive_ratio": 0.34768366869443146,
+      "positive_count": 256,
+      "negative_count": 1881,
+      "current_label_ratio": 0.11979410388394947,
+      "cross_tab": {
+        "priv_pos": 118,
+        "priv_neg": 625,
+        "unpriv_pos": 138,
+        "unpriv_neg": 1256
+      },
+      "columns": {
+        "sensitive_col": "STUDENTGENDER",
+        "label_col": "STUDENT_DROPOUT_STATUS",
+        "privileged_val": "M",
+        "positive_label": "DROPOUT"
+      }
+    },
+    "final_analysis": {
+      "total_samples": 2199,
+      "privileged_count": 776,
+      "unprivileged_count": 1423,
+      "current_sensitive_ratio": 0.35288767621646205,
+      "positive_count": 285,
+      "negative_count": 1914,
+      "current_label_ratio": 0.1296043656207367,
+      "cross_tab": {
+        "priv_pos": 118,
+        "priv_neg": 658,
+        "unpriv_pos": 167,
+        "unpriv_neg": 1256
+      },
+      "columns": {
+        "sensitive_col": "STUDENTGENDER",
+        "label_col": "STUDENT_DROPOUT_STATUS",
+        "privileged_val": "M",
+        "positive_label": "DROPOUT"
+      }
+    },
+    "augmented_data_shape": [
+      2199,
+      16
+    ],
+    "target_ratios": {
+      "target_sensitive_ratio": 0.35,
+      "target_label_ratio": 0.12
+    },
+    "baseline_metrics": {
+      "model_name": "Baseline_Balanced_reverse_gender_india_with_fairness_llm_async",
+      "overall_accuracy": 0.884090909090909,
+      "privileged_accuracy": 0.8439716312056738,
+      "unprivileged_accuracy": 0.903010033444816,
+      "privileged_tpr": 0.45,
+      "unprivileged_tpr": 0.2702702702702703,
+      "privileged_fpr": 0.09090909090909091,
+      "unprivileged_fpr": 0.007633587786259542,
+      "privileged_selection_rate": 0.14184397163120568,
+      "unprivileged_selection_rate": 0.04013377926421405,
+      "accuracy_difference": -0.05903840223914225,
+      "tpr_difference": 0.17972972972972973,
+      "fpr_difference": 0.08327550312283137,
+      "demographic_parity_difference": 0.10171019236699164
+    },
+    "fair_metrics": {
+      "model_name": "Fair_Balanced_reverse_gender_india_with_fairness_llm_async",
+      "overall_accuracy": 0.8386363636363636,
+      "privileged_accuracy": 0.7588652482269503,
+      "unprivileged_accuracy": 0.8762541806020067,
+      "privileged_tpr": 0.6,
+      "unprivileged_tpr": 0.5135135135135135,
+      "privileged_fpr": 0.21487603305785125,
+      "unprivileged_fpr": 0.07251908396946564,
+      "privileged_selection_rate": 0.2695035460992908,
+      "unprivileged_selection_rate": 0.12709030100334448,
+      "accuracy_difference": -0.11738893237505632,
+      "tpr_difference": 0.08648648648648649,
+      "fpr_difference": 0.1423569490883856,
+      "demographic_parity_difference": 0.1424132450959463
+    },
+    "balance_achieved": {
+      "sensitive_ratio_achieved": true,
+      "label_ratio_achieved": true
+    },
+    "improvement_metrics": {
+      "accuracy_difference": 0.045454545454545414,
+      "dp_improvement": -0.040703052728954664,
+      "tpr_improvement": 0.09324324324324323,
+      "fpr_improvement": -0.059081445965554216
+    },
+    "augmentation_plan": {
+      "total_additional": 0,
+      "target_total": 2137,
+      "breakdown": {
+        "priv_pos": 0,
+        "priv_neg": 33,
+        "unpriv_pos": 29,
+        "unpriv_neg": 0
+      },
+      "target_distribution": {
+        "priv_pos": 89,
+        "priv_neg": 658,
+        "unpriv_pos": 167,
+        "unpriv_neg": 1223
+      }
+    },
+    "augmented_dataset_path": "./data/augmented_india_reverse_gender_india_with_fairness_llm_async_0.35_0.12.csv"
+  }
+}

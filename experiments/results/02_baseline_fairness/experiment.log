@@ -1,0 +1,14 @@
+[2025-06-23 15:44:49] === EXPERIMENT 2: BASELINE FAIRNESS ASSESSMENT ===
+[2025-06-23 15:44:49] Objective: Establish fairness baselines for each dataset using optimal models
+[2025-06-23 15:44:49] Previous results loaded from: ./experiments/results/01_model_selection/best_models.json
+[2025-06-23 15:44:49] Best models: Brazil=logistic_regression, Africa=random_forest, India=logistic_regression
+[2025-06-23 15:44:49] Running baseline fairness assessment for brazil using logistic_regression...
+[2025-06-23 15:44:52] Completed baseline assessment for brazil
+[2025-06-23 15:44:54] Running baseline fairness assessment for africa using random_forest...
+[2025-06-23 15:45:03] Completed baseline assessment for africa
+[2025-06-23 15:45:06] Running baseline fairness assessment for india using logistic_regression...
+[2025-06-23 15:45:11] Completed baseline assessment for india
+[2025-06-23 15:45:14] === BASELINE FAIRNESS ASSESSMENT COMPLETED ===
+[2025-06-23 15:45:14] Results saved to: ./experiments/results/02_baseline_fairness
+[2025-06-23 15:45:14] Summary: ./experiments/results/02_baseline_fairness/baseline_fairness_summary.txt
+[2025-06-23 15:45:14] Analysis: ./experiments/results/02_baseline_fairness/baseline_results.json

@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "timestamp": "2025-06-23T16:33:06.370830",
+    "experiment_type": "balanced_augmentation_llm_async",
+    "config_name": "brazil",
+    "scenario_name": "reverse_gender_india_no_fairness"
+  },
+  "results": {
+    "scenario_name": "reverse_gender_india_no_fairness",
+    "generation_method": "llm_async",
+    "original_analysis": {
+      "total_samples": 4424,
+      "privileged_count": 2868,
+      "unprivileged_count": 1556,
+      "current_sensitive_ratio": 0.6482820976491862,
+      "positive_count": 1421,
+      "negative_count": 3003,
+      "current_label_ratio": 0.3212025316455696,
+      "cross_tab": {
+        "priv_pos": 720,
+        "priv_neg": 2148,
+        "unpriv_pos": 701,
+        "unpriv_neg": 855
+      },
+      "columns": {
+        "sensitive_col": "Gender",
+        "label_col": "Target",
+        "privileged_val": 0,
+        "positive_label": "Dropout"
+      }
+    },
+    "final_analysis": {
+      "total_samples": 6100,
+      "privileged_count": 4544,
+      "unprivileged_count": 1556,
+      "current_sensitive_ratio": 0.7449180327868853,
+      "positive_count": 1421,
+      "negative_count": 4679,
+      "current_label_ratio": 0.23295081967213116,
+      "cross_tab": {
+        "priv_pos": 720,
+        "priv_neg": 3824,
+        "unpriv_pos": 701,
+        "unpriv_neg": 855
+      },
+      "columns": {
+        "sensitive_col": "Gender",
+        "label_col": "Target",
+        "privileged_val": 0,
+        "positive_label": "Dropout"
+      }
+    },
+    "augmented_data_shape": [
+      6100,
+      35
+    ],
+    "target_ratios": {
+      "target_sensitive_ratio": 0.35,
+      "target_label_ratio": 0.12
+    },
+    "baseline_metrics": {
+      "model_name": "Baseline_Balanced_reverse_gender_india_no_fairness_llm_async",
+      "overall_accuracy": 0.8950819672131147,
+      "privileged_accuracy": 0.9205298013245033,
+      "unprivileged_accuracy": 0.821656050955414,
+      "privileged_tpr": 0.6058394160583942,
+      "unprivileged_tpr": 0.7210884353741497,
+      "privileged_fpr": 0.02340702210663199,
+      "unprivileged_fpr": 0.08982035928143713,
+      "privileged_selection_rate": 0.11147902869757174,
+      "unprivileged_selection_rate": 0.3853503184713376,
+      "accuracy_difference": 0.0988737503690893,
+      "tpr_difference": -0.11524901931575549,
+      "fpr_difference": -0.06641333717480513,
+      "demographic_parity_difference": -0.27387128977376585
+    },
+    "fair_metrics": {
+      "model_name": "Fair_Balanced_reverse_gender_india_no_fairness_llm_async",
+      "overall_accuracy": 0.8622950819672132,
+      "privileged_accuracy": 0.8852097130242825,
+      "unprivileged_accuracy": 0.7961783439490446,
+      "privileged_tpr": 0.7664233576642335,
+      "unprivileged_tpr": 0.8095238095238095,
+      "privileged_fpr": 0.09362808842652796,
+      "unprivileged_fpr": 0.2155688622754491,
+      "privileged_selection_rate": 0.19536423841059603,
+      "unprivileged_selection_rate": 0.49363057324840764,
+      "accuracy_difference": 0.0890313690752379,
+      "tpr_difference": -0.043100451859576006,
+      "fpr_difference": -0.12194077384892114,
+      "demographic_parity_difference": -0.2982663348378116
+    },
+    "balance_achieved": {
+      "sensitive_ratio_achieved": false,
+      "label_ratio_achieved": false
+    },
+    "improvement_metrics": {
+      "accuracy_difference": 0.032786885245901565,
+      "dp_improvement": -0.024395045064045773,
+      "tpr_improvement": 0.07214856745617948,
+      "fpr_improvement": -0.05552743667411601
+    },
+    "augmentation_plan": {
+      "total_additional": 0,
+      "target_total": 4424,
+      "breakdown": {
+        "priv_pos": 0,
+        "priv_neg": 0,
+        "unpriv_pos": 0,
+        "unpriv_neg": 1676
+      },
+      "target_distribution": {
+        "priv_pos": 185,
+        "priv_neg": 1363,
+        "unpriv_pos": 345,
+        "unpriv_neg": 2531
+      }
+    },
+    "augmented_dataset_path": "./data/augmented_brazil_reverse_gender_india_no_fairness_llm_async_0.35_0.12.csv"
+  }
+}

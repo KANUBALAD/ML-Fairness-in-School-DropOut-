@@ -1,0 +1,80 @@
+✓ LLM generator loaded successfully
+✓ SDV library loaded successfully with conditional sampling support
+✓ CTGAN/TVAE generators loaded successfully
+Results will be saved to: ./experiments/results/02_baseline_fairness
+
+================================================================================
+STANDARD ML EXPERIMENT
+Dataset: africa
+================================================================================
+Current working directory: /Users/abubakarialidu/Desktop/ML-Fairness-in-School-DropOut-/ModularCode
+Loading configuration from: ./experiments/results/02_baseline_fairness/temp_africa.yaml and fairness unawareness is True
+Sensitive attribute (privileged=1, unprivileged=0) counts: [35055 27684]
+Xtrain shape: (50191, 44), ytrain shape: (50191,)
+Xtest shape: (12548, 44), ytest shape: (12548,)
+Performing 5x2 cross-validation...
+random_forest: Mean accuracy = 0.9457, Std deviation = 0.0007
+
+Evaluating random_forest...
+
+=== Fairness Report for Baseline random_forest ===
+Overall Accuracy: 0.9452
+
+Group-wise Performance:
+  Privileged Group Accuracy:   0.9607
+  Unprivileged Group Accuracy: 0.9329
+  Accuracy Difference:         0.0278
+
+True Positive Rate (Recall):
+  Privileged Group TPR:        0.8135
+  Unprivileged Group TPR:      0.4635
+  TPR Difference:              0.3500
+
+False Positive Rate:
+  Privileged Group FPR:        0.0270
+  Unprivileged Group FPR:      0.0140
+  FPR Difference:              0.0130
+
+Selection Rate (Demographic Parity):
+  Privileged Group Selection Rate:   0.0878
+  Unprivileged Group Selection Rate: 0.0597
+  Demographic Parity Difference:     0.0281
+
+Fairness Assessment:
+  ✓ Demographic Parity: FAIR (difference < 0.1)
+
+Running fairness mitigation (reweighting) using model: random_forest
+=== Fair Model results ===
+
+=== Fairness Report for Fair (reweighting) ===
+Overall Accuracy: 0.9367
+
+Group-wise Performance:
+  Privileged Group Accuracy:   0.9324
+  Unprivileged Group Accuracy: 0.9402
+  Accuracy Difference:         -0.0078
+
+True Positive Rate (Recall):
+  Privileged Group TPR:        0.9977
+  Unprivileged Group TPR:      0.9986
+  TPR Difference:              -0.0009
+
+False Positive Rate:
+  Privileged Group FPR:        0.0731
+  Unprivileged Group FPR:      0.0664
+  FPR Difference:              0.0067
+
+Selection Rate (Demographic Parity):
+  Privileged Group Selection Rate:   0.1446
+  Unprivileged Group Selection Rate: 0.1612
+  Demographic Parity Difference:     -0.0166
+
+Fairness Assessment:
+  ✓ Demographic Parity: FAIR (difference < 0.1)
+✓ Saved results to: ./experiments/results/02_baseline_fairness/standard_ml_africa.json
+
+================================================================================
+STANDARD ML EXPERIMENT COMPLETED
+================================================================================
+
+✓ All results saved to: ./experiments/results/02_baseline_fairness

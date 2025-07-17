@@ -1,0 +1,11 @@
+dataname: brazil
+datapath: "./data/brazil_data.csv"
+test_size: 0.2
+random_state: 42
+
+unawareness: True
+model: compare
+
+# --- FAIRNESS EXTENSIONS ---
+fairness: true
+fair_technique: reweighting

@@ -1,0 +1,141 @@
+✓ LLM generator loaded successfully
+✓ SDV library loaded successfully with conditional sampling support
+✓ CTGAN/TVAE generators loaded successfully
+Results will be saved to: ./experiments/results/04_method_selection_criteria_v2/africa
+Running balanced augmentation experiment with method: faker
+
+================================================================================
+BALANCED AUGMENTATION EXPERIMENT: perfect_balance_faker
+Dataset: africa
+Generation Method: faker
+Target Sensitive Ratio: 0.50 (privileged:unprivileged)
+Target Label Ratio: 0.50 (positive:negative)
+================================================================================
+Original dataset shape: (62739, 13)
+
+Current Distribution Analysis:
+  Total samples: 62739
+  Privileged: 27684 (0.441)
+  Unprivileged: 35055 (0.559)
+  Positive labels: 5707 (0.091)
+  Negative labels: 57032 (0.909)
+
+Cross-tabulation:
+  Privileged + Positive: 2147
+  Privileged + Negative: 25537
+  Unprivileged + Positive: 3560
+  Unprivileged + Negative: 31495
+
+Augmentation Plan:
+  Total additional samples needed: 51325
+  Target total size: 114064
+  Additional samples by category:
+    Privileged + Positive: +26369
+    Privileged + Negative: +2979
+    Unprivileged + Positive: +24956
+    Unprivileged + Negative: +0
+
+Generating targeted synthetic samples using method: faker
+Total additional samples needed: 51325
+Using Faker generator...
+Generating 26369 samples for Privileged + Positive
+  Generating 26369 samples for privileged group with positive outcome
+    Using 100% Faker generation for reliability and speed
+    ✓ Generated 26369 samples
+Generating 2979 samples for Privileged + Negative
+  Generating 2979 samples for privileged group with negative outcome
+    Using 100% Faker generation for reliability and speed
+    ✓ Generated 2979 samples
+Generating 24956 samples for Unprivileged + Positive
+  Generating 24956 samples for unprivileged group with positive outcome
+    Using 100% Faker generation for reliability and speed
+    ✓ Generated 24956 samples
+
+Augmented dataset shape: (117043, 13)
+
+Verification - Final Distribution:
+  Privileged ratio: 0.487 (target: 0.500)
+  Positive label ratio: 0.487 (target: 0.500)
+✓ Saved augmented dataset to: ./data/augmented_africa_perfect_balance_faker_faker_0.5_0.5.csv
+
+Testing fairness interventions on balanced dataset (method: faker)...
+Preprocessed balanced data shape: (117043, 57)
+Final sensitive distribution: [60011 57032]
+Final label distribution: [60011 57032]
+
+--- Baseline Model on Balanced Data (faker) ---
+
+=== Fairness Report for Baseline_Balanced_perfect_balance_faker_faker ===
+Overall Accuracy: 0.9306
+
+Group-wise Performance:
+  Privileged Group Accuracy:   0.9223
+  Unprivileged Group Accuracy: 0.9386
+  Accuracy Difference:         -0.0164
+
+True Positive Rate (Recall):
+  Privileged Group TPR:        0.9539
+  Unprivileged Group TPR:      0.8955
+  TPR Difference:              0.0584
+
+False Positive Rate:
+  Privileged Group FPR:        0.1098
+  Unprivileged Group FPR:      0.0228
+  FPR Difference:              0.0869
+
+Selection Rate (Demographic Parity):
+  Privileged Group Selection Rate:   0.5346
+  Unprivileged Group Selection Rate: 0.4347
+  Demographic Parity Difference:     0.1000
+
+Fairness Assessment:
+  ✓ Demographic Parity: FAIR (difference < 0.1)
+
+Applying fairness intervention on balanced data: reweighting
+
+--- Fair Model on Balanced Data (faker) ---
+
+=== Fairness Report for Fair_Balanced_perfect_balance_faker_faker ===
+Overall Accuracy: 0.9284
+
+Group-wise Performance:
+  Privileged Group Accuracy:   0.9210
+  Unprivileged Group Accuracy: 0.9355
+  Accuracy Difference:         -0.0146
+
+True Positive Rate (Recall):
+  Privileged Group TPR:        0.9582
+  Unprivileged Group TPR:      0.9023
+  TPR Difference:              0.0560
+
+False Positive Rate:
+  Privileged Group FPR:        0.1168
+  Unprivileged Group FPR:      0.0347
+  FPR Difference:              0.0821
+
+Selection Rate (Demographic Parity):
+  Privileged Group Selection Rate:   0.5403
+  Unprivileged Group Selection Rate: 0.4441
+  Demographic Parity Difference:     0.0962
+
+Fairness Assessment:
+  ✓ Demographic Parity: FAIR (difference < 0.1)
+✓ Saved results to: ./experiments/results/04_method_selection_criteria_v2/africa/balanced_augmentation_faker_africa_perfect_balance_faker.json
+
+================================================================================
+BALANCED AUGMENTATION EXPERIMENT RESULTS
+================================================================================
+Generation Method: faker
+Original dataset: 62739 samples
+Augmented dataset: 117043 samples
+Samples added: 54304
+
+Balance Achievement:
+  Sensitive ratio: 0.441 → 0.487
+  Label ratio: 0.091 → 0.487
+
+Fairness Impact:
+  Accuracy cost: 0.0022
+  DP improvement: 0.0038
+
+✓ All results saved to: ./experiments/results/04_method_selection_criteria_v2/africa
