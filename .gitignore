@@ -1,11 +1,5 @@
-<<<<<<< HEAD
 .csv
 .ipynb_checkpoints
 .DS_Store
 __pycache__
-
-
-
-=======
-venv_fairness/
->>>>>>> fairness-mitigation
+Old code/
