@@ -3,3 +3,12 @@
 .DS_Store
 __pycache__
 Old code/
+.vscode/
+ModularCode/Synthetic_data/
+ModularCode/results/
+ModularCode/results_old/
+ModularCode/fairness_analysis_results/
+ModularCode/*.zip
+venv_fairness/
+**/venv*/
+*.pyc

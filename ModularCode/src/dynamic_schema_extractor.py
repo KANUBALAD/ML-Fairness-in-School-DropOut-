@@ -438,39 +438,57 @@ class DynamicSchemaExtractor:
     
     def _find_sensitive_column_candidates(self, data: pd.DataFrame, column_schemas: Dict) -> List[str]:
         """Find likely sensitive attribute columns."""
-        candidates = []
+        high_priority = []    # Explicit sensitive keywords
+        medium_priority = []  # Gender-like binary columns
+        low_priority = []     # Other binary categorical columns
         
         for col, schema in column_schemas.items():
             col_lower = col.lower()
             
-            # Check for common sensitive attribute names
-            if any(keyword in col_lower for keyword in ['gender', 'sex', 'race', 'ethnicity', 'age']):
-                candidates.append(col)
+            # HIGH PRIORITY: Explicit sensitive attribute names
+            if any(keyword in col_lower for keyword in ['gender', 'sex', 'race', 'ethnicity']):
+                high_priority.append(col)
             
-            # Check for binary categorical that might be sensitive
+            # MEDIUM PRIORITY: Binary columns that could be demographic
             elif (schema.get('type_category') == 'categorical' and 
-                  schema.get('distribution_info', {}).get('is_binary', False)):
-                candidates.append(col)
+                schema.get('distribution_info', {}).get('is_binary', False)):
+                
+                # Check if values look like gender/demographic categories
+                allowed_values = schema.get('constraints', {}).get('allowed_values', [])
+                str_values = [str(v).lower() for v in allowed_values if v is not None]
+                
+                # Gender-like patterns
+                if (set(str_values).intersection({'male', 'female', 'm', 'f', '0', '1'}) and 
+                    not any(word in col_lower for word in ['language', 'education', 'occupation'])):
+                    medium_priority.append(col)
+                else:
+                    low_priority.append(col)
+            
+            # Age as categorical (binned age groups)
+            elif 'age' in col_lower and schema.get('type_category') == 'categorical':
+                medium_priority.append(col)
         
-        return candidates
-    
+        # Return in priority order
+        return high_priority + medium_priority + low_priority
+
     def _find_label_column_candidates(self, data: pd.DataFrame, column_schemas: Dict) -> List[str]:
         """Find likely label/target columns."""
-        candidates = []
+        high_priority = []    # Explicit target keywords
+        low_priority = []     # Binary categorical columns
         
         for col, schema in column_schemas.items():
             col_lower = col.lower()
             
-            # Check for common target names
+            # HIGH PRIORITY: Explicit target names
             if any(keyword in col_lower for keyword in ['target', 'label', 'outcome', 'dropout', 'class', 'result']):
-                candidates.append(col)
+                high_priority.append(col)
             
-            # Check for binary categorical that might be target
+            # LOW PRIORITY: Binary categorical that might be target
             elif (schema.get('type_category') == 'categorical' and 
-                  schema.get('distribution_info', {}).get('is_binary', False)):
-                candidates.append(col)
+                schema.get('distribution_info', {}).get('is_binary', False)):
+                low_priority.append(col)
         
-        return candidates
+        return high_priority + low_priority
 
     def create_generation_prompt_schema(self, schema: Dict[str, Any], 
                                       target_columns: Optional[Dict[str, Any]] = None) -> str:
