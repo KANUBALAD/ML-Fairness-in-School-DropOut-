@@ -12,3 +12,4 @@ ModularCode/*.zip
 venv_fairness/
 **/venv*/
 *.pyc
+ModularCode/rome_air_quality.csv
