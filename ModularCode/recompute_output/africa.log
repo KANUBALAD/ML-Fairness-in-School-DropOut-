@@ -1,0 +1,159 @@
+=== africa: original ===
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+=== africa: vary_label (19 files) ===
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  africa_Sens_44_Label_10.csv done in 8.4s (total 12.4s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  africa_Sens_44_Label_15.csv done in 8.3s (total 20.7s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  africa_Sens_44_Label_20.csv done in 8.9s (total 29.6s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  africa_Sens_44_Label_25.csv done in 8.7s (total 38.3s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  africa_Sens_44_Label_30.csv done in 9.0s (total 47.3s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  africa_Sens_44_Label_35.csv done in 9.1s (total 56.4s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  africa_Sens_44_Label_40.csv done in 9.5s (total 65.9s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  africa_Sens_44_Label_45.csv done in 9.3s (total 75.2s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  africa_Sens_44_Label_5.csv done in 7.7s (total 82.9s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  africa_Sens_44_Label_50.csv done in 9.3s (total 92.1s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  africa_Sens_44_Label_55.csv done in 9.6s (total 101.8s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  africa_Sens_44_Label_60.csv done in 10.1s (total 111.9s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  africa_Sens_44_Label_65.csv done in 10.7s (total 122.5s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  africa_Sens_44_Label_70.csv done in 10.9s (total 133.4s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  africa_Sens_44_Label_75.csv done in 10.3s (total 143.7s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  africa_Sens_44_Label_80.csv done in 9.9s (total 153.7s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  africa_Sens_44_Label_85.csv done in 10.0s (total 163.7s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  africa_Sens_44_Label_90.csv done in 9.6s (total 173.3s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  africa_Sens_44_Label_95.csv done in 9.6s (total 182.9s)
+=== africa: vary_sensitive (19 files) ===
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  africa_Sens_10_Label_9.csv done in 8.5s (total 191.4s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  africa_Sens_15_Label_9.csv done in 8.0s (total 199.4s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  africa_Sens_20_Label_9.csv done in 8.8s (total 208.1s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  africa_Sens_25_Label_9.csv done in 8.3s (total 216.4s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  africa_Sens_30_Label_9.csv done in 8.5s (total 225.0s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  africa_Sens_35_Label_9.csv done in 8.4s (total 233.3s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  africa_Sens_40_Label_9.csv done in 8.6s (total 241.9s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  africa_Sens_45_Label_9.csv done in 8.5s (total 250.4s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  africa_Sens_50_Label_9.csv done in 8.7s (total 259.1s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  africa_Sens_55_Label_9.csv done in 8.6s (total 267.7s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  africa_Sens_5_Label_9.csv done in 8.2s (total 275.9s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  africa_Sens_60_Label_9.csv done in 8.7s (total 284.6s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  africa_Sens_65_Label_9.csv done in 8.9s (total 293.5s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  africa_Sens_70_Label_9.csv done in 7.8s (total 301.3s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  africa_Sens_75_Label_9.csv done in 8.8s (total 310.0s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  africa_Sens_80_Label_9.csv done in 7.8s (total 317.8s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  africa_Sens_85_Label_9.csv done in 8.0s (total 325.8s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  africa_Sens_90_Label_9.csv done in 7.8s (total 333.6s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  africa_Sens_95_Label_9.csv done in 7.8s (total 341.4s)
+Saved 585 fold rows to recompute_output/africa_perfold.csv

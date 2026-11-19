@@ -1,0 +1,42 @@
+    done original
+=== brazil: vary_label (19 files) ===
+    done brazil_Sens_65_Label_10.csv
+    done brazil_Sens_65_Label_15.csv
+    done brazil_Sens_65_Label_20.csv
+    done brazil_Sens_65_Label_25.csv
+    done brazil_Sens_65_Label_30.csv
+    done brazil_Sens_65_Label_35.csv
+    done brazil_Sens_65_Label_40.csv
+    done brazil_Sens_65_Label_45.csv
+    done brazil_Sens_65_Label_5.csv
+    done brazil_Sens_65_Label_50.csv
+    done brazil_Sens_65_Label_55.csv
+    done brazil_Sens_65_Label_60.csv
+    done brazil_Sens_65_Label_65.csv
+    done brazil_Sens_65_Label_70.csv
+    done brazil_Sens_65_Label_75.csv
+    done brazil_Sens_65_Label_80.csv
+    done brazil_Sens_65_Label_85.csv
+    done brazil_Sens_65_Label_90.csv
+    done brazil_Sens_65_Label_95.csv
+=== brazil: vary_sensitive (19 files) ===
+    done brazil_Sens_10_Label_32.csv
+    done brazil_Sens_15_Label_32.csv
+    done brazil_Sens_20_Label_32.csv
+    done brazil_Sens_25_Label_32.csv
+    done brazil_Sens_30_Label_32.csv
+    done brazil_Sens_35_Label_32.csv
+    done brazil_Sens_40_Label_32.csv
+    done brazil_Sens_45_Label_32.csv
+    done brazil_Sens_50_Label_32.csv
+    done brazil_Sens_55_Label_32.csv
+    done brazil_Sens_5_Label_32.csv
+    done brazil_Sens_60_Label_32.csv
+    done brazil_Sens_65_Label_32.csv
+    done brazil_Sens_70_Label_32.csv
+    done brazil_Sens_75_Label_32.csv
+    done brazil_Sens_80_Label_32.csv
+    done brazil_Sens_85_Label_32.csv
+    done brazil_Sens_90_Label_32.csv
+    done brazil_Sens_95_Label_32.csv
+Saved 585 fold rows to /Users/abubakarialidu/Desktop/ML-Fairness-in-School-DropOut-/ModularCode/review_fixes/perfold_extended/brazil_perfold_extended.csv (total 95.9s)

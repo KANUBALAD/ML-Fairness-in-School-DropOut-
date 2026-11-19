@@ -1,0 +1,21 @@
+\begin{table}[ht]
+\centering\footnotesize
+\caption{SSSD: Equality-of-Opportunity gap (|EO|, 5-fold CV means over the 19-point
+grid) under gender rebalancing vs. label rebalancing. Label rebalancing moves the
+EO gap below 0.03 in most grid settings; gender rebalancing leaves |EO| up to
+$\approx$0.22. The RQ3/RQ2 claim that gender rebalancing is preferable for SSSD
+is therefore not supported by the data; label rebalancing is the better EO
+reducer, consistent with RQ4 and the Discussion.}
+\label{tab:sssd_eo}
+\begin{tabular}{l l c c c c c c}
+\toprule
+Model & Sweep & Base |EO| & min |EO| & median |EO| & max |EO| & mean |EO| & \% runs $<$0.03 \\
+\midrule
+logistic regression  & vary sensitive & +0.2408 & 0.0159 & 0.1127 & 0.2227 & 0.1222 & 11\% \\
+logistic regression  & vary label     & +0.2408 & 0.0024 & 0.0249 & 0.0842 & 0.0270 & 79\% \\
+decision tree        & vary sensitive & -0.3258 & 0.0041 & 0.0556 & 0.1909 & 0.0652 & 32\% \\
+decision tree        & vary label     & -0.3258 & 0.0014 & 0.0222 & 0.0379 & 0.0219 & 84\% \\
+random forest        & vary sensitive & -0.3246 & 0.0039 & 0.0550 & 0.1811 & 0.0636 & 21\% \\
+random forest        & vary label     & -0.3246 & 0.0010 & 0.0225 & 0.0306 & 0.0209 & 95\% \\\bottomrule
+\end{tabular}
+\end{table}

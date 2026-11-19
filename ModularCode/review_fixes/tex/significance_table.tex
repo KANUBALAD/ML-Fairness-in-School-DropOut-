@@ -1,0 +1,48 @@
+% Re-computed from corrected synthetic data (Synthetic_data_corrected),
+% Male-Female convention throughout; one-sample t-test, n=19 grid points.
+\begin{table}
+\caption{Recomputed significance of fairness changes (p-values and improvement $|\mathrm{baseline}|-|\mathrm{mean\ synthetic}|$), corrected data.}
+\label{tab:significance_corrected}
+\begin{tabular}{llllrrrrrrrr}
+\toprule
+dataset & experiment & model & metric & n & baseline & mean_synthetic & sd_synthetic & t & p_value & improvement & significant \\
+\midrule
+SATDAP & Vary Sensitive & logistic regression & DP & 19 & -0.2014 & -0.0004 & 0.0040 & 218.4930 & 0.0000 & 0.2009 & True \\
+SATDAP & Vary Sensitive & logistic regression & EO & 19 & -0.0845 & -0.0009 & 0.0060 & 60.5815 & 0.0000 & 0.0836 & True \\
+SATDAP & Vary Sensitive & decision tree & DP & 19 & -0.1773 & -0.0024 & 0.0180 & 42.3275 & 0.0000 & 0.1748 & True \\
+SATDAP & Vary Sensitive & decision tree & EO & 19 & -0.0511 & -0.0034 & 0.0307 & 6.7834 & 0.0000 & 0.0477 & True \\
+SATDAP & Vary Sensitive & random forest & DP & 19 & -0.1874 & 0.0005 & 0.0050 & 162.6393 & 0.0000 & 0.1869 & True \\
+SATDAP & Vary Sensitive & random forest & EO & 19 & -0.0580 & -0.0004 & 0.0083 & 30.1631 & 0.0000 & 0.0576 & True \\
+SATDAP & Vary Label & logistic regression & DP & 19 & -0.2014 & 0.0007 & 0.0067 & 131.7957 & 0.0000 & 0.2006 & True \\
+SATDAP & Vary Label & logistic regression & EO & 19 & -0.0845 & 0.0000 & 0.0099 & 37.2193 & 0.0000 & 0.0845 & True \\
+SATDAP & Vary Label & decision tree & DP & 19 & -0.1773 & -0.0007 & 0.0128 & 60.2010 & 0.0000 & 0.1765 & True \\
+SATDAP & Vary Label & decision tree & EO & 19 & -0.0511 & -0.0051 & 0.0246 & 8.1458 & 0.0000 & 0.0460 & True \\
+SATDAP & Vary Label & random forest & DP & 19 & -0.1874 & 0.0015 & 0.0060 & 137.8204 & 0.0000 & 0.1859 & True \\
+SATDAP & Vary Label & random forest & EO & 19 & -0.0580 & 0.0028 & 0.0091 & 29.0117 & 0.0000 & 0.0552 & True \\
+SSSD & Vary Sensitive & logistic regression & DP & 19 & 0.0112 & 0.0217 & 0.0103 & 4.4353 & 0.0003 & -0.0105 & True \\
+SSSD & Vary Sensitive & logistic regression & EO & 19 & 0.2408 & 0.1222 & 0.0612 & -8.4530 & 0.0000 & 0.1186 & True \\
+SSSD & Vary Sensitive & decision tree & DP & 19 & -0.0950 & 0.0081 & 0.0113 & 39.8815 & 0.0000 & 0.0870 & True \\
+SSSD & Vary Sensitive & decision tree & EO & 19 & -0.3258 & 0.0476 & 0.0716 & 22.7223 & 0.0000 & 0.2782 & True \\
+SSSD & Vary Sensitive & random forest & DP & 19 & -0.0948 & 0.0072 & 0.0112 & 39.7877 & 0.0000 & 0.0876 & True \\
+SSSD & Vary Sensitive & random forest & EO & 19 & -0.3246 & 0.0445 & 0.0658 & 24.4631 & 0.0000 & 0.2801 & True \\
+SSSD & Vary Label & logistic regression & DP & 19 & 0.0112 & -0.0109 & 0.0137 & -7.0501 & 0.0000 & 0.0003 & True \\
+SSSD & Vary Label & logistic regression & EO & 19 & 0.2408 & -0.0159 & 0.0280 & -39.9751 & 0.0000 & 0.2249 & True \\
+SSSD & Vary Label & decision tree & DP & 19 & -0.0950 & -0.0082 & 0.0122 & 31.0664 & 0.0000 & 0.0868 & True \\
+SSSD & Vary Label & decision tree & EO & 19 & -0.3258 & -0.0169 & 0.0167 & 80.7347 & 0.0000 & 0.3089 & True \\
+SSSD & Vary Label & random forest & DP & 19 & -0.0948 & -0.0083 & 0.0124 & 30.5242 & 0.0000 & 0.0865 & True \\
+SSSD & Vary Label & random forest & EO & 19 & -0.3246 & -0.0166 & 0.0153 & 87.9863 & 0.0000 & 0.3080 & True \\
+RDD & Vary Sensitive & logistic regression & DP & 19 & 0.0535 & -0.0024 & 0.0050 & -48.8635 & 0.0000 & 0.0511 & True \\
+RDD & Vary Sensitive & logistic regression & EO & 19 & 0.1569 & -0.0056 & 0.0158 & -44.6889 & 0.0000 & 0.1514 & True \\
+RDD & Vary Sensitive & decision tree & DP & 19 & 0.0480 & -0.0012 & 0.0151 & -14.1842 & 0.0000 & 0.0469 & True \\
+RDD & Vary Sensitive & decision tree & EO & 19 & 0.0780 & 0.0056 & 0.0596 & -5.2975 & 0.0000 & 0.0724 & True \\
+RDD & Vary Sensitive & random forest & DP & 19 & 0.0150 & -0.0001 & 0.0003 & -195.4059 & 0.0000 & 0.0149 & True \\
+RDD & Vary Sensitive & random forest & EO & 19 & 0.0020 & 0.0000 & 0.0000 & -inf & 0.0000 & 0.0020 & True \\
+RDD & Vary Label & logistic regression & DP & 19 & 0.0535 & 0.0007 & 0.0130 & -17.6762 & 0.0000 & 0.0527 & True \\
+RDD & Vary Label & logistic regression & EO & 19 & 0.1569 & 0.0052 & 0.0241 & -27.4423 & 0.0000 & 0.1517 & True \\
+RDD & Vary Label & decision tree & DP & 19 & 0.0480 & 0.0040 & 0.0129 & -14.8845 & 0.0000 & 0.0440 & True \\
+RDD & Vary Label & decision tree & EO & 19 & 0.0780 & 0.0071 & 0.0274 & -11.2990 & 0.0000 & 0.0709 & True \\
+RDD & Vary Label & random forest & DP & 19 & 0.0150 & 0.0024 & 0.0106 & -5.1989 & 0.0001 & 0.0126 & True \\
+RDD & Vary Label & random forest & EO & 19 & 0.0020 & 0.0024 & 0.0130 & 0.1235 & 0.9031 & -0.0004 & False \\
+\bottomrule
+\end{tabular}
+\end{table}

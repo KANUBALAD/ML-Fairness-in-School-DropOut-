@@ -1,0 +1,159 @@
+=== india: original ===
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+=== india: vary_label (19 files) ===
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  india_Sens_35_Label_10.csv done in 14.3s (total 22.2s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  india_Sens_35_Label_15.csv done in 11.2s (total 33.4s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  india_Sens_35_Label_20.csv done in 9.0s (total 42.4s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  india_Sens_35_Label_25.csv done in 9.8s (total 52.2s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  india_Sens_35_Label_30.csv done in 7.9s (total 60.1s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  india_Sens_35_Label_35.csv done in 6.8s (total 66.9s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  india_Sens_35_Label_40.csv done in 6.5s (total 73.5s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  india_Sens_35_Label_45.csv done in 6.4s (total 79.9s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  india_Sens_35_Label_5.csv done in 10.0s (total 89.8s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  india_Sens_35_Label_50.csv done in 6.5s (total 96.4s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  india_Sens_35_Label_55.csv done in 6.8s (total 103.2s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  india_Sens_35_Label_60.csv done in 6.9s (total 110.1s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  india_Sens_35_Label_65.csv done in 7.5s (total 117.6s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  india_Sens_35_Label_70.csv done in 8.9s (total 126.5s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  india_Sens_35_Label_75.csv done in 8.5s (total 135.0s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  india_Sens_35_Label_80.csv done in 10.8s (total 145.8s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  india_Sens_35_Label_85.csv done in 10.8s (total 156.6s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  india_Sens_35_Label_90.csv done in 14.4s (total 171.0s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  india_Sens_35_Label_95.csv done in 10.3s (total 181.4s)
+=== india: vary_sensitive (19 files) ===
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  india_Sens_10_Label_12.csv done in 13.0s (total 194.3s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  india_Sens_15_Label_12.csv done in 11.6s (total 205.9s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  india_Sens_20_Label_12.csv done in 13.6s (total 219.5s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  india_Sens_25_Label_12.csv done in 14.2s (total 233.7s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  india_Sens_30_Label_12.csv done in 12.4s (total 246.1s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  india_Sens_35_Label_12.csv done in 10.4s (total 256.5s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  india_Sens_40_Label_12.csv done in 15.9s (total 272.4s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  india_Sens_45_Label_12.csv done in 12.2s (total 284.6s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  india_Sens_50_Label_12.csv done in 9.7s (total 294.3s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  india_Sens_55_Label_12.csv done in 9.8s (total 304.1s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  india_Sens_5_Label_12.csv done in 14.1s (total 318.2s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  india_Sens_60_Label_12.csv done in 15.7s (total 334.0s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  india_Sens_65_Label_12.csv done in 13.3s (total 347.2s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  india_Sens_70_Label_12.csv done in 14.4s (total 361.6s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  india_Sens_75_Label_12.csv done in 10.6s (total 372.3s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  india_Sens_80_Label_12.csv done in 12.4s (total 384.7s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  india_Sens_85_Label_12.csv done in 13.6s (total 398.2s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  india_Sens_90_Label_12.csv done in 9.7s (total 407.9s)
+    [logistic_regression] 5 folds done
+    [decision_tree] 5 folds done
+    [random_forest] 5 folds done
+  india_Sens_95_Label_12.csv done in 11.5s (total 419.4s)
+Saved 585 fold rows to recompute_output/india_perfold.csv

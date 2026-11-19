@@ -1,0 +1,22 @@
+\begin{table}[ht]
+\centering\footnotesize
+\caption{SATDAP: fairness and accuracy on real data vs. CTGAN synthetic data
+\emph{at the original marginals} (no rebalancing). The DP gap disappears in the
+synthetic data even when the male share and dropout rate are unchanged, because
+the generator forces gender $\perp$ dropout. The accuracy drop ($\approx$18--24 pts)
+is the same in both sweeps: it is the cost of replacing the real data with CTGAN
+output, not the cost of rebalancing.}
+\label{tab:matched_marginals}
+\begin{tabular}{l c c c c c c c c}
+\toprule
+Model & \multicolumn{2}{c}{Original data} &
+\multicolumn{2}{c}{Gender sweep @ 0.65} &
+\multicolumn{2}{c}{Label sweep @ 0.30} &
+\multicolumn{2}{c}{Label sweep @ 0.35} \\
+ & DP & Acc & DP & Acc & DP & Acc & DP & Acc \\
+\midrule
+logistic regression  & -0.2014 & 0.8757 & +0.0014 & 0.6770 & -0.0018 & 0.6991 & -0.0029 & 0.6447 \\
+decision tree        & -0.1773 & 0.8090 & +0.0104 & 0.5685 & +0.0006 & 0.5879 & +0.0065 & 0.5509 \\
+random forest        & -0.1874 & 0.8736 & +0.0062 & 0.6763 & +0.0015 & 0.6982 & +0.0002 & 0.6399 \\\bottomrule
+\end{tabular}
+\end{table}

@@ -13,3 +13,14 @@ venv_fairness/
 **/venv*/
 *.pyc
 ModularCode/rome_air_quality.csv
+paper_dev
+
+# Local-only large datasets (see data_mooc/README.md for download instructions)
+data_mooc/OULAD/
+data_mooc/KDD_Cup_2015/
+data_mooc/HarvardX_MITx/
+
+# Regenerable / heavy artifacts (see review_fixes/PLAN.md)
+ModularCode/Synthetic_data_corrected/
+ModularCode/recompute_output_old/
+ModularCode/review_fixes/perfold_extended/predictions/

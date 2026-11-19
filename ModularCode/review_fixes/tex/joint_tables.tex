@@ -1,0 +1,98 @@
+
+\begin{table}[ht]
+\centering\footnotesize
+\caption{SATDAP: joint gender $\times$ dropout structure, original vs. synthetic
+(\% of all rows; synthetic files from \texttt{Synthetic\_data\_corrected}).}
+\begin{tabular}{lrrrr}
+\toprule
+Cell (Gender, Dropout) & Orig. & Label 0.10 & Label 0.50 & Label 0.90 \\
+\midrule
+Male, Dropout    & 16.27 & 6.49 & 32.41 & 58.34 \\
+Male, No dropout & 48.53 & 58.34 & 32.41 & 6.49 \\
+Female, Dropout    & 15.86 & 3.53 & 17.59 & 31.65 \\
+Female, No dropout & 19.34 & 31.65 & 17.59 & 3.53 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[ht]
+\centering\footnotesize
+\caption{SATDAP: joint gender $\times$ dropout structure under gender rebalancing
+(\% of all rows; dropout rate held at its original value).}
+\begin{tabular}{lrrrr}
+\toprule
+Cell (Gender, Dropout) & Orig. & Sens 0.10 & Sens 0.50 & Sens 0.90 \\
+\midrule
+Male, Dropout    & 16.27 & 3.21 & 16.05 & 28.91 \\
+Male, No dropout & 48.53 & 6.78 & 33.95 & 61.10 \\
+Female, Dropout    & 15.86 & 28.91 & 16.05 & 3.21 \\
+Female, No dropout & 19.34 & 61.10 & 33.95 & 6.78 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\begin{table}[ht]
+\centering\footnotesize
+\caption{SSSD: joint gender $\times$ dropout structure, original vs. synthetic
+(\% of all rows; synthetic files from \texttt{Synthetic\_data\_corrected}).}
+\begin{tabular}{lrrrr}
+\toprule
+Cell (Gender, Dropout) & Orig. & Label 0.10 & Label 0.50 & Label 0.90 \\
+\midrule
+Male, Dropout    & 3.42 & 4.41 & 22.06 & 39.71 \\
+Male, No dropout & 40.68 & 39.71 & 22.06 & 4.41 \\
+Female, Dropout    & 5.68 & 5.59 & 27.94 & 50.29 \\
+Female, No dropout & 50.22 & 50.29 & 27.94 & 5.59 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[ht]
+\centering\footnotesize
+\caption{SSSD: joint gender $\times$ dropout structure under gender rebalancing
+(\% of all rows; dropout rate held at its original value).}
+\begin{tabular}{lrrrr}
+\toprule
+Cell (Gender, Dropout) & Orig. & Sens 0.10 & Sens 0.50 & Sens 0.90 \\
+\midrule
+Male, Dropout    & 3.42 & 0.91 & 4.55 & 8.19 \\
+Male, No dropout & 40.68 & 9.09 & 45.45 & 81.81 \\
+Female, Dropout    & 5.68 & 8.19 & 4.55 & 0.91 \\
+Female, No dropout & 50.22 & 81.81 & 45.45 & 9.09 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\begin{table}[ht]
+\centering\footnotesize
+\caption{RDD: joint gender $\times$ dropout structure, original vs. synthetic
+(\% of all rows; synthetic files from \texttt{Synthetic\_data\_corrected}).}
+\begin{tabular}{lrrrr}
+\toprule
+Cell (Gender, Dropout) & Orig. & Label 0.10 & Label 0.50 & Label 0.90 \\
+\midrule
+Male, Dropout    & 5.53 & 3.46 & 17.40 & 31.31 \\
+Male, No dropout & 29.27 & 31.31 & 17.40 & 3.46 \\
+Female, Dropout    & 6.45 & 6.50 & 32.60 & 58.73 \\
+Female, No dropout & 58.75 & 58.73 & 32.60 & 6.50 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[ht]
+\centering\footnotesize
+\caption{RDD: joint gender $\times$ dropout structure under gender rebalancing
+(\% of all rows; dropout rate held at its original value).}
+\begin{tabular}{lrrrr}
+\toprule
+Cell (Gender, Dropout) & Orig. & Sens 0.10 & Sens 0.50 & Sens 0.90 \\
+\midrule
+Male, Dropout    & 5.53 & 1.22 & 5.99 & 10.76 \\
+Male, No dropout & 29.27 & 8.80 & 44.01 & 79.22 \\
+Female, Dropout    & 6.45 & 10.76 & 5.99 & 1.22 \\
+Female, No dropout & 58.75 & 79.22 & 44.01 & 8.80 \\
+\bottomrule
+\end{tabular}
+\end{table}
